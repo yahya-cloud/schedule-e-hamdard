@@ -36,6 +36,7 @@ const SectionSchema = new Schema<SectionSchemaType>({
   time_table: [TimeTableSchema],
 });
 
+//populating students virtually
 SectionSchema.virtual("students", {
   ref: "Student",
   localField: "_id",
@@ -44,81 +45,4 @@ SectionSchema.virtual("students", {
 
 const SectionModel = model<SectionSchemaType>("Section", SectionSchema);
 
-//db calls
-export const getSections = async (findQuery: object, filter = {}) => {
-  let result = await SectionModel.find(findQuery, { ...filter }).lean();
-  return result;
-};
-
-export const getSection = async (findQuery: object, filter = {}) => {
-  let result = await SectionModel.find(findQuery, { ...filter })
-    .populate("students")
-    .lean();
-  return result;
-};
-
-export const createSection = async (dataObj: object) => {
-  let newSection = new SectionModel(dataObj);
-  let result = await newSection.save();
-  return result;
-};
-
-export const createMany = async (dataObj: object) => {
-  let result = await SectionModel.insertMany(dataObj);
-  return result;
-};
-
-export const removeAll = async () => {
-  let result = await SectionModel.deleteMany({});
-  return result;
-};
-
-export const addTeacher = async (findQuery: object, updateQuery: object) => {
-  let result = await SectionModel.findOneAndUpdate(
-    findQuery,
-    { $push: { teachers: updateQuery } },
-    {
-      new: true,
-      useFindAndModify: false,
-    }
-  );
-  return result;
-};
-
-export const removeTeacher = async (findQuery: object, updateQuery: object) => {
-  console.log(updateQuery);
-  let result = await SectionModel.findOneAndUpdate(
-    findQuery,
-    { $pull: { teachers: { ...updateQuery } } },
-    {
-      new: true,
-      useFindAndModify: false,
-    }
-  );
-  return result;
-};
-
-export const addClass = async (findQuery: object, updateQuery: object) => {
-  let result = await SectionModel.findOneAndUpdate(
-    findQuery,
-    { $push: { time_table: updateQuery } },
-    {
-      new: true,
-      useFindAndModify: false,
-    }
-  );
-  return result;
-};
-
-export const removeClass = async (findQuery: object, updateQuery: object) => {
-  console.log(updateQuery);
-  let result = await SectionModel.findOneAndUpdate(
-    findQuery,
-    { $pull: { time_table: { ...updateQuery } } },
-    {
-      new: true,
-      useFindAndModify: false,
-    }
-  );
-  return result;
-};
+export default SectionModel;

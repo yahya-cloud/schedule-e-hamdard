@@ -1,81 +1,127 @@
 import { RequestHandler } from "express";
-import * as student from "../models/student";
+import { student } from "../services/db";
 import * as authLib from "../libs/authLib";
-import { StudentSchemaType, UnknowObj, userRequest } from "../types";
+import { UnknowObj } from "../types";
+import utilLib from "../libs/utilLib";
 
-export const getStudents: RequestHandler = async (req, res) => {
+const getStudents: RequestHandler = async (req, res) => {
   try {
-    let filter = (req as any).user.user_type === "admin" ? {} : { password: 0 };
-    let result = await student.getStudents({}, filter);
-    res.status(200).json(result);
+    let userType = (req as any).user.user_type;
+    let data = await student.getStudents({ userType });
+    res.status(200).json({ data, message: "" });
   } catch (error) {
-    res.status(400).json({ message: error });
+    //@ts-ignore
+    res.status(400).json({ message: error.message });
   }
 };
 
-export const getStudent: RequestHandler = async (req, res) => {
+const getStudent: RequestHandler = async (req, res) => {
   try {
-    let studentId = req.params.id;
-    let result = await student.getStudent({ _id: studentId }, { password: 0 });
-    res.status(200).json(result);
+    let _id = req.params.id;
+    utilLib.checkMissingFieldsAndType({ _id }, { _id: "string" });
+    let data = await student.getStudent({ _id });
+    res.status(200).json({ data, message: "" });
   } catch (error) {
-    res.status(400).json({ message: error });
+    //@ts-ignore
+    res.status(400).json({ message: error.message });
   }
 };
 
-export const createStudent: RequestHandler = async (req, res) => {
+const createStudent: RequestHandler = async (req, res) => {
   try {
-    let password = await authLib.generatePassword();
-    let result = await student.createStudent({ ...req.body, password });
-    res.status(200).json(result);
-  } catch (error) {
-    res.status(400).json({ message: error });
-  }
-};
-
-export const createMany: RequestHandler = async (req, res) => {
-  try {
-    let studentsArray: Array<StudentSchemaType> = await Promise.all(
-      req.body.map(async (el: UnknowObj) => {
-        return {
-          ...el,
-          password: await authLib.generatePassword(),
-        };
-      })
+    utilLib.checkMissingFieldsAndType(
+      { ...req.body },
+      {
+        name: "string",
+        photo: "string",
+        email: "string",
+        phone_number: "number",
+        user_type: "string",
+      }
     );
 
-    const result = await student.createMany(studentsArray);
-    res.status(200).json(result);
+    const data = await student.createStudent({ ...req.body });
+    res.status(200).json({ data, message: "Student Added Successfully" });
   } catch (error) {
-    res.status(400).json({ message: error });
+    //@ts-ignore
+    res.status(400).json({ message: error.message });
   }
 };
 
-export const removeAll: RequestHandler = async (req, res) => {
+const createMany: RequestHandler = async (req, res) => {
   try {
-    let result = await student.removeAll({});
-    res.status(200).json(result);
+    let studentsArray = req.body;
+    studentsArray.forEach((person: UnknowObj) => {
+      utilLib.checkMissingFieldsAndType(
+        { ...person },
+        {
+          name: "string",
+          email: "string",
+          phone_number: "number",
+          en_number: "string",
+          user_type: "string",
+          section: "string",
+        }
+      );
+    });
+
+    const data = await student.createMany({ studentsArray });
+    res.status(200).json({ data, message: "Students Added Successfully" });
   } catch (error) {
-    res.status(400).json({ message: error });
+    //@ts-ignore
+    res.status(400).json({ message: error.message });
   }
 };
 
-export const editStudent: RequestHandler = async (req, res) => {
+const removeAll: RequestHandler = async (req, res) => {
   try {
-    let { _id, updateFields } = req.body;
-    let result = await student.editStudent({ _id }, { ...updateFields });
-    res.status(200).json(result);
+    let data = await student.removeAll({});
+    res.status(200).json({ data, message: "students Removed Successfully" });
   } catch (error) {
-    res.status(400).json({ message: error });
+    //@ts-ignore
+    res.status(400).json({ message: error.message });
   }
 };
 
-export const removeStudent: RequestHandler = async (req, res) => {
+const editStudent: RequestHandler = async (req, res) => {
   try {
-    let { id: _id } = req.params;
-    let result = await student.deleteStudent({ _id });
-    res.status(200).json(result);
+    utilLib.checkMissingFieldsAndType(
+      { ...req.body },
+      {
+        name: "string",
+        email: "string",
+        phone_number: "number",
+        en_number: "string",
+        user_type: "string",
+        section: "string",
+      }
+    );
+    let data = await student.editStudent({ ...req.body });
+    res.status(200).json({ data, message: "Student Updated Successfully" });
   } catch (error) {
-    res.status(400).json({ message: error });
+    //@ts-ignore
+    res.status(400).json({ message: error.message });
   }
+};
+
+const removeStudent: RequestHandler = async (req, res) => {
+  try {
+    let _id = req.params.id;
+    utilLib.checkMissingFieldsAndType({ _id }, { _id: "string" });
+    let data = await student.deleteStudent({ _id });
+    res.status(200).json(data);
+  } catch (error) {
+    //@ts-ignore
+    res.status(400).json({ message: error.message });
+  }
+};
+
+export {
+  createStudent,
+  removeStudent,
+  editStudent,
+  removeAll,
+  getStudents,
+  createMany,
+  getStudent,
 };

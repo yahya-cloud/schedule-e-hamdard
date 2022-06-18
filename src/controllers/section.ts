@@ -1,89 +1,154 @@
 import { RequestHandler } from "express";
-import * as section from "../models/section";
+import utilLib from "../libs/utilLib";
+import { section } from "../services/db";
 
-export const getSections: RequestHandler = async (req, res) => {
+const getSections: RequestHandler = async (req, res) => {
   try {
-    let result = await section.getSections({});
-    res.status(200).json(result);
+    let data = await section.getSections({});
+    res.status(200).json({ data, message: "" });
   } catch (error) {
-    res.status(400).json({ message: error });
+    //@ts-ignore
+    res.status(400).json({ message: error.message });
   }
 };
 
-export const getSection: RequestHandler = async (req, res) => {
+const getSection: RequestHandler = async (req, res) => {
   try {
-    let sectionId = req.params.id;
-    let result = await section.getSection({ _id: sectionId });
-    console.log(sectionId);
-    res.status(200).json(result);
+    let _id = req.params.id;
+
+    utilLib.checkMissingFieldsAndType({ _id }, { name: "string" });
+
+    let data = await section.getSection({ _id });
+    res.status(200).json(data);
   } catch (error) {
-    res.status(400).json({ message: error });
+    //@ts-ignore
+    res.status(400).json({ message: error.message });
   }
 };
 
-export const createSection: RequestHandler = async (req, res) => {
+const createSection: RequestHandler = async (req, res) => {
   try {
-    let result = await section.createSection(req.body);
-    res.status(200).json(result);
+    utilLib.checkMissingFieldsAndType(
+      { ...req.body },
+      { section_name: "string", batch_name: "string" }
+    );
+
+    let data = await section.createSection({ ...req.body });
+    res.status(200).json({ data, message: "Section Created Successfully" });
   } catch (error) {
-    res.status(400).json({ message: error });
+    //@ts-ignore
+    res.status(400).json({ message: error.message });
   }
 };
 
-export const createMany: RequestHandler = async (req, res) => {
+const createMany: RequestHandler = async (req, res) => {
   try {
-    let result = await section.createMany(req.body);
-    res.status(200).json(result);
+    let { sections } = req.body;
+
+    utilLib.checkMissingFieldsAndType({ sections }, { sections: "object" });
+
+    let data = await section.createMany({ sections });
+    res.status(200).json({ data, message: "" });
   } catch (error) {
-    res.status(400).json({ message: error });
+    //@ts-ignore
+    res.status(400).json({ message: error.message });
   }
 };
 
-export const removeAll: RequestHandler = async (req, res) => {
+const removeAll: RequestHandler = async (req, res) => {
   try {
-    let result = await section.removeAll();
-    res.status(200).json(result);
+    let data = await section.removeAll({});
+    res.status(200).json(data);
   } catch (error) {
-    res.status(400).json({ message: error });
+    //@ts-ignore
+    res.status(400).json({ message: error.message });
   }
 };
 
-export const addTeacher: RequestHandler = async (req, res) => {
+const addTeacher: RequestHandler = async (req, res) => {
   try {
-    const { _id, teacher } = req.body;
-    let result = await section.addTeacher({ _id }, { ...teacher });
-    res.status(200).json(result);
+    utilLib.checkMissingFieldsAndType(
+      { ...req.body },
+      {
+        _id: "string",
+        subject_color: "string",
+        subject: "string",
+        teacher_info: "string",
+      }
+    );
+
+    let data = await section.addTeacher({ ...req.body });
+    res.status(200).json(data);
   } catch (error) {
-    res.status(400).json({ message: error });
+    //@ts-ignore
+    res.status(400).json({ message: error.message });
   }
 };
 
-export const removeTeacher: RequestHandler = async (req, res) => {
+const removeTeacher: RequestHandler = async (req, res) => {
   try {
-    const { _id, teacherInfo: teacher_info } = req.body;
-    let result = await section.removeTeacher({ _id }, { teacher_info });
-    res.status(200).json(result);
+    utilLib.checkMissingFieldsAndType(
+      { ...req.body },
+      { _id: "string", teacher_info: "string" }
+    );
+
+    let data = await section.removeTeacher({ ...req.body });
+    res.status(200).json(data);
   } catch (error) {
-    res.status(400).json({ message: error });
+    //@ts-ignore
+    res.status(400).json({ message: error.message });
   }
 };
 
-export const addClass: RequestHandler = async (req, res) => {
+const addClass: RequestHandler = async (req, res) => {
   try {
-    const { _id, classInfo } = req.body;
-    let result = await section.addClass({ _id }, { ...classInfo });
-    res.status(200).json(result);
+    utilLib.checkMissingFieldsAndType(
+      { ...req.body },
+      {
+        _id: "string",
+        heading: "string",
+        sub_heading: "string",
+        start_time: "string",
+        end_time: "string",
+        subject: "string",
+        teacher_id: "string",
+      }
+    );
+
+    let data = await section.addClass({ ...req.body });
+    res.status(200).json(data);
   } catch (error) {
-    res.status(400).json({ message: error });
+    //@ts-ignore
+    res.status(400).json({ message: error.message });
   }
 };
 
-export const removeClass: RequestHandler = async (req, res) => {
+const removeClass: RequestHandler = async (req, res) => {
   try {
-    const { _id, classId } = req.body;
-    let result = await section.removeClass({ _id }, { _id: classId });
-    res.status(200).json(result);
+    utilLib.checkMissingFieldsAndType(
+      { ...req.body },
+      {
+        _id: "string",
+        class_id: "string",
+      }
+    );
+
+    let data = await section.removeClass({ ...req.body });
+    res.status(200).json(data);
   } catch (error) {
-    res.status(400).json({ message: error });
+    //@ts-ignore
+    res.status(400).json({ message: error.message });
   }
+};
+
+export {
+  addClass,
+  removeClass,
+  getSections,
+  removeTeacher,
+  addTeacher,
+  getSection,
+  createSection,
+  createMany,
+  removeAll,
 };

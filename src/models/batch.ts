@@ -9,31 +9,4 @@ const BatchSchema = new Schema<BatchSchemaType>({
 
 const BatchModel = model<BatchSchemaType>("Batch", BatchSchema);
 
-//db calls
-export const getBatches = async (findQuery: any, filter = {}) => {
-  let result = await BatchModel.find(findQuery, { ...filter })
-    .populate({ path: "sections", options: { select: "info" } })
-    .lean();
-  return result;
-};
-
-export const createBatch = async (dataObj: any) => {
-  let newBatch = new BatchModel(dataObj);
-  let result = await newBatch.save();
-  return result;
-};
-
-export const updateBatch = async (findQuery: any, updateQuery: any) => {
-  let result = await BatchModel.findOneAndUpdate(findQuery, updateQuery, {
-    new: true,
-    useFindAndModify: false,
-  })
-    .populate({ path: "sections", options: { select: "info" } })
-    .lean();
-  return result;
-};
-
-export const removeAll = async (dataObj: any) => {
-  let result = await BatchModel.deleteMany(dataObj);
-  return result;
-};
+export default BatchModel;

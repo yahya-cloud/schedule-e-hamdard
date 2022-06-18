@@ -1,16 +1,11 @@
 import { Router } from "express";
-import {
-  addSection,
-  createBatch,
-  getBatches,
-  removeAll,
-} from "../../controllers/batch";
+import { batch } from "../../controllers";
 
 const router = Router();
 
-router.get("/", getBatches);
-router.post("/", createBatch);
-router.post("/addSection", addSection);
-router.delete("/removeAll", removeAll);
+router.get("/", batch.getBatches);
+router.post("/", batch.createBatch);
+router.post("/addSection", batch.addSection);
+router.delete("/removeAll", batch.removeAll);
 
 export default router;

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as staff from "../../controllers/staff";
+import { staff } from "../../controllers";
 
 const router = Router();
 
