@@ -1,13 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Lato" sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  font-size: 62.5%; /* 62.5% of 16px = 10px */
+}
+
+/* style for day week calendar */
+.fc {
+  font-family: "lato";
+}
+.fc table {
+  font-size: 1.1rem !important;
+}
+
+.fc-header-toolbar {
+  padding: 0 2rem;
+}
+.fc-time-grid .fc-slats td {
+  height: 2.5em;
+}
+
+.fc-timegrid-slot-lane {
+  height: 3.5em !important;
+}
+
+.fc-toolbar-chunk {
+  display: flex;
+  align-items: center;
+}
+
+.fc-button,
+.fc-button:focus,
+.fc-button:active {
+  background-color: transparent !important;
+  border-color: #43b47c !important;
+  color: #43b47c !important;
+  margin-left: 20px !important;
+  box-shadow: none !important;
+  padding: 0.2em 0.65em !important;
+  height: 2em;
+}
+
+.fc-timeGridWeek-button,
+.fc-timeGridDay-button,
+.fc-timeGridWeek-button:focus,
+.fc-timeGridDay-button:focus {
+  border-color: transparent !important;
+  border-radius: 10px !important;
+  padding: 0.2em 1em !important;
+  transition: all 0.2s ease;
+}
+
+.fc-timeGridWeek-button.fc-button-active,
+.fc-timeGridDay-button.fc-button-active {
+  border-color: #43b47c !important;
+  padding: 0.2em 1em !important;
+}
+
+.fc-icon {
+  color: #43b47c;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0px;
+}
+
+.header-content h4,
+.header-content h5 {
+  margin: 0;
+}
+
+.header-content h4 {
+  margin-bottom: 10px;
+}
+
+.fc-v-event {
+  border: none!important;
+  background-color: transparent!important;
 }
