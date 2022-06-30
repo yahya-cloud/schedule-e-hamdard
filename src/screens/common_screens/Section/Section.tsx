@@ -29,7 +29,7 @@ const Section = () => {
             {section.info.batch_name}
           </Typography>
           <Stack
-            sx={{ mt: 5, mb: 4 }}
+            sx={{ height: "5rem", mt: 4, mb: 4 }}
             justifyContent="space-between"
             flexDirection="row"
             alignItems="flex-end">
@@ -37,7 +37,10 @@ const Section = () => {
             <DynamicButton id={section._id} userType={user.user_type} />
           </Stack>
           <Routes>
-            <Route path={`/`} element={<Schedule />} />
+            <Route
+              path={`/`}
+              element={<Schedule timeTable={section.time_table} />}
+            />
             <Route path={`/teachers`} element={<Teachers />} />
             <Route path={`/students`} element={<Students />} />
           </Routes>

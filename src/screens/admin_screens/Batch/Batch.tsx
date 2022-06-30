@@ -59,6 +59,7 @@ const Batch = () => {
         {},
         "get"
       )) as BatchDataType;
+      console.log(fetchedData);
       setName(fetchedData?.name);
       setSections(fetchedData?.sections);
     }

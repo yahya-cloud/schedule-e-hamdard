@@ -1,19 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Outlet } from "react-router-dom";
+import UserContextType from "../@types/userContext";
+import { UserContext } from "../contexts/userContext";
+import LayoutContainer from "../screens/LayoutContainer";
 
 interface ProtectedRouteProps {
-  userType: string;
   routeFor: string;
-  children: React.ReactNode;
 }
 
-const ProtectedRoute = ({
-  userType,
-  routeFor,
-  children,
-}: ProtectedRouteProps) => {
-  if (userType === routeFor) {
-    return <React.Fragment>{children}</React.Fragment>;
+const ProtectedRoute = ({ routeFor }: ProtectedRouteProps) => {
+  const { user } = useContext(UserContext) as UserContextType;
+
+  if (user.user_type === routeFor) {
+    return (
+      <React.Fragment>
+        <LayoutContainer>
+          <Outlet />
+        </LayoutContainer>
+      </React.Fragment>
+    );
   } else {
     return <></>;
   }

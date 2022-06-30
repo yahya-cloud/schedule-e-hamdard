@@ -23,6 +23,7 @@ let defaultValues = {
     name: "",
     email: "",
     phone_number: 0,
+    password: "",
     user_type: "",
     __t: "",
   },
@@ -32,7 +33,7 @@ let defaultValues = {
 const UserContext = createContext<UserContextType | null>(null);
 
 const UserProvider = ({ children }: Props) => {
-  const [user, setUser] = useState<UserType | null>(null);
+  const [user, setUser] = useState<UserType>({ ...defaultValues.user });
   const [message, setMessage] = useState<RequestMessage>({
     ...defaultValues.message,
   });
@@ -49,6 +50,7 @@ const UserProvider = ({ children }: Props) => {
     } catch (error) {
       //@ts-ignore
       if (error.response) {
+        console.log(error);
         //@ts-ignore
         setMessage({ message: error.response.data.message, type: "error" });
       }
@@ -69,8 +71,14 @@ const UserProvider = ({ children }: Props) => {
     getUser();
   }, []);
 
+  const logout = async () => {
+    await makeApiCall("/user/logout", {}, "get");
+    setUser({ ...defaultValues.user });
+  };
+
   return (
-    <UserContext.Provider value={{ user, message, makeApiCall, setUser }}>
+    <UserContext.Provider
+      value={{ user, message, logout, makeApiCall, setUser }}>
       {children}
     </UserContext.Provider>
   );

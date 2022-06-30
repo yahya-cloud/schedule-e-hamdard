@@ -2,6 +2,7 @@ import {
   apiMethod,
   RequestBodyType,
   ResponseBodyType,
+  SectionType,
   unknownObject,
 } from "./global";
 
@@ -13,6 +14,7 @@ interface UserType {
   email: string;
   phone_number: number;
   user_type: string;
+  password: string;
   __t: string;
 }
 
@@ -22,20 +24,34 @@ interface RequestMessage {
 }
 
 type UserContextType = {
-  user: User | null;
+  user: UserType;
   message: RequestMessage | null;
   makeApiCall: (
     url: string,
     payload: RequestBodyType,
     method: apiMethod
   ) => Promise<unknownObject | undefined>;
-  setUser: (user: User) => void;
+  setUser: (user: UserType) => void;
+  logout: () => Promise<void>;
 };
 
-interface StaffSchemaType extends UserSchemaType {
+interface StaffSchemaType extends UserType {
   unique_id: string;
   photo: string;
+  sections: SectionType[];
+}
+
+interface StudentSchemaType extends UserType {
+  en_number: string;
+  section: Types.ObjectId | undefined;
+  password: string;
 }
 
 export default UserContextType;
-export { UserType, RequestMessage, StaffSchemaType, fetchedUser };
+export {
+  UserType,
+  RequestMessage,
+  StudentSchemaType,
+  StaffSchemaType,
+  fetchedUser,
+};

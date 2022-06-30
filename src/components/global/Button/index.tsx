@@ -7,7 +7,7 @@ type style = {
   [key: string]: any;
 };
 
-type color = "primary" | "secondary" | "tertiary" | "fourth";
+type color = "primary" | "secondary" | "tertiary" | "fourth" | "fifth";
 type variant = "text" | "outlined" | "contained";
 
 interface Props extends React.ComponentPropsWithoutRef<"button"> {

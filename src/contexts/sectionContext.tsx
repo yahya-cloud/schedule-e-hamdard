@@ -1,20 +1,18 @@
 import React, { useState, useContext, createContext, useEffect } from "react";
 import UserContextType, {
   RequestMessage,
+  StudentSchemaType,
   UserType,
 } from "../@types/userContext";
 import {
-  apiMethod,
   RequestBodyType,
-  ResponseBodyType,
   SectionContextType,
   SectionType,
-  TeacherInfoType,
   unknownObject,
 } from "../@types/global";
 import { UserContext } from "./userContext";
 import { useLocation, useParams } from "react-router-dom";
-import { teacher } from "../utils/section";
+import { teacher } from "../lib/section";
 
 interface Props {
   children: React.ReactNode;
@@ -60,7 +58,7 @@ const SectionProvider = ({ children }: Props) => {
 
   const updateSection = (
     newValue: any[],
-    identifier: "teachers" | "time_table"
+    identifier: "teachers" | "time_table" | "students"
   ) => {
     let newSection: SectionType = { ...section } as SectionType;
     newSection[identifier] = [...newValue];
@@ -68,9 +66,39 @@ const SectionProvider = ({ children }: Props) => {
   };
 
   const addClass = async (data: unknownObject) => {
-    const teacherInfo = teacher(section.teachers, user._id);
+    const result = teacher(section.teachers, user!._id);
+    if (result) {
+      let { teacher_info, subject_color, subject } = result;
+      let { name, _id } = teacher_info;
+      let payload = {
+        //sectionId
+        _id: section._id,
+        title: subject,
+        subject_color,
+        teacher_info: _id,
+        description: name,
+        ...data,
+      };
 
-    // let payload: RequestBodyType = {};
+      let { time_table } = (await makeApiCall(
+        "/section/addClass",
+        payload,
+        "patch"
+      )) as SectionType;
+
+      updateSection(time_table, "time_table");
+    }
+  };
+
+  const removeClass = async (classId: string) => {
+    let payload = { _id: section._id, class_id: classId };
+    let { time_table } = (await makeApiCall(
+      "/section/removeClass",
+      payload,
+      "patch"
+    )) as SectionType;
+
+    updateSection(time_table, "time_table");
   };
 
   const deleteTeacher = async (teacher_info: string) => {
@@ -84,15 +112,64 @@ const SectionProvider = ({ children }: Props) => {
     updateSection(teachers, "teachers");
   };
 
+  const addTeacher = async (
+    subject_color: string,
+    subject: string,
+    teacher_info: string
+  ) => {
+    let payload: RequestBodyType = {
+      _id: section._id,
+      subject,
+      subject_color,
+      teacher_info,
+    };
+    let { teachers } = (await makeApiCall(
+      "/section/addTeacher",
+      payload,
+      "patch"
+    )) as SectionType;
+
+    updateSection(teachers, "teachers");
+  };
+
+  const addStudent = async (studentInfo: unknownObject) => {
+    let { name, en_number, phone_number, email } = studentInfo;
+    let payload = {
+      name,
+      en_number,
+      phone_number,
+      email,
+      section: section._id,
+      user_type: "student",
+    };
+    let student: StudentSchemaType = (await makeApiCall(
+      "/student/",
+      payload,
+      "post"
+    )) as StudentSchemaType;
+    let students = [...section.students, student];
+    updateSection(students, "students");
+  };
+
+  const deleteStudent = async (studentId: string) => {
+    await makeApiCall(`/student/${studentId}`, {}, "delete");
+    let students = [...section.students].filter((el) => el._id !== studentId);
+    updateSection(students, "students");
+  };
+
   return (
     <SectionContext.Provider
       value={{
         section,
         sectionId,
-        setSectionId,
         user,
+        setSectionId,
+        addTeacher,
         addClass,
+        removeClass,
         deleteTeacher,
+        addStudent,
+        deleteStudent,
       }}>
       {children}
     </SectionContext.Provider>

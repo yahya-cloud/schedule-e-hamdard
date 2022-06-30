@@ -8,6 +8,9 @@ import { object, SchemaOf, string } from "yup";
 import UserContextType, { UserType } from "../../../@types/userContext";
 import { UserContext } from "../../../contexts/userContext";
 import { RequestBodyType } from "../../../@types/global";
+import Credential from "../Crendetial";
+import { userRootPath } from "../../../lib/utils";
+import { useNavigate } from "react-router-dom";
 
 interface IFormInput {
   id: string;
@@ -26,14 +29,19 @@ const LoginForm = () => {
     resolver: yupResolver(schema),
   });
 
+  const navigate = useNavigate();
+
   const onSubmit = async (data: RequestBodyType) => {
     let fetchedUser = (await makeApiCall(
       "/user/login",
       data,
       "post"
     )) as UserType;
-
-    setUser(fetchedUser);
+    if (fetchedUser) {
+      setUser(fetchedUser);
+      let rootPath = userRootPath(fetchedUser.user_type);
+      navigate(rootPath);
+    }
   };
 
   return (
@@ -52,7 +60,7 @@ const LoginForm = () => {
         alignItems="center"
         justifyContent="space-around">
         <Typography align="center" gutterBottom={true} variant="h2">
-          Login{" "}
+          Schedule-e-Hamdard
         </Typography>
         <FormInput
           fullWidth={true}
@@ -80,6 +88,7 @@ const LoginForm = () => {
           text="Login"
         />
       </Stack>
+      <Credential />
     </Paper>
   );
 };

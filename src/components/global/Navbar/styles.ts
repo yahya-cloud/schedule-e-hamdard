@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { styled, experimental_sx as sx } from "@mui/system";
 import { NavLink } from "react-router-dom";
 
@@ -29,4 +30,22 @@ const StyledNavLink = styled(NavLink)(
   })
 );
 
-export { StyledImg, StyledNavLink };
+const StyledLogoutButton = styled(Box)(
+  sx({
+    bottom: 0,
+    position: "absolute",
+    height: "80px",
+    width: "100%",
+    backgroundColor: "rgba(255, 100, 100, .6)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    transition: "all .2s ease",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "rgba(255, 100, 100, 1)",
+    },
+  })
+);
+
+export { StyledImg, StyledNavLink, StyledLogoutButton };

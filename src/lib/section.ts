@@ -1,4 +1,6 @@
 import { TeacherInfoType, TimeTableType } from "../@types/global";
+import crypto from "crypto";
+import { auth } from "../config.keys";
 
 const teacher = (
   arry: TeacherInfoType[],
@@ -27,4 +29,19 @@ const getDayClasses = (
   return newArry;
 };
 
-export { teacher, getRGBA, getDayClasses };
+const decryptString = (text: string) => {
+  let textParts: Array<string> = text.split(":");
+  let iv = Buffer.from(textParts.shift()!, "hex");
+  let key = crypto
+    .createHash("sha256")
+    .update(String(auth.ENCRYPTION_KEY))
+    .digest("base64")
+    .slice(0, 32);
+  let encryptedText = Buffer.from(textParts.join(":"), "hex");
+  let decipher = crypto.createDecipheriv(auth.ALGORITHM, key, iv);
+  let decrypted = decipher.update(encryptedText);
+  decrypted = Buffer.concat([decrypted, decipher.final()]);
+  return decrypted.toString();
+};
+
+export { teacher, getRGBA, decryptString, getDayClasses };

@@ -1,49 +1,53 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Paper, Stack, Typography } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { object, SchemaOf, date } from "yup";
+import { object, SchemaOf, string, date, number } from "yup";
 import { useForm } from "react-hook-form";
-import { DateSelect, TimeSelect } from "../../global/Inputs";
+import { FormInput } from "../../global/Inputs";
 import Button from "../../global/Button";
 import { SectionContextType } from "../../../@types/global";
 import { SectionContext } from "../../../contexts/sectionContext";
 import CancelIcon from "@mui/icons-material/Cancel";
 
+type nameIdObj = {
+  name: String;
+  _id: string;
+};
+
 interface IFormInput {
-  date: Date;
-  start: Date;
-  end: Date;
+  name: string;
+  en_number: string;
+  email: string;
+  phone_number: number;
 }
 
 let schema: SchemaOf<IFormInput> = object({
-  date: date().required(),
-  start: date().required(),
-  end: date().required(),
+  name: string().required(),
+  en_number: string().required(),
+  email: string().required(),
+  phone_number: number().required(),
 });
 
 interface Props {
   handleClose: () => void;
 }
 
-const AddClassForm = ({ handleClose }: Props) => {
-  const { addClass } = useContext(SectionContext) as SectionContextType;
+const AddStudentForm = ({ handleClose }: Props) => {
+  const { addStudent } = useContext(SectionContext) as SectionContextType;
+
   const { handleSubmit, control } = useForm<IFormInput>({
     resolver: yupResolver(schema),
   });
 
   const onSubmit = async (data: IFormInput) => {
-    let { start, end, date } = data;
-    start.setMonth(date.getMonth(), date.getDate());
-    end.setMonth(date.getMonth(), date.getDate());
-    let payload = { start, end };
-    await addClass(payload);
+    await addStudent(data);
     handleClose();
   };
 
   return (
     <Paper
       sx={{
-        height: "min-content",
+        height: "max-content",
         width: 350,
         margin: "200px",
         position: "absolute",
@@ -63,42 +67,53 @@ const AddClassForm = ({ handleClose }: Props) => {
         }}
       />
       <Stack
-        height={300}
+        mt={2}
         flexDirection={"column"}
         alignItems="flex-start"
         justifyContent="space-around">
         <Typography align="center" variant="h3" fontWeight={300}>
-          Add Class
+          Add Student To Section
         </Typography>
-        <DateSelect
+
+        <FormInput
           fullWidth={true}
           helperText="Field is Required"
           type="text"
           control={control}
-          inputStyles={{ width: "90%" }}
-          name={"date"}
-          label="Select Date"
+          inputStyles={{ marginTop: "2rem", width: "90%" }}
+          name={"name"}
+          label="Enter Name"
         />
-        <TimeSelect
+        <FormInput
           fullWidth={true}
           helperText="Field is Required"
           type="text"
           control={control}
-          inputStyles={{ width: "90%" }}
-          name={"start"}
-          label="Start Time"
+          inputStyles={{ marginTop: "2rem", width: "90%" }}
+          name={"en_number"}
+          label="Enter Enrollment No."
         />
-        <TimeSelect
+        <FormInput
           fullWidth={true}
           helperText="Field is Required"
           type="text"
           control={control}
-          inputStyles={{ width: "90%" }}
-          name={"end"}
-          label="End Time"
+          inputStyles={{ marginTop: "2rem", width: "90%" }}
+          name={"email"}
+          label="Enter Email"
         />
+        <FormInput
+          fullWidth={true}
+          helperText="Field is Required"
+          type="text"
+          control={control}
+          inputStyles={{ marginTop: "2rem", width: "90%" }}
+          name={"phone_number"}
+          label="Enter Phone Number"
+        />
+
         <Button
-          customStyles={{ marginTop: "1rem" }}
+          customStyles={{ marginTop: "2.5rem" }}
           onClick={handleSubmit(onSubmit)}
           variant="contained"
           color="primary"
@@ -109,4 +124,4 @@ const AddClassForm = ({ handleClose }: Props) => {
   );
 };
 
-export default AddClassForm;
+export default AddStudentForm;

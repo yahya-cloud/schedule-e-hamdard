@@ -1,7 +1,7 @@
 import React from "react";
 import { EventContentArg } from "@fullcalendar/react";
 import { Stack, Typography } from "@mui/material";
-import { getRGBA } from "../../../utils/section";
+import { getRGBA } from "../../../lib/section";
 
 interface Props {
   arg: EventContentArg;
@@ -18,6 +18,7 @@ const CalendarEvent = ({ arg }: Props) => {
         backgroundColor: `${backgroundColor}`,
         border: `1px solid ${color}`,
         color: `${color}`,
+        height: "100%",
       }}
       component={"div"}>
       <Typography variant="h5">{arg.event._def.title}</Typography>

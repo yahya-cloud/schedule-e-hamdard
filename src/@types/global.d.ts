@@ -1,4 +1,4 @@
-import { UserType } from "./userContext";
+import { StudentSchemaType, UserType } from "./userContext";
 
 export type field = string | number;
 
@@ -26,6 +26,7 @@ export interface SectionInfoType {
   _id: string;
 }
 export interface TeacherInfoType {
+  _id: string;
   subject_color: string;
   subject: string;
   teacher_info: {
@@ -51,15 +52,24 @@ export interface SectionType {
   info: SectionInfoType;
   teachers: TeacherInfoType[];
   time_table: TimeTableType[];
+  students: StudentSchemaType[];
 }
 
 export interface SectionContextType {
   sectionId: string | null;
   setSectionId: (value: string) => void;
-  user: UserType;
+  user: User;
   section: SectionType | null;
   addClass: (data: unknownObject) => Promise<void>;
+  removeClass: (sectionId: string) => Promise<void>;
   deleteTeacher: (teacher_info: string) => Promise<void>;
+  addTeacher: (
+    subject_color: string,
+    subject: string,
+    teacher_info: string
+  ) => Promise<void>;
+  addStudent: (data: unknownObject) => Promise<void>;
+  deleteStudent: (studentId: string) => Promise<void>;
 }
 
 //batches
@@ -72,4 +82,4 @@ export interface BatchDataType extends BatchType {
   sections: SectionType[];
 }
 
-//staff
+//

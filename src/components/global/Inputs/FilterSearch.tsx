@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyledTextField } from "./styles";
 import { Controller } from "react-hook-form";
 import { unknownObject } from "../../../@types/global";
@@ -29,17 +29,20 @@ const FilterSearch = (props: Props) => {
   const [filteredResults, setFilteredResults] = useState<
     nameIdObj[] | undefined
   >([]);
-  const [searchInput, setSearchInput] = useState<string>("");
+
+  useEffect(() => {
+    setFilteredResults(props.apiData);
+  }, [props.apiData]);
 
   const searchItems = (searchValue: string) => {
-    setSearchInput(searchValue);
-    if (searchInput !== "") {
+    if (searchValue !== "") {
       const filteredData = props.apiData!.filter((item: nameIdObj) => {
         return item.name
           .trim()
           .toLowerCase()
-          .includes(searchInput.trim().toLowerCase());
+          .includes(searchValue.trim().toLowerCase());
       });
+      console.log(searchValue, filteredData);
       setFilteredResults(filteredData);
     } else {
       setFilteredResults(props.apiData);
@@ -74,7 +77,7 @@ const FilterSearch = (props: Props) => {
           let selectedData = props.apiData?.find((el) => el._id === _id);
           onChange(selectedData?.name);
           props.setId(_id);
-          console.log(selectedData);
+          handleClose();
         };
 
         return (
@@ -90,7 +93,6 @@ const FilterSearch = (props: Props) => {
               required
               id="form-input"
               label={props.label}
-              style={{ ...props.inputStyles }}
             />
             <Popover
               disableAutoFocus={true}
@@ -104,7 +106,7 @@ const FilterSearch = (props: Props) => {
                 horizontal: "left",
               }}>
               <Stack sx={{ maxHeight: "15rem", overflowY: "scroll" }}>
-                {props.apiData?.map((el: nameIdObj) => (
+                {filteredResults?.map((el: nameIdObj) => (
                   <Box
                     onClick={() => clickHandler(el._id)}
                     component={"div"}

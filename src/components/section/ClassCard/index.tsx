@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Paper, Stack, Typography, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { getRGBA } from "../../../utils/section";
+import { getRGBA } from "../../../lib/section";
+import { useLocation } from "react-router-dom";
+import { UserContext } from "../../../contexts/userContext";
+import UserContextType from "../../../@types/userContext";
 
 interface Props {
   color: string;
@@ -9,10 +12,15 @@ interface Props {
   description: string;
   start: Date;
   end: Date;
+  deleteClass: () => void;
 }
 
 const ClassCard = (props: Props) => {
   let backgroundColor = getRGBA(props.color);
+  let { pathname } = useLocation();
+  const { user } = useContext(UserContext) as UserContextType;
+
+  let showBtn = pathname.includes("/section/") && user.user_type === "teacher";
 
   return (
     <Paper
@@ -39,12 +47,21 @@ const ClassCard = (props: Props) => {
         </Typography>
       </Stack>{" "}
       <Typography sx={{ mt: 0.3 }} variant="subtitle1">
-        Mohd. Yahya Lt-16
+        {props.description}
       </Typography>
-      <DeleteIcon
-        sx={{ bottom: "10px", position: "absolute", right: "5px", mt: "7px" }}
-        color={"error"}
-      />
+      {showBtn && (
+        <DeleteIcon
+          onClick={props.deleteClass}
+          sx={{
+            cursor: "pointer",
+            bottom: "10px",
+            position: "absolute",
+            right: "5px",
+            mt: "7px",
+          }}
+          color={"error"}
+        />
+      )}
     </Paper>
   );
 };

@@ -1,16 +1,12 @@
 import { Box, Divider, Paper, Stack, Typography } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
-import WeekCalendar from "../../../../../components/section/WeekCalendar";
+import React, { useEffect, useState } from "react";
 import { Calendar } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import ClassCard from "../../../../../components/section/ClassCard";
-import { SectionContext } from "../../../../../contexts/sectionContext";
-import {
-  SectionContextType,
-  TimeTableType,
-} from "../../../../../@types/global";
-import { getDayClasses } from "../../../../../lib/section";
+import { TimeTableType } from "../../../@types/global";
+import { getDayClasses } from "../../../lib/section";
+import WeekCalendar from "../../section/WeekCalendar";
+import ClassCard from "../../section/ClassCard";
 
 interface Props {
   timeTable: TimeTableType[];
@@ -20,7 +16,6 @@ const Schedule = (props: Props) => {
   const [date, setDate] = useState<Date>(new Date());
   const [classes, setClasses] = useState<TimeTableType[] | undefined>([]);
   const [dayClasses, setDayClasses] = useState<TimeTableType[] | undefined>([]);
-  const { removeClass } = useContext(SectionContext) as SectionContextType;
 
   useEffect(() => {
     if (props.timeTable) {
@@ -77,15 +72,13 @@ const Schedule = (props: Props) => {
               alignItems={"flex-start"}>
               {dayClasses!.map((el) => (
                 <ClassCard
-                  deleteClass={() => {
-                    removeClass(el._id);
-                  }}
                   color={el.subject_color}
                   start={el.start}
                   end={el.end}
                   title={el.title}
                   description={el.description}
                   key={el._id}
+                  deleteClass={() => {}}
                 />
               ))}
             </Stack>

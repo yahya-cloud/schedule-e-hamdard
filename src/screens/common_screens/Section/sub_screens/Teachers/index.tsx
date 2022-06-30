@@ -20,17 +20,19 @@ const Teachers = () => {
   return (
     <Grid container spacing={5}>
       {teachers?.map((el) => {
-        let { name, email, phone_number } = el.teacher_info;
-        let info = { name, email, subject: el.subject, phone_number };
-        return (
-          <Grid key={el?.teacher_info?._id} item md={4}>
-            <TeacherCard
-              deleteTeacher={() => deleteTeacher(el.teacher_info?._id)}
-              info={info}
-              color={el.subject_color}
-            />
-          </Grid>
-        );
+        if (el.teacher_info) {
+          let { name, email, phone_number } = el?.teacher_info;
+          let info = { name, email, subject: el?.subject, phone_number };
+          return (
+            <Grid key={el?.teacher_info?._id} item md={4}>
+              <TeacherCard
+                deleteTeacher={() => deleteTeacher(el.teacher_info?._id)}
+                info={info}
+                color={el.subject_color}
+              />
+            </Grid>
+          );
+        }
       })}
     </Grid>
   );

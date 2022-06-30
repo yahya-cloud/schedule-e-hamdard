@@ -2,6 +2,7 @@ import React from "react";
 import { Paper, Stack, Box, Typography, useTheme, Theme } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import person from "../../../assets/images/person.png";
 
 interface Props {
   color: string;
@@ -48,6 +49,8 @@ const TeacherCard = ({ color, info, deleteTeacher }: Props) => {
             width: "10rem",
             borderRadius: "50%",
             border: "1px solid green",
+            backgroundSize: 'contain',
+            backgroundImage: `url(${person})`,
             backgroundColor: "#ebebeb",
           }}
           component={"div"}></Box>{" "}

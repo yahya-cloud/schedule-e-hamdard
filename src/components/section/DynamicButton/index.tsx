@@ -4,6 +4,7 @@ import Button from "../../global/Button";
 import FilterSearch from "../../global/Inputs/FilterSearch";
 import ModalContainer from "../../global/Modal";
 import AddClassForm from "../AddClassForm";
+import AddStudentForm from "../AddStudentForm/AddStudentForm";
 import AddTeacherForm from "../AddTeacherForm";
 
 interface Props {
@@ -15,33 +16,47 @@ const DynamicButton = ({ userType, id }: Props) => {
   const { pathname } = useLocation();
   const [open, setOpen] = useState<boolean>(false);
 
-  let condition1 = userType === "admin" && pathname === `/section/${id}`;
-  let condition2 =
-    userType === "admin" && pathname === `/section/${id}/teachers`;
-
   let content;
   let btnText = "";
 
-  if (condition1) {
-    content = <AddClassForm />;
-    btnText = "Add Class";
-  } else if (condition2) {
-    content = <AddTeacherForm />;
-    btnText = "Add Teacher";
+  switch (true) {
+    case userType === "teacher" && pathname === `/section/${id}`:
+      content = <AddClassForm handleClose={() => setOpen(false)} />;
+      btnText = "Add Class";
+      break;
+
+    case userType === "admin" && pathname === `/section/${id}/teachers`:
+      content = <AddTeacherForm handleClose={() => setOpen(false)} />;
+      btnText = "Add Teacher";
+      break;
+
+    case userType === "admin" && pathname === `/section/${id}/students`:
+      btnText = "Add Student";
+      content = <AddStudentForm handleClose={() => setOpen(false)} />;
+      break;
+
+    default:
+      break;
   }
 
   return (
     <>
-      {" "}
-      <Button
-        onClick={() => setOpen(true)}
-        variant="outlined"
-        color="primary"
-        text={btnText}
-      />
-      <ModalContainer open={open} handleClose={() => setOpen(false)}>
-        {content}
-      </ModalContainer>
+      {content === undefined || btnText === "" ? (
+        <></>
+      ) : (
+        <>
+          {" "}
+          <Button
+            onClick={() => setOpen(true)}
+            variant="outlined"
+            color="primary"
+            text={btnText}
+          />
+          <ModalContainer open={open} handleClose={() => setOpen(false)}>
+            {content}
+          </ModalContainer>
+        </>
+      )}
     </>
   );
 };

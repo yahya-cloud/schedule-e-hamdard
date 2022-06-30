@@ -2,12 +2,14 @@ import { createTheme } from "@mui/material/styles";
 
 declare module "@mui/material/styles" {
   interface Palette {
-    fourth?: Palette["primary"];
     tertiary?: Palette["primary"];
+    fourth?: Palette["primary"];
+    fifth?: Palette["primary"];
   }
   interface PaletteOptions {
-    fourth?: PaletteOptions["primary"];
     tertiary?: PaletteOptions["primary"];
+    fourth?: PaletteOptions["primary"];
+    fifth?: PaletteOptions["primary"];
   }
 
   interface PaletteColor {
@@ -25,6 +27,7 @@ declare module "@mui/material/Button" {
   interface ButtonPropsColorOverrides {
     fourth: true;
     tertiary: true;
+    fifth: true;
   }
 }
 
@@ -53,6 +56,9 @@ let theme = createTheme({
       main: "#333333",
       secondary: "#6d6d6d",
       tertiary: "#848484",
+    },
+    fifth: {
+      main: "#00B1E4",
     },
   },
 });

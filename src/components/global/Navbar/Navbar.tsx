@@ -1,23 +1,37 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../../../assets/images/logo.png";
 import { Box, Paper, Stack } from "@mui/material";
-import { StyledImg } from "./styles";
+import { StyledImg, StyledLogoutButton } from "./styles";
 import NavItem from "./NavItem";
 import PeopleIcon from "@mui/icons-material/People";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { UserContext } from "../../../contexts/userContext";
+import UserContextType from "../../../@types/userContext";
+import WidgetsIcon from "@mui/icons-material/Widgets";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import { useNavigate } from "react-router-dom";
 
 let navItemsData = {
   admin: [
-    { icon: <PeopleIcon />, path: "/" },
-    { icon: <AccountBalanceIcon />, path: "/teachers" },
+    { icon: <PeopleIcon />, path: "/admin" },
+    { icon: <AccountBalanceIcon />, path: "/admin/teacher" },
+  ],
+  teacher: [
+    { icon: <WidgetsIcon />, path: "/" },
+    { icon: <CalendarMonthIcon />, path: "/schedule" },
   ],
 };
 
-interface Props {
-  userType: string;
-}
+const Navbar = () => {
+  const { logout, user } = useContext(UserContext) as UserContextType;
+  const navigate = useNavigate();
 
-const Navbar = ({ userType }: Props) => {
+  let logoutHandler = async () => {
+    await logout();
+    navigate("/login");
+  };
+
   return (
     <Paper
       elevation={4}
@@ -26,8 +40,12 @@ const Navbar = ({ userType }: Props) => {
         width: 110,
         height: "100vh",
         marginRight: "40px",
+        position: "fixed",
       }}>
-      <Stack flexDirection={"column"} alignItems="center">
+      <Stack
+        flexDirection={"column"}
+        alignItems="center"
+        justifyContent={"space-between"}>
         <StyledImg src={logo} alt="logo" />
         <Box
           component={"div"}
@@ -41,13 +59,19 @@ const Navbar = ({ userType }: Props) => {
             flexShrink: 0,
           }}>
           {/* @ts-ignore */}
-          {navItemsData[userType].map((el) => (
+          {navItemsData[user.user_type].map((el) => (
             <NavItem key={el.path} path={el.path}>
               {el.icon}
             </NavItem>
           ))}
         </Box>
       </Stack>
+      <StyledLogoutButton>
+        <LogoutIcon
+          onClick={logoutHandler}
+          sx={{ color: "#fff", height: "50px", width: "50px" }}
+        />
+      </StyledLogoutButton>
     </Paper>
   );
 };
