@@ -15,3 +15,7 @@ const Student = UserModel.discriminator<StudentSchemaType>(
 );
 
 export default Student;
+
+//to prevent 2 db calls at time of adding student
+//section_id(section) is been stored here
+//and section virtually populates students

@@ -11,7 +11,7 @@ const createStaff: RequestHandler = async (req, res) => {
         name: "string",
         photo: "string",
         email: "string",
-        phone_number: "string",
+        phone_number: "number",
         user_type: "string",
       }
     );
@@ -42,6 +42,21 @@ const getStaffMember: RequestHandler = async (req, res) => {
     let data = await staff.getStaffMember({ _id });
     res.status(200).json({ data, message: "Member found" });
   } catch (error) {
+    //@ts-ignore
+    res.status(400).json({ message: error.message });
+  }
+};
+
+const getAssignedSections: RequestHandler = async (req, res) => {
+  try {
+    console.log("ran bitches", req.body);
+    let { _id } = req.body;
+
+    utilLib.checkMissingFieldsAndType({ _id }, { _id: "string" });
+    let data = await staff.getAssignedSections({ _id });
+    res.status(200).json({ data, message: "" });
+  } catch (error) {
+    console.log(error);
     //@ts-ignore
     res.status(400).json({ message: error.message });
   }
@@ -123,4 +138,5 @@ export {
   getStaffMember,
   getStaff,
   removeStaffMember,
+  getAssignedSections,
 };

@@ -4,6 +4,7 @@ import { section } from "../../controllers";
 const router = Router();
 
 router.get("/", section.getSections);
+router.get("/assignedSections", section.getAssignedSections);
 router.get("/:id", section.getSection);
 router.post("/", section.createSection);
 router.post("/createMany", section.createMany);

@@ -1,4 +1,5 @@
 import * as authLib from "../../libs/authLib";
+import utilLib from "../../libs/utilLib";
 import { StudentModel } from "../../models";
 import { StudentSchemaType, UnknowObj } from "../../types";
 
@@ -6,7 +7,10 @@ const createStudent = async (dataObj: UnknowObj) => {
   let password: string = await authLib.generatePassword();
   let newStudent = new StudentModel({ ...dataObj, password });
   let result = await newStudent.save();
-  return result;
+  let userToReturn = utilLib.deleteObjectKey({ ...result.toObject() }, [
+    "id",
+  ]);
+  return userToReturn;
 };
 
 const getStudents = async (dataObj: UnknowObj) => {
@@ -20,7 +24,6 @@ const getStudent = async (dataObj: UnknowObj) => {
   let result = await StudentModel.find({ _id }, { password: 0 })
     .populate({
       path: "section",
-      select: "time_table info",
     })
     .lean();
   return result;
@@ -48,7 +51,7 @@ const editStudent = async (dataObj: UnknowObj) => {
   let { _id } = dataObj;
 
   let result = await StudentModel.findOneAndUpdate(
-    { _id },
+    { _id: _id },
     { ...dataObj },
     {
       new: true,
@@ -60,7 +63,7 @@ const editStudent = async (dataObj: UnknowObj) => {
 
 const deleteStudent = async (dataObj: UnknowObj) => {
   let { _id } = dataObj;
-  let result = await StudentModel.findOneAndDelete(_id, {
+  let result = await StudentModel.findOneAndDelete({_id:_id}, {
     new: true,
     useFindAndModify: false,
   });

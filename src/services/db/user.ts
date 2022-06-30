@@ -14,12 +14,15 @@ const getUsers = async (dataObj: UnknowObj) => {
 const login = async (dataObj: UnknowObj) => {
   let { id, password } = dataObj;
 
-  let fetchedUser = await UserModel.findOne({
-    $or: [
-      { __t: "Student", en_number: id },
-      { __t: "Staff", unique_id: id },
-    ],
-  });
+  let fetchedUser = await UserModel.findOne(
+    {
+      $or: [
+        { __t: "Student", en_number: id },
+        { __t: "Staff", unique_id: id },
+      ],
+    },
+    { id: 0, __t: 0, __v: 0 }
+  );
 
   if (!fetchedUser) {
     throw new Error("User Not found");
@@ -36,7 +39,12 @@ const login = async (dataObj: UnknowObj) => {
 
   let token = authLib.issueToken(String(fetchedUser._id));
 
-  let data = { fetchedUser, token };
+  let userToReturn = utilLib.deleteObjectKey({ ...fetchedUser.toObject() }, [
+    "password",
+    "id",
+  ]);
+
+  let data = { fetchedUser: userToReturn, token };
 
   return data;
 };

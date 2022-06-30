@@ -17,6 +17,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     }
 
     const token = req.cookies.jwt;
+
     if (token) {
       const user = await verifyToken(token);
       if (!user) {
@@ -28,6 +29,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
       throw new Error("User not authenticated");
     }
   } catch (error) {
+    res.clearCookie("jwt");
     res.status(404).json({ message: (error as Error).message });
   }
 };

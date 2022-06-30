@@ -20,7 +20,7 @@ export interface StudentSchemaType extends UserSchemaType {
 }
 
 export interface SectionInfoSchemaType {
-  section: string;
+  section_name: string;
   batch_name: string;
 }
 export interface TeacherInfoSchemaType {
@@ -31,12 +31,11 @@ export interface TeacherInfoSchemaType {
 
 export interface TimeTableSchemaType {
   subject_color: string;
-  heading: string;
-  sub_heading: string;
-  start_time: Date;
-  end_time: Date;
-  subject: string;
-  teacher_id: Types.ObjectId | undefined;
+  title: string;
+  start: Date;
+  end: Date;
+  description: string;
+  teacher_info: Types.ObjectId | undefined;
 }
 
 export interface SectionSchemaType {
@@ -47,7 +46,6 @@ export interface SectionSchemaType {
 
 export interface BatchSchemaType {
   name: string;
-  sections: Types.ObjectId[];
 }
 
 export interface UnknowObj {

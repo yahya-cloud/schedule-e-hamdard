@@ -7,7 +7,7 @@ const UserSchema = new Schema<UserSchemaType>(
     name: propType.string,
     email: propType.email,
     phone_number: propType.phone,
-    password: { type: String },
+    password: { ...propType.string },
     user_type: { ...propType.string, enum: ["teacher", "admin", "student"] },
   },
   {

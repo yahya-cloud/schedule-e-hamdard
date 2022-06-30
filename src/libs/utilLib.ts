@@ -42,6 +42,14 @@ let checkMissingFieldsAndType = (fields: UnknowObj, types: UnknowObj = {}) => {
   }
 };
 
+const deleteObjectKey = (object: UnknowObj, keyArr: string[]) => {
+  let updatedObject = { ...object };
+  keyArr.forEach((key) => {
+    delete updatedObject[key];
+  });
+  return updatedObject;
+};
+
 //check to bypass middleware
 const byPass = (url: string) => {
   if (constants.BY_PASS_REQUESTS.indexOf(url) > -1) {
@@ -94,4 +102,5 @@ export default {
   compareStrings,
   byPass,
   isCUD,
+  deleteObjectKey,
 };

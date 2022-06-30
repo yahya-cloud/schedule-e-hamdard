@@ -23,7 +23,7 @@ const getStaff = async (dataObj: UnknowObj) => {
 
 const getStaffMember = async (dataObj: UnknowObj) => {
   let { _id } = dataObj;
-  let result = await StaffModel.find({ _id }, { password: 0 })
+  let result = await StaffModel.findOne({ _id: _id })
     .populate({
       path: "sections",
       options: { select: "time_table info " },
@@ -31,6 +31,22 @@ const getStaffMember = async (dataObj: UnknowObj) => {
     .lean();
   return result;
 };
+
+// const getAssignedSections = async (dataObj: UnknowObj) => {
+//   let { _id } = dataObj;
+//   let result = await StaffModel.findOne({ _id: _id }, { _id: 1 })
+//     .populate({
+//       path: "sections",
+//       options: { select: "info " },
+//     })
+//     .lean();
+//   if (result) {
+//     let resultToReturn = utilLib.deleteObjectKey({ ...result }, ["_id", "__t"]);
+//     return resultToReturn;
+//   }
+
+//   return result;
+// };
 
 const createMany = async (dataObj: any) => {
   let staffArray: Array<StaffSchemaType> = await Promise.all(
@@ -55,7 +71,7 @@ const removeAll = async (dataObj: any) => {
 const editStaffMember = async (dataObj: UnknowObj) => {
   let { _id } = dataObj;
   let result = await StaffModel.findOneAndUpdate(
-    { _id },
+    { _id: _id },
     { ...dataObj },
     {
       new: true,
@@ -67,10 +83,13 @@ const editStaffMember = async (dataObj: UnknowObj) => {
 
 const deleteStaffMember = async (dataObj: UnknowObj) => {
   let { _id } = dataObj;
-  let result = await StaffModel.findOneAndDelete(_id, {
-    new: true,
-    useFindAndModify: false,
-  });
+  let result = await StaffModel.findOneAndDelete(
+    { _id: _id },
+    {
+      new: true,
+      useFindAndModify: false,
+    }
+  );
   return result;
 };
 
@@ -82,4 +101,5 @@ export {
   getStaff,
   getStaffMember,
   deleteStaffMember,
+  // getAssignedSections,
 };

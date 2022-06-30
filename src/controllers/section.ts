@@ -12,6 +12,17 @@ const getSections: RequestHandler = async (req, res) => {
   }
 };
 
+const getAssignedSections: RequestHandler = async (req, res) => {
+  try {
+    let _id = (req as any).user._id;
+    let data = await section.getAssignedSections({ _id });
+    res.status(200).json({ data, message: "" });
+  } catch (error) {
+    //@ts-ignore
+    res.status(400).json({ message: error.message });
+  }
+};
+
 const getSection: RequestHandler = async (req, res) => {
   try {
     let _id = req.params.id;
@@ -19,7 +30,7 @@ const getSection: RequestHandler = async (req, res) => {
     utilLib.checkMissingFieldsAndType({ _id }, { name: "string" });
 
     let data = await section.getSection({ _id });
-    res.status(200).json(data);
+    res.status(200).json({ data, message: "" });
   } catch (error) {
     //@ts-ignore
     res.status(400).json({ message: error.message });
@@ -58,7 +69,7 @@ const createMany: RequestHandler = async (req, res) => {
 const removeAll: RequestHandler = async (req, res) => {
   try {
     let data = await section.removeAll({});
-    res.status(200).json(data);
+    res.status(200).json({ data, message: "Deleted Successfully" });
   } catch (error) {
     //@ts-ignore
     res.status(400).json({ message: error.message });
@@ -78,7 +89,7 @@ const addTeacher: RequestHandler = async (req, res) => {
     );
 
     let data = await section.addTeacher({ ...req.body });
-    res.status(200).json(data);
+    res.status(200).json({ data, message: "Teacher Added Successfully" });
   } catch (error) {
     //@ts-ignore
     res.status(400).json({ message: error.message });
@@ -93,7 +104,7 @@ const removeTeacher: RequestHandler = async (req, res) => {
     );
 
     let data = await section.removeTeacher({ ...req.body });
-    res.status(200).json(data);
+    res.status(200).json({ data, message: "Teacher Removed Successfully" });
   } catch (error) {
     //@ts-ignore
     res.status(400).json({ message: error.message });
@@ -112,11 +123,12 @@ const addClass: RequestHandler = async (req, res) => {
         end_time: "string",
         subject: "string",
         teacher_id: "string",
+        description: "string",
       }
     );
 
     let data = await section.addClass({ ...req.body });
-    res.status(200).json(data);
+    res.status(200).json({ data, message: "Class Added Successfully" });
   } catch (error) {
     //@ts-ignore
     res.status(400).json({ message: error.message });
@@ -134,7 +146,7 @@ const removeClass: RequestHandler = async (req, res) => {
     );
 
     let data = await section.removeClass({ ...req.body });
-    res.status(200).json(data);
+    res.status(200).json({ data, message: "Class removed Successfully" });
   } catch (error) {
     //@ts-ignore
     res.status(400).json({ message: error.message });
@@ -151,4 +163,5 @@ export {
   createSection,
   createMany,
   removeAll,
+  getAssignedSections,
 };

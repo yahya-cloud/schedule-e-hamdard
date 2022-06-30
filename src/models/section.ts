@@ -9,7 +9,7 @@ import { schemaConstants as propType } from "../libs/constants";
 
 //sub schemas
 const SectionInfoSchema = new Schema<SectionInfoSchemaType>({
-  section: propType.string,
+  section_name: propType.string,
   batch_name: propType.string,
 });
 
@@ -21,19 +21,18 @@ const TeacherInfoSchema = new Schema<TeacherInfoSchemaType>({
 
 const TimeTableSchema = new Schema<TimeTableSchemaType>({
   subject_color: propType.string,
-  heading: propType.string,
-  sub_heading: propType.string,
-  start_time: propType.date,
-  end_time: propType.date,
-  subject: propType.string,
-  teacher_id: propType.string,
+  title: propType.string,
+  start: propType.date,
+  end: propType.date,
+  description: propType.string,
+  teacher_info: { type: Schema.Types.ObjectId, ref: "Staff", default: null },
 });
 
 //main schema
 const SectionSchema = new Schema<SectionSchemaType>({
   info: { type: SectionInfoSchema, required: true },
-  teachers: [TeacherInfoSchema],
   time_table: [TimeTableSchema],
+  teachers: [TeacherInfoSchema],
 });
 
 //populating students virtually
@@ -46,3 +45,7 @@ SectionSchema.virtual("students", {
 const SectionModel = model<SectionSchemaType>("Section", SectionSchema);
 
 export default SectionModel;
+
+//to prevent 2 db calls at time of adding student
+//section_id(section) is been stored student schema
+//and section virtually populates students

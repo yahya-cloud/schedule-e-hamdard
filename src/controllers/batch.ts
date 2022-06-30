@@ -11,6 +11,20 @@ const getBatches: RequestHandler = async (req, res) => {
   }
 };
 
+const getBatch: RequestHandler = async (req, res) => {
+  try {
+    let _id = req.params.id;
+
+    utilLib.checkMissingFieldsAndType({ _id }, { _id: "string" });
+
+    let data = await batch.getBatch({ _id });
+    res.status(200).json({ data, message: "" });
+  } catch (error) {
+    //@ts-ignore
+    res.status(400).json({ message: error.message });
+  }
+};
+
 const createBatch: RequestHandler = async (req, res) => {
   try {
     let { name } = req.body;
@@ -51,4 +65,4 @@ const removeAll: RequestHandler = async (req, res) => {
   }
 };
 
-export {getBatches, createBatch, addSection, removeAll}
+export { getBatches, createBatch, addSection, removeAll, getBatch };
