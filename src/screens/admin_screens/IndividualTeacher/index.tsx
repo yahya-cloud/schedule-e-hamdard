@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../../components/global/Button";
 import Teacher from "../../common_screens/Teacher";
+import { rootRoute } from "../../../config.keys";
 
 const IndividualTeacher = () => {
   const { id } = useParams();
@@ -14,7 +15,7 @@ const IndividualTeacher = () => {
         <Typography variant="h3">Teacher Details</Typography>
         <Button
           onClick={() => {
-            navigate("/teacher");
+            navigate(`${rootRoute.admin}/teacher`);
           }}
           variant="outlined"
           color="fifth"

@@ -1,21 +1,24 @@
-const userRootPath = (userType: string): string => {
-  switch (userType) {
+const userRootPath = (user: any): string => {
+  switch (user.user_type) {
     case "admin":
       return "/admin/";
-      break;
 
     case "teacher":
       return "/teacher/";
-      break;
 
     case "student":
-      return "/student/";
-      break;
+      let section = user.section;
+      return `/student/section/${section}`;
 
     default:
       return "/login";
-      break;
   }
 };
 
-export { userRootPath };
+const resolve = (path: string, obj: any): string => {
+  return path.split(".").reduce(function (prev, curr) {
+    return prev ? prev[curr] : null;
+  }, obj);
+};
+
+export { userRootPath, resolve };

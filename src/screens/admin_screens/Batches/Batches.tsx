@@ -10,16 +10,14 @@ import { SearchInput } from "../../../components/global/Inputs";
 import { UserContext } from "../../../contexts/userContext";
 import { ReactComponent as BoxIcon } from "../../../assets/svg/boxIcon.svg";
 import ModalContainer from "../../../components/global/Modal";
+import { rootRoute } from "../../../config.keys";
+import useSearchFilter from "../../../hooks/useSearchFilter";
 
 const Batches = () => {
   const [batches, setBatches] = useState<BatchType[]>([]);
   const { makeApiCall } = useContext(UserContext) as UserContextType;
-  const [inputValue, setInputValue] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
-
-  const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-  };
+  const [value, setValue, filteredData] = useSearchFilter(batches, ["name"]);
 
   const addBatchHandler = async (data: RequestBodyType) => {
     let newBatch: BatchType = (await makeApiCall(
@@ -59,8 +57,8 @@ const Batches = () => {
           label="Search Batch"
           name="search-batch"
           inputStyles={{ width: "25rem", marginRight: "2rem" }}
-          value={inputValue}
-          onChange={inputChangeHandler}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
         />
         <Button
           customStyles={{ width: "18.5rem", height: "5rem" }}
@@ -71,9 +69,12 @@ const Batches = () => {
         />
       </Stack>
       <Grid wrap="wrap" rowSpacing={7} container>
-        {batches?.map((el) => (
+        {filteredData?.map((el) => (
           <Grid key={el._id} item lg={3} md={4} sm={6} xs={12}>
-            <Card color="#B5DCFF" path={`/${el._id}`} name={el.name}>
+            <Card
+              color="#B5DCFF"
+              path={`${rootRoute.admin}/${el._id}`}
+              name={el.name}>
               <BoxIcon
                 style={{ height: "30px", width: "30px", color: "#B5DCFF" }}
               />

@@ -1,9 +1,5 @@
 import React, { useState, useContext, createContext, useEffect } from "react";
-import UserContextType, {
-  RequestMessage,
-  StudentSchemaType,
-  UserType,
-} from "../@types/userContext";
+import UserContextType, { StudentSchemaType } from "../@types/userContext";
 import {
   RequestBodyType,
   SectionContextType,
@@ -11,7 +7,6 @@ import {
   unknownObject,
 } from "../@types/global";
 import { UserContext } from "./userContext";
-import { useLocation, useParams } from "react-router-dom";
 import { teacher } from "../lib/section";
 
 interface Props {
@@ -71,7 +66,6 @@ const SectionProvider = ({ children }: Props) => {
       let { teacher_info, subject_color, subject } = result;
       let { name, _id } = teacher_info;
       let payload = {
-        //sectionId
         _id: section._id,
         title: subject,
         subject_color,

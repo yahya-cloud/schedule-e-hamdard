@@ -37,6 +37,7 @@ const UserProvider = ({ children }: Props) => {
   const [message, setMessage] = useState<RequestMessage>({
     ...defaultValues.message,
   });
+  const [loading, setLoading] = useState<boolean>(true);
 
   const makeApiCall = async (
     url: string,
@@ -44,15 +45,17 @@ const UserProvider = ({ children }: Props) => {
     method: apiMethod
   ): Promise<unknownObject | undefined> => {
     try {
+      setLoading(true);
       const result: ResponseBodyType = await makeRequest(url, payload, method);
       setMessage({ message: result.message, type: "success" });
+      setLoading(false);
       return result.data;
     } catch (error) {
       //@ts-ignore
       if (error.response) {
-        console.log(error);
         //@ts-ignore
         setMessage({ message: error.response.data.message, type: "error" });
+        setLoading(false);
       }
     }
   };
@@ -78,7 +81,7 @@ const UserProvider = ({ children }: Props) => {
 
   return (
     <UserContext.Provider
-      value={{ user, message, logout, makeApiCall, setUser }}>
+      value={{ user, message, logout, makeApiCall, setUser, loading }}>
       {children}
     </UserContext.Provider>
   );

@@ -6,11 +6,17 @@ import { UserContext } from "../../../contexts/userContext";
 import Card from "../../../components/global/Card";
 import { ReactComponent as BoxIcon } from "../../../assets/svg/boxIcon.svg";
 import { SearchInput } from "../../../components/global/Inputs";
+import useSearchFilter from "../../../hooks/useSearchFilter";
 
 const AssignedSections = () => {
-  const { makeApiCall, user } = useContext(UserContext) as UserContextType;
+  const { makeApiCall } = useContext(UserContext) as UserContextType;
   const [sections, setSections] = useState<SectionType[]>([]);
-  const [inputValue, setInputValue] = useState<string>("");
+  const [value, setValue, filteredData] = useSearchFilter(sections, [
+    "info.section_name",
+    "info.batch_name",
+  ]);
+
+  console.log(sections);
 
   useEffect(() => {
     async function getSections() {
@@ -35,16 +41,16 @@ const AssignedSections = () => {
           label="Search Section"
           name="search-section"
           inputStyles={{ width: "25rem", marginRight: "2rem" }}
-          value={inputValue}
-          onChange={() => {}}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
         />
       </Stack>{" "}
       <Grid wrap="wrap" rowSpacing={7} container>
-        {sections?.map((el) => (
+        {filteredData?.map((el) => (
           <Grid key={el._id} item lg={3} md={4} sm={6} xs={12}>
             <Card
               color="#F7F59F"
-              path={`/section/${el._id}`}
+              path={`/teacher/section/${el._id}`}
               name={`${
                 el.info.batch_name
               }-Section-${el.info.section_name.toUpperCase()}`}>

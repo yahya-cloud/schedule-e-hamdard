@@ -4,7 +4,6 @@ import { ThemeProvider } from "@mui/material";
 import theme from "./themes";
 
 import UserProvider from "./contexts/userContext";
-import LayoutContainer from "./screens/LayoutContainer";
 import { BrowserRouter } from "react-router-dom";
 import SectionProvider from "./contexts/sectionContext";
 import RoutingContainer from "./screens/RoutingContainer";

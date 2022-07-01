@@ -5,4 +5,10 @@ const auth = {
   ENCRYPTION_KEY: process.env.REACT_APP_ENCRYPTION_KEY || "some key",
 };
 
-export { SERVER_URL, auth };
+const rootRoute = {
+  admin: "/admin",
+  teacher: "/teacher",
+  student: "/student/section",
+};
+
+export { SERVER_URL, auth, rootRoute };

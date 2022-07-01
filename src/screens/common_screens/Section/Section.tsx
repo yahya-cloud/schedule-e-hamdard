@@ -20,6 +20,8 @@ const Section = () => {
     setSectionId(id);
   }, [id]);
 
+  console.log("ran inseide");
+
   return (
     <Box sx={{ paddingRight: "4rem" }} component="div">
       {section && (

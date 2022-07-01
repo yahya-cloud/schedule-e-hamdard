@@ -7,7 +7,7 @@ import Profile from "./Profile";
 const TeacherRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<AssignedSections />} />
+      <Route index element={<AssignedSections />} />
       <Route path="/section/:id/*" element={<Section />} />
       <Route path="/schedule" element={<Profile />} />
     </Routes>

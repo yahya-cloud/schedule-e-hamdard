@@ -1,7 +1,6 @@
 import {
   apiMethod,
   RequestBodyType,
-  ResponseBodyType,
   SectionType,
   unknownObject,
 } from "./global";
@@ -33,6 +32,7 @@ type UserContextType = {
   ) => Promise<unknownObject | undefined>;
   setUser: (user: UserType) => void;
   logout: () => Promise<void>;
+  loading: boolean;
 };
 
 interface StaffSchemaType extends UserType {
@@ -48,10 +48,4 @@ interface StudentSchemaType extends UserType {
 }
 
 export default UserContextType;
-export {
-  UserType,
-  RequestMessage,
-  StudentSchemaType,
-  StaffSchemaType,
-  fetchedUser,
-};
+export { UserType, RequestMessage, StudentSchemaType, StaffSchemaType };

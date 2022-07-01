@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../components/global/Button";
 import Form from "./Form";
+import { rootRoute } from "../../../config.keys";
 
 const AddTeacher = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const AddTeacher = () => {
         <Typography variant="h3">Teacher Form</Typography>
         <Button
           onClick={() => {
-            navigate("/teacher");
+            navigate(`${rootRoute.admin}/teacher`);
           }}
           variant="outlined"
           color="fifth"

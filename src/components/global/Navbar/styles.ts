@@ -27,6 +27,9 @@ const StyledNavLink = styled(NavLink)(
     "&:hover svg, &.active svg": {
       color: "#fff",
     },
+    "&.bitches": {
+      backgroundColor: "red",
+    },
   })
 );
 

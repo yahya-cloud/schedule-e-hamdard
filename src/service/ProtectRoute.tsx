@@ -10,7 +10,6 @@ interface ProtectedRouteProps {
 
 const ProtectedRoute = ({ routeFor }: ProtectedRouteProps) => {
   const { user } = useContext(UserContext) as UserContextType;
-
   if (user.user_type === routeFor) {
     return (
       <React.Fragment>

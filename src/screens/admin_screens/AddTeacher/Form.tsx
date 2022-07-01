@@ -8,11 +8,8 @@ import { UserContext } from "../../../contexts/userContext";
 import UserContextType from "../../../@types/userContext";
 import Button from "../../../components/global/Button";
 import { useNavigate } from "react-router-dom";
+import { rootRoute } from "../../../config.keys";
 
-type nameIdObj = {
-  name: String;
-  _id: string;
-};
 
 interface IFormInput {
   name: string;
@@ -43,7 +40,7 @@ const Form = () => {
       photo: "some link",
     };
     await makeApiCall(`/staff/`, payload, "post");
-    navigate("/teacher");
+    navigate(`${rootRoute.admin}/teacher`);
   };
 
   return (

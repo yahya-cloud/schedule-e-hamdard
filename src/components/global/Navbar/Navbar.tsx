@@ -11,21 +11,32 @@ import UserContextType from "../../../@types/userContext";
 import WidgetsIcon from "@mui/icons-material/Widgets";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { useNavigate } from "react-router-dom";
-
-let navItemsData = {
-  admin: [
-    { icon: <PeopleIcon />, path: "/admin" },
-    { icon: <AccountBalanceIcon />, path: "/admin/teacher" },
-  ],
-  teacher: [
-    { icon: <WidgetsIcon />, path: "/" },
-    { icon: <CalendarMonthIcon />, path: "/schedule" },
-  ],
-};
+import { rootRoute } from "../../../config.keys";
 
 const Navbar = () => {
   const { logout, user } = useContext(UserContext) as UserContextType;
   const navigate = useNavigate();
+
+  let navItemsData = {
+    admin: [
+      { icon: <PeopleIcon />, path: `${rootRoute.admin}` },
+      { icon: <AccountBalanceIcon />, path: `${rootRoute.admin}/teacher` },
+    ],
+    teacher: [
+      { icon: <WidgetsIcon />, path: `${rootRoute.teacher}` },
+      {
+        icon: <CalendarMonthIcon />,
+        path: `${rootRoute.teacher}/schedule`,
+      },
+    ],
+    student: [
+      {
+        icon: <CalendarMonthIcon />,
+        //@ts-ignore
+        path: `${rootRoute.student}/${user.section}`,
+      },
+    ],
+  };
 
   let logoutHandler = async () => {
     await logout();

@@ -8,6 +8,7 @@ import BasicTable from "../../../components/section/Table";
 import { UserContext } from "../../../contexts/userContext";
 import { decryptString } from "../../../lib/section";
 import columns from "./columns";
+import { rootRoute } from "../../../config.keys";
 
 const Teachers = () => {
   const [teachers, setTeachers] = useState<StaffSchemaType[]>([]);
@@ -16,7 +17,7 @@ const Teachers = () => {
   const navigate = useNavigate();
 
   const viewTeacher = (_id: string) => {
-    navigate(`/teacher/${_id}`);
+    navigate(`${rootRoute.admin}/teacher/${_id}`);
   };
 
   useEffect(() => {
@@ -57,7 +58,7 @@ const Teachers = () => {
           <Button
             customStyles={{ width: "18.5rem", height: "5rem" }}
             onClick={() => {
-              navigate("/teacher/addTeacher");
+              navigate(`${rootRoute.admin}/teacher/addTeacher`);
             }}
             variant="contained"
             color="primary"

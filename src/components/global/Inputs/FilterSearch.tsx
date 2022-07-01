@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { StyledTextField } from "./styles";
 import { Controller } from "react-hook-form";
-import { unknownObject } from "../../../@types/global";
 import { Box, Popover, Typography, Stack } from "@mui/material";
-import { setISODay } from "date-fns/esm";
 
 type style = {
   [key: string]: any;
@@ -42,7 +40,6 @@ const FilterSearch = (props: Props) => {
           .toLowerCase()
           .includes(searchValue.trim().toLowerCase());
       });
-      console.log(searchValue, filteredData);
       setFilteredResults(filteredData);
     } else {
       setFilteredResults(props.apiData);

@@ -15,18 +15,16 @@ import Card from "../../../components/global/Card";
 import { ReactComponent as BoxIcon } from "../../../assets/svg/boxIcon.svg";
 import ModalContainer from "../../../components/global/Modal";
 import { AddBatchForm } from "../../../components/global/Forms";
+import { rootRoute } from "../../../config.keys";
+import useSearchFilter from "../../../hooks/useSearchFilter";
 
 const Batch = () => {
   const { makeApiCall } = useContext(UserContext) as UserContextType;
   const { id } = useParams();
   const [name, setName] = useState<string>("");
-  const [sections, setSections] = useState<SectionType[] | null>(null);
-  const [inputValue, setInputValue] = useState<string>("");
+  const [sections, setSections] = useState<SectionType[]>([]);
   const [open, setOpen] = useState<boolean>(false);
-
-  const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-  };
+  const [value, setValue, filteredData] = useSearchFilter(sections, ["info.section_name"]);
 
   const addSectionHandler = async (data: RequestBodyType) => {
     let payload: RequestBodyType = {
@@ -77,8 +75,8 @@ const Batch = () => {
           label="Search Batch"
           name="search-batch"
           inputStyles={{ width: "25rem", marginRight: "2rem" }}
-          value={inputValue}
-          onChange={inputChangeHandler}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
         />
         <Button
           customStyles={{ width: "18.5rem", height: "5rem" }}
@@ -89,11 +87,11 @@ const Batch = () => {
         />
       </Stack>{" "}
       <Grid wrap="wrap" rowSpacing={7} container>
-        {sections?.map((el) => (
+        {filteredData?.map((el) => (
           <Grid key={el._id} item lg={3} md={4} sm={6} xs={12}>
             <Card
               color="#F7F59F"
-              path={`/section/${el._id}`}
+              path={`${rootRoute.admin}/section/${el._id}`}
               name={`Section-${el.info.section_name.toUpperCase()}`}>
               <BoxIcon
                 style={{ height: "30px", width: "30px", color: "#FFD965" }}
