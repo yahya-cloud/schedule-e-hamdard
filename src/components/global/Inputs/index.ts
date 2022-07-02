@@ -6,10 +6,10 @@ import FilterSearch from "./FilterSearch";
 import ColorSelect from "./ColorSelect";
 
 export {
-  ColorSelect,
-  FormInput,
-  FilterSearch,
-  SearchInput,
-  DateSelect,
-  TimeSelect,
+	ColorSelect,
+	FormInput,
+	FilterSearch,
+	SearchInput,
+	DateSelect,
+	TimeSelect,
 };
