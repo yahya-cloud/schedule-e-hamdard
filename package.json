@@ -1,0 +1,32 @@
+{
+  "name": "schedule-e-hamdard",
+  "version": "1.0.0",
+  "description": "Schedule-e-Hamdard",
+  "main": "index.js",
+  "scripts": {
+    "install-frontend": "cd frontend && npm install",
+    "install-server": "cd backend && npm install",
+    "remove-frontend": "cd frontend && rm -rf node_modules",
+    "remove-server": "cd backend && rm -rf node_modules",
+    "install-modules-full": "npm install && npm run install-frontend && npm run install-server",
+    "remove-modules-full": "rm -rf node_modules && npm run remove-frontend && npm run remove-server",
+    "frontend": "cd frontend && npm run start",
+    "server": "cd backend && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run frontend\"",
+    "pretty": "cd backend && npm run pretty && cd ../frontend && npm run pretty",
+    "build": "cd backend && npm run dev && cd ../frontend && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yahya-cloud/schedule-e-hamdard.git"
+  },
+  "author": "Yahya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yahya-cloud/schedule-e-hamdard/issues"
+  },
+  "homepage": "https://github.com/yahya-cloud/schedule-e-hamdard#readme",
+  "devDependencies": {
+    "concurrently": "^6.4.0"
+  }
+}

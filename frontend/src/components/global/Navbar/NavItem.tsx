@@ -2,25 +2,25 @@ import React, { useRef } from "react";
 import { StyledNavLink } from "./styles";
 
 interface Props {
-	children: React.ReactNode;
-	path: string;
+  children: React.ReactNode;
+  path: string;
 }
 
 const NavItem = ({ children, path }: Props) => {
-	const navItem = useRef<HTMLAnchorElement | null>(null);
+  const navItem = useRef<HTMLAnchorElement | null>(null);
 
-	return (
-		<>
-			<StyledNavLink
-				end
-				className={(navData) => (navData.isActive ? "active" : "cusomLink")}
-				ref={navItem}
-				to={path}
-			>
-				{children}
-			</StyledNavLink>
-		</>
-	);
+  return (
+    <>
+      <StyledNavLink
+        end
+        className={(navData) => (navData.isActive ? "active" : "cusomLink")}
+        ref={navItem}
+        to={path}
+      >
+        {children}
+      </StyledNavLink>
+    </>
+  );
 };
 
 export default NavItem;

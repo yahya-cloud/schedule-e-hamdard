@@ -14,80 +14,80 @@ import { useNavigate } from "react-router-dom";
 import { rootRoute } from "../../../config.keys";
 
 const Navbar = () => {
-	const { logout, user } = useContext(UserContext) as UserContextType;
-	const navigate = useNavigate();
+  const { logout, user } = useContext(UserContext) as UserContextType;
+  const navigate = useNavigate();
 
-	let navItemsData = {
-		admin: [
-			{ icon: <PeopleIcon />, path: `${rootRoute.admin}/` },
-			{ icon: <AccountBalanceIcon />, path: `${rootRoute.admin}/teacher` },
-		],
-		teacher: [
-			{ icon: <WidgetsIcon />, path: `${rootRoute.teacher}` },
-			{
-				icon: <CalendarMonthIcon />,
-				path: `${rootRoute.teacher}/schedule`,
-			},
-		],
-		student: [
-			{
-				icon: <CalendarMonthIcon />,
-				//@ts-ignore
-				path: `${rootRoute.student}/${user.section}`,
-			},
-		],
-	};
+  let navItemsData = {
+    admin: [
+      { icon: <PeopleIcon />, path: `${rootRoute.admin}/` },
+      { icon: <AccountBalanceIcon />, path: `${rootRoute.admin}/teacher` },
+    ],
+    teacher: [
+      { icon: <WidgetsIcon />, path: `${rootRoute.teacher}/` },
+      {
+        icon: <CalendarMonthIcon />,
+        path: `${rootRoute.teacher}/schedule`,
+      },
+    ],
+    student: [
+      {
+        icon: <CalendarMonthIcon />,
+        //@ts-ignore
+        path: `${rootRoute.student}/${user.section}`,
+      },
+    ],
+  };
 
-	let logoutHandler = async () => {
-		await logout();
-		navigate("/login");
-	};
+  let logoutHandler = async () => {
+    await logout();
+    navigate("/login");
+  };
 
-	return (
-		<Paper
-			elevation={4}
-			sx={{
-				overflow: "hidden",
-				width: 110,
-				height: "100vh",
-				marginRight: "40px",
-				position: "fixed",
-			}}
-		>
-			<Stack
-				flexDirection={"column"}
-				alignItems="center"
-				justifyContent={"space-between"}
-			>
-				<StyledImg src={logo} alt="logo" />
-				<Box
-					component={"div"}
-					sx={{
-						height: "300px",
-						width: "100%",
-						display: "flex",
-						alignItems: "center",
-						flexDirection: "column",
-						justifyContent: "center",
-						flexShrink: 0,
-					}}
-				>
-					{/* @ts-ignore */}
-					{navItemsData[user.user_type].map((el) => (
-						<NavItem key={el.path} path={el.path}>
-							{el.icon}
-						</NavItem>
-					))}
-				</Box>
-			</Stack>
-			<StyledLogoutButton>
-				<LogoutIcon
-					onClick={logoutHandler}
-					sx={{ color: "#fff", height: "50px", width: "50px" }}
-				/>
-			</StyledLogoutButton>
-		</Paper>
-	);
+  return (
+    <Paper
+      elevation={4}
+      sx={{
+        overflow: "hidden",
+        width: 110,
+        height: "100vh",
+        marginRight: "40px",
+        position: "fixed",
+      }}
+    >
+      <Stack
+        flexDirection={"column"}
+        alignItems="center"
+        justifyContent={"space-between"}
+      >
+        <StyledImg src={logo} alt="logo" />
+        <Box
+          component={"div"}
+          sx={{
+            height: "300px",
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+            justifyContent: "center",
+            flexShrink: 0,
+          }}
+        >
+          {/* @ts-ignore */}
+          {navItemsData[user.user_type].map((el) => (
+            <NavItem key={el.path} path={el.path}>
+              {el.icon}
+            </NavItem>
+          ))}
+        </Box>
+      </Stack>
+      <StyledLogoutButton>
+        <LogoutIcon
+          onClick={logoutHandler}
+          sx={{ color: "#fff", height: "50px", width: "50px" }}
+        />
+      </StyledLogoutButton>
+    </Paper>
+  );
 };
 
 export default Navbar;

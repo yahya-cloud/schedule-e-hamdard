@@ -11,36 +11,36 @@ import StudentRoutes from "./student_screens/StudentRoutes";
 import { rootRoute } from "../config.keys";
 
 const RoutingContainer = () => {
-	const { user } = useContext(UserContext) as UserContextType;
-	const navigate = useNavigate();
+  const { user } = useContext(UserContext) as UserContextType;
+  const navigate = useNavigate();
 
-	useEffect(() => {
-		if (user.user_type !== "") {
-			let rootPath = userRootPath(user);
-			navigate(rootPath);
-		} else {
-			navigate("/login");
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [user]);
+  useEffect(() => {
+    if (user.user_type !== "") {
+      let rootPath = userRootPath(user);
+      navigate(rootPath);
+    } else {
+      navigate("/login");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
-	return (
-		<Routes>
-			<Route path="/login" element={<LoginForm />} />
+  return (
+    <Routes>
+      <Route path="/login" element={<LoginForm />} />
 
-			<Route element={<ProtectRoute routeFor="admin" />}>
-				<Route path={`${rootRoute.admin}/*`} element={<AdminRoutes />} />
-			</Route>
+      <Route element={<ProtectRoute routeFor="admin" />}>
+        <Route path={`${rootRoute.admin}/*`} element={<AdminRoutes />} />
+      </Route>
 
-			<Route element={<ProtectRoute routeFor="teacher" />}>
-				<Route path={`${rootRoute.teacher}/*`} element={<TeacherRoutes />} />
-			</Route>
+      <Route element={<ProtectRoute routeFor="teacher" />}>
+        <Route path={`${rootRoute.teacher}/*`} element={<TeacherRoutes />} />
+      </Route>
 
-			<Route element={<ProtectRoute routeFor="student" />}>
-				<Route path={`${rootRoute.student}/*`} element={<StudentRoutes />} />
-			</Route>
-		</Routes>
-	);
+      <Route element={<ProtectRoute routeFor="student" />}>
+        <Route path={`${rootRoute.student}/*`} element={<StudentRoutes />} />
+      </Route>
+    </Routes>
+  );
 };
 
 export default RoutingContainer;

@@ -13,104 +13,104 @@ import { userRootPath } from "../../../lib/utils";
 import { useNavigate } from "react-router-dom";
 
 interface IFormInput {
-	id: string;
-	password: string;
+  id: string;
+  password: string;
 }
 
 let schema: SchemaOf<IFormInput> = object({
-	id: string().required(),
-	password: string().required(),
+  id: string().required(),
+  password: string().required(),
 });
 
 const LoginForm = () => {
-	const { setUser, makeApiCall, message } = useContext(
-		UserContext,
-	) as UserContextType;
+  const { setUser, makeApiCall, message } = useContext(
+    UserContext,
+  ) as UserContextType;
 
-	const { handleSubmit, control } = useForm<IFormInput>({
-		resolver: yupResolver(schema),
-	});
+  const { handleSubmit, control } = useForm<IFormInput>({
+    resolver: yupResolver(schema),
+  });
 
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
-	const onSubmit = async (data: RequestBodyType) => {
-		let fetchedUser = (await makeApiCall(
-			"/user/login",
-			data,
-			"post",
-		)) as UserType;
-		if (fetchedUser) {
-			setUser(fetchedUser);
-			let rootPath = userRootPath(fetchedUser.user_type);
-			navigate(rootPath);
-		}
-	};
+  const onSubmit = async (data: RequestBodyType) => {
+    let fetchedUser = (await makeApiCall(
+      "/user/login",
+      data,
+      "post",
+    )) as UserType;
+    if (fetchedUser) {
+      setUser(fetchedUser);
+      let rootPath = userRootPath(fetchedUser.user_type);
+      navigate(rootPath);
+    }
+  };
 
-	return (
-		<Paper
-			sx={{
-				height: "min-content",
-				width: 450,
-				margin: "200px auto",
-				padding: "20px 10px",
-			}}
-			elevation={3}
-			component="form"
-		>
-			<Stack
-				height={300}
-				flexDirection={"column"}
-				alignItems="center"
-				justifyContent="space-around"
-			>
-				<Typography align="center" gutterBottom={true} variant="h2">
-					Schedule-e-Hamdard
-				</Typography>
-				<FormInput
-					fullWidth={true}
-					helperText="Field is Required"
-					type="text"
-					control={control}
-					inputStyles={{ width: "60%" }}
-					name={"id"}
-					label="Enrollment number / Unique Id"
-				/>
-				<FormInput
-					fullWidth={true}
-					helperText="Field is Required"
-					type="password"
-					control={control}
-					inputStyles={{ width: "60%" }}
-					name={"password"}
-					label="Password"
-				/>
-				<Button
-					customStyles={{ width: "60%" }}
-					onClick={handleSubmit(onSubmit)}
-					variant="outlined"
-					color="primary"
-					text="Login"
-				/>
-				{message.message !== "User not authenticated" &&
-				message.severity === "error" ? (
-					<Alert
-						sx={{
-							fontSize: "1.2rem",
-							width: "60%",
-							"& .MuiAlert-icon": { fontSize: "2rem" },
-						}}
-						variant="standard"
-						severity={"error"}
-					>
-						{message.message}
-					</Alert>
-				) : (
-					<></>
-				)}
-			</Stack>
-			<Credential />
-		</Paper>
-	);
+  return (
+    <Paper
+      sx={{
+        height: "min-content",
+        width: 450,
+        margin: "200px auto",
+        padding: "20px 10px",
+      }}
+      elevation={3}
+      component="form"
+    >
+      <Stack
+        height={300}
+        flexDirection={"column"}
+        alignItems="center"
+        justifyContent="space-around"
+      >
+        <Typography align="center" gutterBottom={true} variant="h2">
+          Schedule-e-Hamdard
+        </Typography>
+        <FormInput
+          fullWidth={true}
+          helperText="Field is Required"
+          type="text"
+          control={control}
+          inputStyles={{ width: "60%" }}
+          name={"id"}
+          label="Enrollment number / Unique Id"
+        />
+        <FormInput
+          fullWidth={true}
+          helperText="Field is Required"
+          type="password"
+          control={control}
+          inputStyles={{ width: "60%" }}
+          name={"password"}
+          label="Password"
+        />
+        <Button
+          customStyles={{ width: "60%" }}
+          onClick={handleSubmit(onSubmit)}
+          variant="outlined"
+          color="primary"
+          text="Login"
+        />
+        {message.message !== "User not authenticated" &&
+        message.severity === "error" ? (
+          <Alert
+            sx={{
+              fontSize: "1.2rem",
+              width: "60%",
+              "& .MuiAlert-icon": { fontSize: "2rem" },
+            }}
+            variant="standard"
+            severity={"error"}
+          >
+            {message.message}
+          </Alert>
+        ) : (
+          <></>
+        )}
+      </Stack>
+      <Credential />
+    </Paper>
+  );
 };
 
 export default LoginForm;
