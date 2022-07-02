@@ -16,11 +16,11 @@ addMiddleWare(app);
 useRoutes(app);
 
 app.use("/", (req, res) =>
-  res.send(`
+	res.send(`
   <h1>Server is Running :)))</h1>
-`)
+`),
 );
 
 httpServer.listen(PORT, () =>
-  console.log(chalk.blueBright(`Express Server listening to port ${PORT}`))
+	console.log(chalk.blueBright(`Express Server listening to port ${PORT}`)),
 );
