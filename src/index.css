@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+
+body {
+	margin: 0;
+	font-family: "Lato" sans-serif;
+}
+
+html {
+	font-size: 62.5%; /* 62.5% of 16px = 10px */
+}
+
+/* style for day week calendar */
+.fc {
+	font-family: "lato";
+}
+.fc table {
+	font-size: 1.1rem !important;
+}
+
+.fc-header-toolbar {
+	padding: 0 2rem;
+}
+.fc-time-grid .fc-slats td {
+	height: 2.5em;
+}
+
+.fc-timegrid-slot-lane {
+	height: 3.5em !important;
+}
+
+.fc-toolbar-chunk {
+	display: flex;
+	align-items: center;
+}
+
+.fc-button,
+.fc-button:focus,
+.fc-button:active {
+	background-color: transparent !important;
+	border-color: #43b47c !important;
+	color: #43b47c !important;
+	margin-left: 20px !important;
+	box-shadow: none !important;
+	padding: 0.2em 0.65em !important;
+	height: 2em;
+}
+
+.fc-timeGridWeek-button,
+.fc-timeGridDay-button,
+.fc-timeGridWeek-button:focus,
+.fc-timeGridDay-button:focus {
+	border-color: transparent !important;
+	border-radius: 10px !important;
+	padding: 0.2em 1em !important;
+	transition: all 0.2s ease;
+}
+
+.fc-timeGridWeek-button.fc-button-active,
+.fc-timeGridDay-button.fc-button-active {
+	border-color: #43b47c !important;
+	padding: 0.2em 1em !important;
+}
+
+.fc-icon {
+	color: #43b47c;
+	font-size: 1rem !important;
+	font-weight: 600 !important;
+}
+
+.header-content {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem 0px;
+}
+
+.header-content h4,
+.header-content h5 {
+	margin: 0;
+}
+
+.header-content h4 {
+	margin-bottom: 10px;
+}
+
+.fc-v-event {
+	border: none !important;
+	background-color: transparent !important;
+}
+
+.customActive {
+	background-color: "red";
+}
+
+/* Temporarily writing navlink css here*/
+
+.navLink {
+	width: 100%;
+	height: 80px;
+	color: #43b47c;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid #ccc;
+	transition: all 0.2s ease;
+}
+
+/* "& svg": { color: "inherit", height: "50px", width: "50px" },
+"&:hover, &.active": {
+  backgroundColor: "#43B47C",
+},
+"&:hover svg, &.active svg": {
+  color: "#fff",
+},
+"&.bitches": {
+  backgroundColor: "red",
+}, */
