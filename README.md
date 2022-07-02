@@ -10,7 +10,7 @@
   </strong>
   <p align="center">
     <strong>
-      Class Scheduler from Jamia Hamdard
+      Class Scheduler for Jamia Hamdard
     </strong>
     <br />
     <a href="https://github.com/yahya-cloud/schedule-e-hamdard"><strong>Explore the project »</strong></a>
