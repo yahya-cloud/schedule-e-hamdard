@@ -13,6 +13,7 @@
     "data:import": "npm ts-node src/data/seeder.ts ",
     "data:destroy": "npm ts-node src/data/seeder.ts -d"
   },
+  "engines": { "node": "16.13.1" },
   "author": "",
   "license": "ISC",
   "dependencies": {
