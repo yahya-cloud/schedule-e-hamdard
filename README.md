@@ -68,7 +68,12 @@
 
 
 ### Schedeul-e-Hamdard
-|      Mentors Page       |       Topics Page        |
-| :---------------------: | :----------------------: |
+![schedule](https://user-images.githubusercontent.com/59670962/177036057-6eeaa60e-70fb-4d7f-8018-6cf49cda622e.png)
+
+|      Teachers Page       |       Students Page        |
+| :---------------------:  | :----------------------: |
+|![teachers](https://user-images.githubusercontent.com/59670962/177036171-6772caa2-1df8-4510-8dd6-636e3aec1705.png) |![students](https://user-images.githubusercontent.com/59670962/177036213-782b78b8-dbd8-4f5b-bc56-129af316b5ba.png) |
+
+
 
 
