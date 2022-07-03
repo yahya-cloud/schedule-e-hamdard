@@ -11,8 +11,7 @@
     "dev": "nodemon --exec ts-node src/server.ts",
     "pretty": "prettier --write \"./**/*.{ts,js}\"",
     "data:import": "npm ts-node src/data/seeder.ts ",
-    "data:destroy": "npm ts-node src/data/seeder.ts -d",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build-ts"
+    "data:destroy": "npm ts-node src/data/seeder.ts -d"
   },
   "author": "",
   "license": "ISC",
