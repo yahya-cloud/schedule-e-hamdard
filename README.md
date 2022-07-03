@@ -143,12 +143,13 @@ to decypt the string using [crypto](https://cryptojs.gitbook.io/docs/) <strong>P
      <li>REACT_APP_SERVER_URL: Server url</li>
 </ul>
 
-After setting up the enviorment vars rename example.env to .env
+After setting up the enviorment variables rename example.env to .env
 
 ### Setting up Backend
+
 This web-app uses [MongoDB](https://www.mongodb.com/cloud/atlas/lp/try2-in?utm_source=google&utm_campaign=gs_apac_india_search_core_brand_atlas_desktop&utm_term=mongodb&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=12212624347&adgroup=115749713423&gclid=CjwKCAjw_ISWBhBkEiwAdqxb9ncTAxa9lxC0XmDJgnSd8gm4hy5RFCV90PWur3538R68wQp_5MH6HBoCcgwQAvD_BwE) as its database, so as to setup the backend you need to have mongodb account, cluster. Follow these guide to setup the MongoDB account and cluster. [Signup for MongoDB account](https://www.mongodb.com/docs/guides/atlas/account/), [Setup MongoDB cluster](https://www.mongodb.com/docs/guides/atlas/cluster/)
 
-After setting up the cluster white list your IP adress. To whitelist your Ip address follow this guide [Whitelist your Ip address](https://www.mongodb.com/docs/atlas/security/add-ip-address-to-list/) 
+After setting up the cluster white list your IP address. To whitelist your Ip address follow this guide [Whitelist your Ip address](https://www.mongodb.com/docs/atlas/security/add-ip-address-to-list/) 
 
 Now to setup the enviorments variables backend navigate to '/backend/example.env',you will see the below given code which are the enviorment variable for frontend, as this web-app usses [Crypto](https://cryptojs.gitbook.io/docs/) the first three to decypt the string using [crypto](https://cryptojs.gitbook.io/docs/) <strong>Please make sure ALGORITHM, IV_LENGTH, ENCRYPTION_KEY are same as .env vars in frontend</strong>.
 
@@ -161,5 +162,53 @@ Now to setup the enviorments variables backend navigate to '/backend/example.env
      <li>JWT_SECRET: Any unique string</li>
      <li>CLIENT_URL: Client url default is http://localhost:3000</li>
 </ul>
+
+After setting up the enviorment variables rename example.env to .env
+
+## Future Goals
+
+- [ ] Feature to add multiple students and teachers in database by reading excel file   
+- [ ] Enhancing the login page
+- [ ] Add feature to export teacher table and student table as excel sheet.
+- [ ] Add group chat feature for every section.
+- [ ] Add option to upload photo while saving teachers and students 
+- [ ] Feature to update teacher, schedule, and student as of now we can only add and delete them  
+- [ ] Add option to delete Batch, so when we delete batch all sections in that Batch and all students inside each section should also get delted from database 
+- [ ] Add caching using react query/rtk query in frontend and redis/node-cache in backend
+- [ ] Write Unit Test
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+Refer to this [article](https://medium.com/geekculture/a-quick-guide-to-create-a-pull-request-on-github-80fc081b8a80) if you have any difficulty in making pull request
+
+
+# Contact
+
+Mohd. Yahya - yahya01work@gmail.com , mohammadyahya.in 
+
+Project Link: 
+
+---
+
+## Acknowledgements
+
+- [react-hook-form](https://react-hook-form.com/)
+- [crypto-js](https://www.npmjs.com/package/crypto-js/)
+- [mui](https://mui.com/)
+- [emotion](https://emotion.sh/)
+- [full-calendar](https://fullcalendar.io/)
+- [mongoose](https://mongoosejs.com/)
+- [Heroku](https://www.heroku.com/)
+- [Netlify](https://www.netlify.com/)
+- [axios](https://www.npmjs.com/package/axios)
+- [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 
 
