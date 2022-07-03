@@ -137,7 +137,7 @@ To setup the frontend of application navigate to '/frontend/example.env', you wi
 to decypt the string using [crypto](https://cryptojs.gitbook.io/docs/) <strong>Please make sure ALGORITHM, IV_LENGTH, ENCRYPTION_KEY are same as .env vars in backend</strong>.
 
 <ul>
-     <li>REACT_APP_ALGORITHM: Algorithim that is used to decrpt the string using </li>
+     <li>REACT_APP_ALGORITHM: Algorithim that is used to decrpt the string using crypto </li>
      <li>REACT_APP_IV_LENGTH: Initialization vector for crypto cipheriv</li>
      <li>REACT_APP_ENCRYPTION_KEY: Any unique string</li>
      <li>REACT_APP_SERVER_URL: Server url</li>
@@ -146,6 +146,20 @@ to decypt the string using [crypto](https://cryptojs.gitbook.io/docs/) <strong>P
 After setting up the enviorment vars rename example.env to .env
 
 ### Setting up Backend
-This web-app uses [MongoDB](https://www.mongodb.com/cloud/atlas/lp/try2-in?utm_source=google&utm_campaign=gs_apac_india_search_core_brand_atlas_desktop&utm_term=mongodb&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=12212624347&adgroup=115749713423&gclid=CjwKCAjw_ISWBhBkEiwAdqxb9ncTAxa9lxC0XmDJgnSd8gm4hy5RFCV90PWur3538R68wQp_5MH6HBoCcgwQAvD_BwE) as its database, so as to setup the backend you need to have mongodb cluster. Follow these guide to setup the MongoDB account and cluster. [Signup for MongoDB account](https://www.mongodb.com/docs/guides/atlas/account/), [Setup MongoDB cluster](https://www.mongodb.com/docs/guides/atlas/cluster/) 
+This web-app uses [MongoDB](https://www.mongodb.com/cloud/atlas/lp/try2-in?utm_source=google&utm_campaign=gs_apac_india_search_core_brand_atlas_desktop&utm_term=mongodb&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=12212624347&adgroup=115749713423&gclid=CjwKCAjw_ISWBhBkEiwAdqxb9ncTAxa9lxC0XmDJgnSd8gm4hy5RFCV90PWur3538R68wQp_5MH6HBoCcgwQAvD_BwE) as its database, so as to setup the backend you need to have mongodb account, cluster. Follow these guide to setup the MongoDB account and cluster. [Signup for MongoDB account](https://www.mongodb.com/docs/guides/atlas/account/), [Setup MongoDB cluster](https://www.mongodb.com/docs/guides/atlas/cluster/)
+
+After setting up the cluster white list your IP adress. To whitelist your Ip address follow this guide [Whitelist your Ip address](https://www.mongodb.com/docs/atlas/security/add-ip-address-to-list/) 
+
+Now to setup the enviorments variables backend navigate to '/backend/example.env',you will see the below given code which are the enviorment variable for frontend, as this web-app usses [Crypto](https://cryptojs.gitbook.io/docs/) the first three to decypt the string using [crypto](https://cryptojs.gitbook.io/docs/) <strong>Please make sure ALGORITHM, IV_LENGTH, ENCRYPTION_KEY are same as .env vars in frontend</strong>.
+
+<ul>
+     <li>ALGORITHM: Algorithim that is used to decrpt the string using </li>
+     <li>IV_LENGTH: Initialization vector for crypto cipheriv</li>
+     <li>ENCRYPTION_KEY: Any unique string</li>
+     <li>PORT: express server port number </li>
+     <li>CONNECTION_URL = MongoDB account connection url follow this <a href='https://www.mongodb.com/docs/guides/atlas      /connection-string/'>guide</a> to genrate connection URL </li>
+     <li>JWT_SECRET: Any unique string</li>
+     <li>CLIENT_URL: Client url default is http://localhost:3000</li>
+</ul>
 
 
