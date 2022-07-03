@@ -133,5 +133,4 @@ Install [NodeJS LTS](https://nodejs.org/en/)
    
 ### Setting up DATABASE
 
-To setup the database with mockdata, follow this [guide](/Setting%20up%20Database.md)
-
+To setup the database with mockdata, follow this
