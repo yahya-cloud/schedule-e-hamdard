@@ -14,3 +14,4 @@ export const JWT = {
 };
 
 export const CONNECTION_URL = process.env.CONNECTION_URL!;
+export const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:3000";

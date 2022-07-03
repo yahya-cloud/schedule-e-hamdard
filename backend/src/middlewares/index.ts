@@ -4,9 +4,10 @@ import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import jwtCookieMiddleware from "./jwtAuth";
 import isStaff from "./staff";
+import { CLIENT_URL } from "../config/keys";
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: CLIENT_URL,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: "Content-Type",
   credentials: true,
