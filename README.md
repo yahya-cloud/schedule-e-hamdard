@@ -5,6 +5,7 @@
     <img src="frontend/src/assets/images/logo.png" alt="Logo" width="256" height="256">
   </a>
 
+
   <strong>
     <h3 align="center" >Schedule-e-Hamdard</h3>
   </strong>
