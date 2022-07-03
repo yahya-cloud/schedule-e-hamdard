@@ -84,6 +84,54 @@
 |![batches](https://user-images.githubusercontent.com/59670962/177036528-ad40b41a-47e4-4ade-9a7b-ab4116da1e41.png)
 |![sections](https://user-images.githubusercontent.com/59670962/177036573-a390a844-22ff-44a5-9735-60f66c7646f3.png) |
 
+---
 
+### Built With
 
+- [React](https://reactjs.org/docs/getting-started.html)
+- [NodeJS](https://material-ui.com/getting-started/installation/)
+
+Written in TypeScript ♥
+
+## Getting Started
+
+Follow the instructions to set up the project on your local machine.
+
+### Prerequisites
+
+Install [NodeJS LTS](https://nodejs.org/en/)
+
+- npm
+
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+1. Fork the repo(required), a star is also appretiated but optional :P
+
+2. Clone the forked repo
+
+   ```sh
+   git clone https://github.com/{your-github-username}/schedule-e-hamdard.git
+   ```
+
+   example : `git clone https://github.com/yahya-cloud/schedule-e-hamdard.git`
+
+3. Install NPM packages
+
+   ```sh
+   npm run install-modules
+   ```
+
+4. Start the react and nodejs server concucrrently
+
+   ```sh
+   npm run dev
+   ```
+   
+### Setting up DATABASE
+
+To setup the database with mockdata, follow this [guide](/Setting%20up%20Database.md)
 
