@@ -69,20 +69,21 @@
 
 ### Schedeul-e-Hamdard
 ![schedule](https://user-images.githubusercontent.com/59670962/177036057-6eeaa60e-70fb-4d7f-8018-6cf49cda622e.png)
-
-|      Teachers        |       Students         |
+ 
+|      Teachers            |       Students           |
 | :---------------------:  | :----------------------: |
 |![teachers](https://user-images.githubusercontent.com/59670962/177036171-6772caa2-1df8-4510-8dd6-636e3aec1705.png) |![students](https://user-images.githubusercontent.com/59670962/177036213-782b78b8-dbd8-4f5b-bc56-129af316b5ba.png) |
 
-|      All Staff       |       Single Staff         |
-| :---------------------:  | :----------------------: |
-|![Screenshot 2022-07-03 at 16-32-36 React App](https://user-images.githubusercontent.com/59670962/177036641-c3aa1b22-86b7-46c6-a596-488a53ba7d48.png)
-|![students](https://user-images.githubusercontent.com/59670962/177036213-782b78b8-dbd8-4f5b-bc56-129af316b5ba.png) |
 
-|      Batches       |       Sections         |
+|      All Staff           |       Single Staff         |
+| :---------------------:  | :----------------------:   |
+|![staff](https://user-images.githubusercontent.com/59670962/177048059-8991a5c2-8cc0-40e4-9560-9a2c0c2dfacf.png) |![single-staff](https://user-images.githubusercontent.com/59670962/177048344-087d7412-b853-437f-8323-8e7710f07cd5.png) |
+
+
+|      Batches             |       Sections           |
 | :---------------------:  | :----------------------: |
-|![batches](https://user-images.githubusercontent.com/59670962/177036528-ad40b41a-47e4-4ade-9a7b-ab4116da1e41.png)
-|![sections](https://user-images.githubusercontent.com/59670962/177036573-a390a844-22ff-44a5-9735-60f66c7646f3.png) |
+| ![batches](https://user-images.githubusercontent.com/59670962/177048157-b130f3b1-fade-42b1-9e7a-a23811f9b183.png) | ![sections](https://user-images.githubusercontent.com/59670962/177048231-c2e67b0e-3287-4357-8f74-912e6d243268.png) |
+
 
 ---
 
