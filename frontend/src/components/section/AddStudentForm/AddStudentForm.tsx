@@ -114,7 +114,7 @@ const AddStudentForm = ({ handleClose }: Props) => {
           onClick={handleSubmit(onSubmit)}
           variant="contained"
           color="primary"
-          text="Add Class"
+          text="Add Student"
         />
       </Stack>
     </Paper>
