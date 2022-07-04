@@ -1,23 +1,20 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/yahya-cloud/schedule-e-hamdard">
-    <img src="frontend/src/assets/images/logo.png" alt="Logo" width="256" height="256">
-  </a>
-
 
   <strong>
-    <h3 align="center" >Schedule-e-Hamdard</h3>
+    <h1 align="center" >Schedule-e-Hamdard</h1>
   </strong>
+  
   <p align="center">
     <strong>
-      Class Scheduler for Jamia Hamdard
+      Class Scheduler for Jamia Hamdard University
     </strong>
     <br />
     <a href="https://github.com/yahya-cloud/schedule-e-hamdard"><strong>Explore the project »</strong></a>
     <br />
     <br />
-    <a href="/">View Demo</a>
+    <a href="https://main--taupe-wisp-7f5ba2.netlify.app">View Demo</a>
     ·
     <a href="https://github.com/yahya-cloud/schedule-e-hamdard/issues">Report Bug</a>
     ·
@@ -33,8 +30,6 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#demonstration">Demonstration</a></li>
-        <li><a href="#application-Flow">Application Flow</a></li>
-         <li><a href="#Photos">Demonstration</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -43,7 +38,8 @@
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
-        <li><a href="#installation">Setting up Database</a></li>
+        <li><a href="#setting-up-frontend">Setting up Frontend</a></li>
+        <li><a href="#setting-up-backend">Setting up Backend</a></li>
       </ul>
     </li>
     <li><a href="#roadmap">Roadmap</a></li>
@@ -58,7 +54,7 @@
 
 - As of now <strong>Jamia hamdard University</strong>, teachers doesn't have any medium to schedule classes else than whatsapp. Everything is done on whatsapp groups, for every subject there is a seprate whatsapp group. Which results in creation of multiple group's every semester, teachers have to remember all the sessions they have to take throught the day and are often in confusion at what time to schedule session for a class, if the class is free at that time or not which results in redundant conversation on whatsapp groups.    
 
-- A SAAS product for staff, teacher and students of where faculty member can assign classes to teachers, teachers can schedule sessions for assigned classes and students can keep track of upcoming sessions  
+- A SAAS product for staff, teacher and students. Where faculty member can assign classes to teachers, teachers can schedule sessions for assigned classes and students can keep track of upcoming sessions  
 
 ---
 
@@ -135,8 +131,7 @@ Install [NodeJS LTS](https://nodejs.org/en/)
    
 ### Setting up Frontend
 
-To setup the frontend of application navigate to '/frontend/example.env', you will see the below given code which are the enviorment variable for frontend, as this web-app usses [Crypto](https://cryptojs.gitbook.io/docs/) the first three 
-to decypt the string using [crypto](https://cryptojs.gitbook.io/docs/) <strong>Please make sure ALGORITHM, IV_LENGTH, ENCRYPTION_KEY are same as .env vars in backend</strong>.
+To setup the frontend of application navigate to '/frontend/example.env', you will see the below given code, as this web-app usses [Crypto](https://cryptojs.gitbook.io/docs/) the first three variables are required to decypt/encrypt the string using [crypto](https://cryptojs.gitbook.io/docs/). Create new file in frontend folder name it ".env", copy paste the content of "exapmle.env" to ".env". <strong>Please make sure ALGORITHM, IV_LENGTH, ENCRYPTION_KEY are same as .env vars in backend</strong>.
 
 <ul>
      <li>REACT_APP_ALGORITHM: Algorithim that is used to decrpt the string using crypto </li>
@@ -145,15 +140,14 @@ to decypt the string using [crypto](https://cryptojs.gitbook.io/docs/) <strong>P
      <li>REACT_APP_SERVER_URL: Server url</li>
 </ul>
 
-After setting up the enviorment variables rename example.env to .env
 
 ### Setting up Backend
 
-This web-app uses [MongoDB](https://www.mongodb.com/cloud/atlas/lp/try2-in?utm_source=google&utm_campaign=gs_apac_india_search_core_brand_atlas_desktop&utm_term=mongodb&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=12212624347&adgroup=115749713423&gclid=CjwKCAjw_ISWBhBkEiwAdqxb9ncTAxa9lxC0XmDJgnSd8gm4hy5RFCV90PWur3538R68wQp_5MH6HBoCcgwQAvD_BwE) as its database, so as to setup the backend you need to have mongodb account, cluster. Follow these guide to setup the MongoDB account and cluster. [Signup for MongoDB account](https://www.mongodb.com/docs/guides/atlas/account/), [Setup MongoDB cluster](https://www.mongodb.com/docs/guides/atlas/cluster/)
+This web-app uses [MongoDB](https://www.mongodb.com/cloud/atlas/lp/try2-in?utm_source=google&utm_campaign=gs_apac_india_search_core_brand_atlas_desktop&utm_term=mongodb&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=12212624347&adgroup=115749713423&gclid=CjwKCAjw_ISWBhBkEiwAdqxb9ncTAxa9lxC0XmDJgnSd8gm4hy5RFCV90PWur3538R68wQp_5MH6HBoCcgwQAvD_BwE) as its database, so as to setup the backend you need to have mongodb account and cluster. Follow these guide to setup the MongoDB account and cluster. [Signup for MongoDB account](https://www.mongodb.com/docs/guides/atlas/account/), [Setup MongoDB cluster](https://www.mongodb.com/docs/guides/atlas/cluster/)
 
 After setting up the cluster white list your IP address. To whitelist your Ip address follow this guide [Whitelist your Ip address](https://www.mongodb.com/docs/atlas/security/add-ip-address-to-list/) 
 
-Now to setup the enviorments variables backend navigate to '/backend/example.env',you will see the below given code which are the enviorment variable for frontend, as this web-app usses [Crypto](https://cryptojs.gitbook.io/docs/) the first three to decypt the string using [crypto](https://cryptojs.gitbook.io/docs/) <strong>Please make sure ALGORITHM, IV_LENGTH, ENCRYPTION_KEY are same as .env vars in frontend</strong>.
+Now to setup the enviorment variables for backend navigate to '/backend/example.env', you will see the below given code, as this web-app usses [Crypto](https://cryptojs.gitbook.io/docs/) the first three variables are required to decypt/encrypt the string using [crypto](https://cryptojs.gitbook.io/docs/). Create new file in backend folder name it ".env", copy paste the content of "exapmle.env" to ".env". <strong>Please make sure ALGORITHM, IV_LENGTH, ENCRYPTION_KEY are same as .env vars in frontend</strong>.
 
 <ul>
      <li>ALGORITHM: Algorithim that is used to decrpt the string using </li>
@@ -165,9 +159,12 @@ Now to setup the enviorments variables backend navigate to '/backend/example.env
      <li>CLIENT_URL: Client url default is http://localhost:3000</li>
 </ul>
 
-After setting up the enviorment variables rename example.env to .env
 
-## Future Goals
+## Roadmap
+
+See the [open issues](https://github.com/yahya-cloud/schedule-e-hamdard/issues) for a list of proposed features (and known issues).
+
+### Future Goals
 
 - [ ] Feature to add multiple students and teachers in database by reading excel file   
 - [ ] Enhancing the login page
@@ -194,9 +191,9 @@ Refer to this [article](https://medium.com/geekculture/a-quick-guide-to-create-a
 
 # Contact
 
-Mohd. Yahya - yahya01work@gmail.com , mohammadyahya.in 
+Mohd. Yahya - yahya01work@gmail.com , [mohammadyahya.in](https://mohammadyahya.in) 
 
-Project Link: 
+Project Link: https://main--taupe-wisp-7f5ba2.netlify.app
 
 ---
 
