@@ -137,7 +137,7 @@ To setup the frontend of application navigate to '/frontend/example.env', you wi
 REACT_APP_ALGORITHM = String encrypt/decrypt algo
 REACT_APP_IV_LENGTH = Cipher initialization vector
 REACT_APP_ENCRYPTION_KEY = Encryption key for example 'this is key'
-REACT_APP_SERVER_URL = Server URL default is http://localhost:4000/
+REACT_APP_SERVER_URL = Server URL default is http://localhost:4000/v1
 ```
 
 
