@@ -29,6 +29,7 @@ export const constants = {
   NUMBER_STRING: "1234567890",
   ALPHABET_STRING: "ABCDEFGHI",
   BY_PASS_REQUESTS: [
+    "/",
     "/v1/staff",
     "/v1/user",
     "/v1/user/login",
