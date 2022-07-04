@@ -1,4 +1,4 @@
-import * as authLib from '../libs/authLib';
+import * as authLib from "../libs/authLib";
 
 const users = [
   {
@@ -8,7 +8,7 @@ const users = [
     name: "Yahya",
     email: "pass2@gmail.com",
     phone_number: 9810896720,
-    password:  authLib.encryptString("FAF68"),
+    password: authLib.encryptString("FAF68"),
     user_type: "student",
     __v: 0,
     __t: "Student",
@@ -20,7 +20,7 @@ const users = [
     name: "Alura",
     email: "pass3@gmail.com",
     phone_number: 9810896720,
-    password:  authLib.encryptString("E8E16"),
+    password: authLib.encryptString("E8E16"),
     user_type: "student",
     __v: 0,
     __t: "Student",
@@ -32,7 +32,7 @@ const users = [
     name: "yahya",
     email: "yahya08in@gmail.com",
     phone_number: 9810896720,
-    password:  authLib.encryptString("D3GD8"),
+    password: authLib.encryptString("D3GD8"),
     user_type: "admin",
     __v: 0,
     __t: "Staff",
@@ -44,7 +44,7 @@ const users = [
     name: "Aletta",
     email: "yahya08in@gmail.com",
     phone_number: 9810896720,
-    password:  authLib.encryptString("2A424"),
+    password: authLib.encryptString("2A424"),
     user_type: "teacher",
     __v: 0,
     __t: "Staff",
@@ -56,7 +56,7 @@ const users = [
     name: "Zoey",
     email: "pass2in@gmail.com",
     phone_number: 9810896720,
-    password:  authLib.encryptString("I3DAA"),
+    password: authLib.encryptString("I3DAA"),
     user_type: "teacher",
     __v: 0,
     __t: "Staff",
@@ -68,7 +68,7 @@ const users = [
     name: "Megan",
     email: "pass3in@gmail.com",
     phone_number: 9810896720,
-    password:  authLib.encryptString("64DH4"),
+    password: authLib.encryptString("64DH4"),
     user_type: "teacher",
     __v: 0,
     __t: "Staff",
@@ -80,7 +80,7 @@ const users = [
     name: "Peta",
     email: "pass3@gmail.com",
     phone_number: 9810896720,
-    password:  authLib.encryptString("98C9H"),
+    password: authLib.encryptString("98C9H"),
     user_type: "student",
     __t: "Student",
     __v: 0,
