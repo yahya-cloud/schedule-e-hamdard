@@ -12,10 +12,6 @@ interface Props {
 }
 
 const WeekCalendar = ({ selectedDate, classes }: Props) => {
-  // let date = new Date();
-  // let startDate = new Date(date.getTime() + 2 * 60 * 60 * 1000);
-  // let endDate = new Date(date.getTime() + 3 * 60 * 60 * 1000);
-
   const calendarRef = useRef<FullCalendar>(null!);
 
   useEffect(() => {
@@ -49,7 +45,6 @@ const WeekCalendar = ({ selectedDate, classes }: Props) => {
         }}
         allDaySlot={false}
         titleFormat={{ year: "numeric", month: "long" }}
-        // dayHeaderFormat={{ weekday: "short" }}
         dayHeaderContent={(args) => {
           return (
             <div className="header-content">

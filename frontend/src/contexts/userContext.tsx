@@ -27,7 +27,7 @@ let defaultValues = {
     user_type: "",
     __t: "",
   },
-  message: { message: "Sup Bitches", severity: "success" } as RequestMessage,
+  message: { message: "Some Message", severity: "success" } as RequestMessage,
 };
 
 const UserContext = createContext<UserContextType | null>(null);
