@@ -14,7 +14,7 @@
     <a href="https://github.com/yahya-cloud/schedule-e-hamdard"><strong>Explore the project »</strong></a>
     <br />
     <br />
-    <a href="https://main--taupe-wisp-7f5ba2.netlify.app">View Demo</a>
+    <a href="https://taupe-wisp-7f5ba2.netlify.app">View Demo</a>
     ·
     <a href="https://github.com/yahya-cloud/schedule-e-hamdard/issues">Report Bug</a>
     ·
@@ -189,7 +189,7 @@ Refer to this [article](https://medium.com/geekculture/a-quick-guide-to-create-a
 
 Mohd. Yahya - yahya01work@gmail.com , [mohammadyahya.in](https://mohammadyahya.in)
 
-Project Link: https://main--taupe-wisp-7f5ba2.netlify.app
+Project Link: https://taupe-wisp-7f5ba2.netlify.app/
 
 ---
 
