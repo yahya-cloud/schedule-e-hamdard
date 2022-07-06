@@ -1,22 +1,19 @@
 import { RequestHandler } from "express";
 import { user } from "../services/db";
 import utilLib from "../libs/utilLib";
-import * as authLib from "../libs/authLib";
-import { userRequest } from "../types";
 
 const getUsers: RequestHandler = async (req, res) => {
   try {
     let data = await user.getUsers({});
     res.status(200).json({ data, message: "" });
   } catch (error) {
-    //@ts-ignore
-    res.status(400).json({ message: error.message });
+    if (error instanceof Error)
+      res.status(400).json({ message: error.message });
   }
 };
 
-const getUserWithToken: RequestHandler = (req: userRequest, res) => {
+const getUserWithToken: RequestHandler = (req, res) => {
   if (req.user) {
-    //@ts-ignore
     let data = utilLib.deleteObjectKey({ ...req.user.toObject() }, [
       "password",
       "id",
@@ -34,8 +31,8 @@ const removeAll: RequestHandler = async (req, res) => {
     let data = await user.removeAll({});
     res.status(200).json({ data, message: "Removed users successfully" });
   } catch (error) {
-    //@ts-ignore
-    res.status(400).json({ message: error.message });
+    if (error instanceof Error)
+      res.status(400).json({ message: error.message });
   }
 };
 
@@ -55,14 +52,14 @@ const login: RequestHandler = async (req, res) => {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 7,
       sameSite: "none",
-      secure: true
+      secure: true,
     });
     return res
       .status(200)
       .json({ data: fetchedUser, message: "User successfully logged-in" });
   } catch (error) {
-    //@ts-ignore
-    res.status(404).json({ message: error.message });
+    if (error instanceof Error)
+      res.status(400).json({ message: error.message });
   }
 };
 
@@ -72,8 +69,8 @@ const createMany: RequestHandler = async (req, res) => {
     let data = await user.createMany({ userArray });
     res.status(200).json({ data, message: "Users created  Successful" });
   } catch (error) {
-    //@ts-ignore
-    res.status(400).json({ message: error.message });
+    if (error instanceof Error)
+      res.status(400).json({ message: error.message });
   }
 };
 

@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
 import { student } from "../services/db";
 import * as authLib from "../libs/authLib";
-import { UnknowObj } from "../types";
+import { StringObject } from "../types";
 import utilLib from "../libs/utilLib";
 
 const getStudents: RequestHandler = async (req, res) => {
@@ -10,8 +10,8 @@ const getStudents: RequestHandler = async (req, res) => {
     let data = await student.getStudents({ userType });
     res.status(200).json({ data, message: "" });
   } catch (error) {
-    //@ts-ignore
-    res.status(400).json({ message: error.message });
+    if (error instanceof Error)
+      res.status(400).json({ message: error.message });
   }
 };
 
@@ -22,8 +22,8 @@ const getStudent: RequestHandler = async (req, res) => {
     let data = await student.getStudent({ _id });
     res.status(200).json({ data, message: "" });
   } catch (error) {
-    //@ts-ignore
-    res.status(400).json({ message: error.message });
+    if (error instanceof Error)
+      res.status(400).json({ message: error.message });
   }
 };
 
@@ -43,15 +43,15 @@ const createStudent: RequestHandler = async (req, res) => {
     const data = await student.createStudent({ ...req.body });
     res.status(200).json({ data, message: "Student Added Successfully" });
   } catch (error) {
-    //@ts-ignore
-    res.status(400).json({ message: error.message });
+    if (error instanceof Error)
+      res.status(400).json({ message: error.message });
   }
 };
 
 const createMany: RequestHandler = async (req, res) => {
   try {
     let studentsArray = req.body;
-    studentsArray.forEach((person: UnknowObj) => {
+    studentsArray.forEach((person: StringObject) => {
       utilLib.checkMissingFieldsAndType(
         { ...person },
         {
@@ -68,8 +68,8 @@ const createMany: RequestHandler = async (req, res) => {
     const data = await student.createMany({ studentsArray });
     res.status(200).json({ data, message: "Students Added Successfully" });
   } catch (error) {
-    //@ts-ignore
-    res.status(400).json({ message: error.message });
+    if (error instanceof Error)
+      res.status(400).json({ message: error.message });
   }
 };
 
@@ -78,8 +78,8 @@ const removeAll: RequestHandler = async (req, res) => {
     let data = await student.removeAll({});
     res.status(200).json({ data, message: "students Removed Successfully" });
   } catch (error) {
-    //@ts-ignore
-    res.status(400).json({ message: error.message });
+    if (error instanceof Error)
+      res.status(400).json({ message: error.message });
   }
 };
 
@@ -99,8 +99,8 @@ const editStudent: RequestHandler = async (req, res) => {
     let data = await student.editStudent({ ...req.body });
     res.status(200).json({ data, message: "Student Updated Successfully" });
   } catch (error) {
-    //@ts-ignore
-    res.status(400).json({ message: error.message });
+    if (error instanceof Error)
+      res.status(400).json({ message: error.message });
   }
 };
 
@@ -111,8 +111,8 @@ const removeStudent: RequestHandler = async (req, res) => {
     let data = await student.deleteStudent({ _id });
     res.status(200).json(data);
   } catch (error) {
-    //@ts-ignore
-    res.status(400).json({ message: error.message });
+    if (error instanceof Error)
+      res.status(400).json({ message: error.message });
   }
 };
 

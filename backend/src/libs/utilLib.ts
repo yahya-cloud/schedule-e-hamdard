@@ -1,5 +1,5 @@
 import { customAlphabet } from "nanoid";
-import { UnknowObj } from "../types";
+import { StringObject } from "../types";
 import { constants } from "./constants";
 
 let compareStrings = function (str1: string, str2: string) {
@@ -19,7 +19,7 @@ let isEmpty = (data: any) => {
   }
 }; // end of isEmpty.
 
-let checkMissingFields = (fields: UnknowObj) => {
+let checkMissingFields = (fields: StringObject) => {
   for (let field in fields) {
     if (isEmpty(fields[field])) {
       throw { message: `missing field : ${field}` };
@@ -27,7 +27,10 @@ let checkMissingFields = (fields: UnknowObj) => {
   }
 };
 
-let checkMissingFieldsAndType = (fields: UnknowObj, types: UnknowObj = {}) => {
+let checkMissingFieldsAndType = (
+  fields: StringObject,
+  types: StringObject = {},
+) => {
   for (let field in fields) {
     if (isEmpty(fields[field])) {
       throw { message: `missing field : ${field}` };
@@ -42,7 +45,7 @@ let checkMissingFieldsAndType = (fields: UnknowObj, types: UnknowObj = {}) => {
   }
 };
 
-const deleteObjectKey = (object: UnknowObj, keyArr: string[]) => {
+const deleteObjectKey = (object: StringObject, keyArr: string[]) => {
   let updatedObject = { ...object };
   keyArr.forEach((key) => {
     delete updatedObject[key];

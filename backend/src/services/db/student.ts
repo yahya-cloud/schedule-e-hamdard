@@ -1,9 +1,9 @@
 import * as authLib from "../../libs/authLib";
 import utilLib from "../../libs/utilLib";
 import { StudentModel } from "../../models";
-import { StudentSchemaType, UnknowObj } from "../../types";
+import { StudentSchemaType, StringObject } from "../../types";
 
-const createStudent = async (dataObj: UnknowObj) => {
+const createStudent = async (dataObj: StringObject) => {
   let password: string = await authLib.generatePassword();
   let newStudent = new StudentModel({ ...dataObj, password });
   let result = await newStudent.save();
@@ -11,13 +11,13 @@ const createStudent = async (dataObj: UnknowObj) => {
   return userToReturn;
 };
 
-const getStudents = async (dataObj: UnknowObj) => {
+const getStudents = async (dataObj: StringObject) => {
   let filter = dataObj.userType === "admin" ? {} : { password: 0 };
   let result = await StudentModel.find({}, { ...filter }).lean();
   return result;
 };
 
-const getStudent = async (dataObj: UnknowObj) => {
+const getStudent = async (dataObj: StringObject) => {
   let { _id } = dataObj;
   let result = await StudentModel.find({ _id }, { password: 0 })
     .populate({
@@ -27,9 +27,9 @@ const getStudent = async (dataObj: UnknowObj) => {
   return result;
 };
 
-const createMany = async (dataObj: UnknowObj) => {
+const createMany = async (dataObj: StringObject) => {
   let studentsArray: Array<StudentSchemaType> = await Promise.all(
-    dataObj.studentsArray.map(async (el: UnknowObj) => {
+    dataObj.studentsArray.map(async (el: StringObject) => {
       return {
         ...el,
         password: await authLib.generatePassword(),
@@ -40,12 +40,12 @@ const createMany = async (dataObj: UnknowObj) => {
   return result;
 };
 
-const removeAll = async (dataObj: UnknowObj) => {
+const removeAll = async (dataObj: StringObject) => {
   let result = await StudentModel.deleteMany(dataObj);
   return result;
 };
 
-const editStudent = async (dataObj: UnknowObj) => {
+const editStudent = async (dataObj: StringObject) => {
   let { _id } = dataObj;
 
   let result = await StudentModel.findOneAndUpdate(
@@ -59,7 +59,7 @@ const editStudent = async (dataObj: UnknowObj) => {
   return result;
 };
 
-const deleteStudent = async (dataObj: UnknowObj) => {
+const deleteStudent = async (dataObj: StringObject) => {
   let { _id } = dataObj;
   let result = await StudentModel.findOneAndDelete(
     { _id: _id },

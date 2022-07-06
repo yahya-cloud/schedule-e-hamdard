@@ -6,8 +6,6 @@ import section from "./section";
 import users from "./users";
 import chalk from "chalk";
 
-dotenv.config();
-
 connectDB();
 
 const importData = async () => {

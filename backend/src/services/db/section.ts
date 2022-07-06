@@ -1,12 +1,12 @@
 import { SectionModel } from "../../models";
-import { UnknowObj } from "../../types";
+import { StringObject } from "../../types";
 
-const getSections = async (dataObj: UnknowObj) => {
+const getSections = async (dataObj: StringObject) => {
   let result = await SectionModel.find(dataObj).lean();
   return result;
 };
 
-const getSection = async (dataObj: UnknowObj) => {
+const getSection = async (dataObj: StringObject) => {
   let { _id } = dataObj;
   let result = await SectionModel.findOne({ _id })
     .populate("students")
@@ -19,7 +19,7 @@ const getSection = async (dataObj: UnknowObj) => {
   return result;
 };
 
-const getAssignedSections = async (dataObj: UnknowObj) => {
+const getAssignedSections = async (dataObj: StringObject) => {
   let { _id } = dataObj;
   let result = await SectionModel.find(
     {
@@ -30,7 +30,7 @@ const getAssignedSections = async (dataObj: UnknowObj) => {
   return result;
 };
 
-const createSection = async (dataObj: UnknowObj) => {
+const createSection = async (dataObj: StringObject) => {
   const { section_name, batch_name } = dataObj;
   let info = { section_name, batch_name };
   let newSection = new SectionModel({ info });
@@ -38,18 +38,18 @@ const createSection = async (dataObj: UnknowObj) => {
   return result;
 };
 
-const createMany = async (dataObj: UnknowObj) => {
+const createMany = async (dataObj: StringObject) => {
   let { sections } = dataObj;
   let result = await SectionModel.insertMany(sections);
   return result;
 };
 
-const removeAll = async (dataObj: UnknowObj) => {
+const removeAll = async (dataObj: StringObject) => {
   let result = await SectionModel.deleteMany(dataObj);
   return result;
 };
 
-const addTeacher = async (dataObj: UnknowObj) => {
+const addTeacher = async (dataObj: StringObject) => {
   let { _id, subject_color, subject, teacher_info } = dataObj;
   let teacher = { subject_color, subject, teacher_info };
 
@@ -68,7 +68,7 @@ const addTeacher = async (dataObj: UnknowObj) => {
   return result;
 };
 
-const removeTeacher = async (dataObj: UnknowObj) => {
+const removeTeacher = async (dataObj: StringObject) => {
   let { _id, teacher_info } = dataObj;
   let result = await SectionModel.findOneAndUpdate(
     { _id: _id },
@@ -85,7 +85,7 @@ const removeTeacher = async (dataObj: UnknowObj) => {
   return result;
 };
 
-const addClass = async (dataObj: UnknowObj) => {
+const addClass = async (dataObj: StringObject) => {
   let { _id, subject_color, title, start, end, teacher_info, description } =
     dataObj;
 
@@ -110,7 +110,7 @@ const addClass = async (dataObj: UnknowObj) => {
   return result;
 };
 
-const removeClass = async (dataObj: UnknowObj) => {
+const removeClass = async (dataObj: StringObject) => {
   let { _id, class_id } = dataObj;
   let schedule = { _id: class_id };
   let result = await SectionModel.findOneAndUpdate(

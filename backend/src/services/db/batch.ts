@@ -1,12 +1,12 @@
 import { BatchModel } from "../../models";
-import { UnknowObj } from "../../types";
+import { StringObject } from "../../types";
 
 const getBatches = async () => {
   let result = await BatchModel.find({}, { name: 1 }).lean();
   return result;
 };
 
-const getBatch = async (dataObj: UnknowObj) => {
+const getBatch = async (dataObj: StringObject) => {
   let { _id } = dataObj;
   let result = await BatchModel.findOne({ _id })
     .populate({ path: "sections", options: { select: "info" } })
@@ -14,13 +14,13 @@ const getBatch = async (dataObj: UnknowObj) => {
   return result;
 };
 
-const createBatch = async (dataObj: UnknowObj) => {
+const createBatch = async (dataObj: StringObject) => {
   let newBatch = new BatchModel(dataObj);
   let result = await newBatch.save();
   return result;
 };
 
-const addSection = async (dataObj: UnknowObj) => {
+const addSection = async (dataObj: StringObject) => {
   let { _id, section } = dataObj;
   let result = await BatchModel.findOneAndUpdate(
     { _id: _id },
@@ -35,7 +35,7 @@ const addSection = async (dataObj: UnknowObj) => {
   return result;
 };
 
-const removeAll = async (dataObj: UnknowObj) => {
+const removeAll = async (dataObj: StringObject) => {
   let result = await BatchModel.deleteMany(dataObj);
   return result;
 };

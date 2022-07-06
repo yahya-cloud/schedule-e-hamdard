@@ -7,7 +7,8 @@ const getBatches: RequestHandler = async (req, res) => {
     let data = await batch.getBatches();
     res.status(200).json({ data, message: "" });
   } catch (error) {
-    res.status(400).json({ message: error });
+    if (error instanceof Error)
+      res.status(400).json({ message: error.message });
   }
 };
 
@@ -20,8 +21,8 @@ const getBatch: RequestHandler = async (req, res) => {
     let data = await batch.getBatch({ _id });
     res.status(200).json({ data, message: "" });
   } catch (error) {
-    //@ts-ignore
-    res.status(400).json({ message: error.message });
+    if (error instanceof Error)
+      res.status(400).json({ message: error.message });
   }
 };
 
@@ -37,8 +38,8 @@ const createBatch: RequestHandler = async (req, res) => {
       message: "Batch Created Successfully",
     });
   } catch (error) {
-    //@ts-ignore
-    res.status(400).json({ message: error.message });
+    if (error instanceof Error)
+      res.status(400).json({ message: error.message });
   }
 };
 
@@ -57,8 +58,8 @@ const addSection: RequestHandler = async (req, res) => {
       message: "Section Added Successfully",
     });
   } catch (error) {
-    //@ts-ignore
-    res.status(400).json({ message: error.message });
+    if (error instanceof Error)
+      res.status(400).json({ message: error.message });
   }
 };
 
@@ -67,7 +68,8 @@ const removeAll: RequestHandler = async (req, res) => {
     let data = await batch.removeAll({});
     res.status(200).json({ data, message: "" });
   } catch (error) {
-    res.status(400).json({ message: error });
+    if (error instanceof Error)
+      res.status(400).json({ message: error.message });
   }
 };
 

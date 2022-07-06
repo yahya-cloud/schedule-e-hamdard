@@ -1,9 +1,9 @@
 import { UserModel } from "../../models";
 import * as authLib from "../../libs/authLib";
-import { StaffSchemaType, UnknowObj } from "../../types";
+import { StaffSchemaType, StringObject } from "../../types";
 import utilLib from "../../libs/utilLib";
 
-const getUsers = async (dataObj: UnknowObj) => {
+const getUsers = async (dataObj: StringObject) => {
   let data = await UserModel.find(dataObj).lean();
   data = data.map((el) => {
     return { ...el, password: authLib.decryptString(el.password) };
@@ -11,7 +11,7 @@ const getUsers = async (dataObj: UnknowObj) => {
   return data;
 };
 
-const login = async (dataObj: UnknowObj) => {
+const login = async (dataObj: StringObject) => {
   let { id, password } = dataObj;
 
   let fetchedUser = await UserModel.findOne(
@@ -49,9 +49,9 @@ const login = async (dataObj: UnknowObj) => {
   return data;
 };
 
-const createMany = async (dataObj: UnknowObj) => {
+const createMany = async (dataObj: StringObject) => {
   let userArray: Array<StaffSchemaType> = await Promise.all(
-    dataObj.userArray.map(async (el: UnknowObj) => {
+    dataObj.userArray.map(async (el: StringObject) => {
       return {
         ...el,
         password: authLib.encryptString(el.password),
@@ -62,7 +62,7 @@ const createMany = async (dataObj: UnknowObj) => {
   return data;
 };
 
-const removeAll = async (dataObj: UnknowObj) => {
+const removeAll = async (dataObj: StringObject) => {
   let data = await UserModel.deleteMany(dataObj);
   return data;
 };

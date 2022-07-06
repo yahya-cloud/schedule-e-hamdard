@@ -1,5 +1,12 @@
-import { Request } from "express";
 import { Number, Types } from "mongoose";
+
+declare global {
+  namespace Express {
+    interface Request {
+      user: StringObject;
+    }
+  }
+}
 
 export interface UserSchemaType {
   name: string;
@@ -48,10 +55,6 @@ export interface BatchSchemaType {
   name: string;
 }
 
-export interface UnknowObj {
+export interface StringObject {
   [key: string]: any;
-}
-
-export interface userRequest extends Request {
-  user?: { _id: string };
 }

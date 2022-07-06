@@ -2,9 +2,9 @@ import { constants } from "../../libs/constants";
 import utilLib from "../../libs/utilLib";
 import * as authLib from "../../libs/authLib";
 import { StaffModel } from "../../models";
-import { StaffSchemaType, UnknowObj } from "../../types";
+import { StaffSchemaType, StringObject } from "../../types";
 
-const createStaff = async (dataObj: UnknowObj) => {
+const createStaff = async (dataObj: StringObject) => {
   let { name } = dataObj;
   let unique_id = utilLib.getCode(constants.NUMBER_STRING, 5, name);
   let password = await authLib.generatePassword();
@@ -15,13 +15,13 @@ const createStaff = async (dataObj: UnknowObj) => {
   return result;
 };
 
-const getStaff = async (dataObj: UnknowObj) => {
+const getStaff = async (dataObj: StringObject) => {
   let filter = dataObj.userType === "admin" ? {} : { password: 0 };
   let result = await StaffModel.find({}, { ...filter }).lean();
   return result;
 };
 
-const getStaffMember = async (dataObj: UnknowObj) => {
+const getStaffMember = async (dataObj: StringObject) => {
   let { _id } = dataObj;
   let result = await StaffModel.findOne({ _id: _id })
     .populate({
@@ -34,7 +34,7 @@ const getStaffMember = async (dataObj: UnknowObj) => {
 
 const createMany = async (dataObj: any) => {
   let staffArray: Array<StaffSchemaType> = await Promise.all(
-    dataObj.staffArray.map(async (el: UnknowObj) => {
+    dataObj.staffArray.map(async (el: StringObject) => {
       return {
         ...el,
         unique_id: utilLib.getCode(constants.NUMBER_STRING, 5, el.name),
@@ -52,7 +52,7 @@ const removeAll = async (dataObj: any) => {
   return result;
 };
 
-const editStaffMember = async (dataObj: UnknowObj) => {
+const editStaffMember = async (dataObj: StringObject) => {
   let { _id } = dataObj;
   let result = await StaffModel.findOneAndUpdate(
     { _id: _id },
@@ -65,7 +65,7 @@ const editStaffMember = async (dataObj: UnknowObj) => {
   return result;
 };
 
-const deleteStaffMember = async (dataObj: UnknowObj) => {
+const deleteStaffMember = async (dataObj: StringObject) => {
   let { _id } = dataObj;
   let result = await StaffModel.findOneAndDelete(
     { _id: _id },
