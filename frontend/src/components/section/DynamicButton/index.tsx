@@ -11,8 +11,7 @@ interface Props {
   userType: string;
   id: string;
 }
-//aletta61634
-//2A424
+
 const DynamicButton = ({ userType, id }: Props) => {
   const { pathname } = useLocation();
   const [open, setOpen] = useState<boolean>(false);

@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { Outlet } from "react-router-dom";
-import UserContextType from "../@types/userContext";
-import { UserContext } from "../contexts/userContext";
-import LayoutContainer from "../components/global/LayoutContainer";
+import UserContextType from "../../../@types/userContext";
+import { UserContext } from "../../../contexts/userContext";
+import LayoutContainer from "../LayoutContainer";
 
-interface ProtectedRouteProps {
+interface ProtectRouteProps {
   routeFor: string;
 }
 
-const ProtectedRoute = ({ routeFor }: ProtectedRouteProps) => {
+const ProtectRoute = ({ routeFor }: ProtectRouteProps) => {
   const { user } = useContext(UserContext) as UserContextType;
   if (user.user_type === routeFor) {
     return (
@@ -23,4 +23,4 @@ const ProtectedRoute = ({ routeFor }: ProtectedRouteProps) => {
   }
 };
 
-export default ProtectedRoute;
+export default ProtectRoute;

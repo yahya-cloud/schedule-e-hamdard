@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { LoginForm } from "../components/global/Forms";
-import ProtectRoute from "../service/ProtectRoute";
 import AdminRoutes from "./admin_screens/AdminRoutes";
 import TeacherRoutes from "./teacher_screens/TeacherRoutes";
 import UserContextType from "../@types/userContext";
@@ -9,6 +8,7 @@ import { UserContext } from "../contexts/userContext";
 import { userRootPath } from "../lib/utils";
 import StudentRoutes from "./student_screens/StudentRoutes";
 import { rootRoute } from "../config.keys";
+import ProtectRoute from "../components/global/ProtectRoute";
 
 const RoutingContainer = () => {
   const { user } = useContext(UserContext) as UserContextType;

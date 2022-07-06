@@ -19,7 +19,7 @@ interface Props {
 const BatchCard = ({ color, name, path, children }: Props) => {
   const navigate = useNavigate();
   return (
-    // <Paper sx={{ borderRadius: "10px" }}>
+   
     <Card sx={{ width: "270px" }}>
       <CardActionArea onClick={() => navigate(path)}>
         <CardContent>
@@ -38,7 +38,6 @@ const BatchCard = ({ color, name, path, children }: Props) => {
         </CardContent>
       </CardActionArea>
     </Card>
-    // </Paper>
   );
 };
 

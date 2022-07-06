@@ -12,10 +12,6 @@ const BasicTable = ({ columns, rows }: Props) => {
       <DataGrid
         sx={{
           fontSize: "1.5rem",
-
-          //   "& .MuiDataGrid-columnHeaderTitle": {
-          //     fontSize: "1.3rem",
-          //   },
         }}
         hideFooter
         rows={rows}

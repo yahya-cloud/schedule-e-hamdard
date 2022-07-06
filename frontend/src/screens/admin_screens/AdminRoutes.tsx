@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Section from "../common_screens/Section/Section";
 import AddTeacher from "./AddTeacher";
-import Batch from "./Batch/Batch";
+import Batch from "./Batch";
 import Batches from "./Batches";
 import Teachers from "./Teachers";
 import IndividualTeacher from "./IndividualTeacher";

@@ -81,5 +81,3 @@ export interface BatchType {
 export interface BatchDataType extends BatchType {
   sections: SectionType[];
 }
-
-//
