@@ -14,7 +14,7 @@
     <a href="https://github.com/yahya-cloud/schedule-e-hamdard"><strong>Explore the project »</strong></a>
     <br />
     <br />
-    <a href="https://main--taupe-wisp-7f5ba2.netlify.app">View Demo</a>
+    <a href="https://taupe-wisp-7f5ba2.netlify.app">View Demo</a>
     ·
     <a href="https://github.com/yahya-cloud/schedule-e-hamdard/issues">Report Bug</a>
     ·
@@ -51,7 +51,7 @@
 
 ## About The Project
 
-- As of now <strong>Jamia hamdard University</strong>, teachers doesn't have any medium to schedule classes else than whatsapp. Everything is done on whatsapp groups, for every subject there is a seprate whatsapp group. Which results in creation of multiple group's every semester, teachers have to remember all the sessions they have to take throught the day and are often in confusion at what time to schedule session for a class, if the class is free at that time or not which results in redundant conversation on whatsapp groups.
+- As of now teachers of <strong>Jamia hamdard University</strong>, doesn't have any medium to schedule classes else than whatsapp. Everything is done on whatsapp groups, for every subject there is a seprate whatsapp group. Which results in creation of multiple group's every semester, teachers have to remember all the sessions they have to take throught the day and are often in confusion at what time to schedule session for a class, if the class is free at that time or not which results in redundant conversation on whatsapp groups.
 
 - A SAAS product for staff, teacher and students. Where faculty member can assign classes to teachers, teachers can schedule sessions for assigned classes and students can keep track of upcoming sessions
 
@@ -61,7 +61,7 @@
 
 ![demonstration](https://user-images.githubusercontent.com/59670962/177033313-0f86b9e7-b955-4f4b-b9b1-5abcc3cc046c.png)
 
-### Schedeul-e-Hamdard
+### Schedule-e-Hamdard
 
 ![schedule](https://user-images.githubusercontent.com/59670962/177036057-6eeaa60e-70fb-4d7f-8018-6cf49cda622e.png)
 
@@ -189,7 +189,7 @@ Refer to this [article](https://medium.com/geekculture/a-quick-guide-to-create-a
 
 Mohd. Yahya - yahya01work@gmail.com , [mohammadyahya.in](https://mohammadyahya.in)
 
-Project Link: https://main--taupe-wisp-7f5ba2.netlify.app
+Project Link: https://taupe-wisp-7f5ba2.netlify.app/
 
 ---
 
