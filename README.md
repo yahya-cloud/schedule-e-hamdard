@@ -61,7 +61,7 @@
 
 ![demonstration](https://user-images.githubusercontent.com/59670962/177033313-0f86b9e7-b955-4f4b-b9b1-5abcc3cc046c.png)
 
-### Schedeul-e-Hamdard
+### Schedule-e-Hamdard
 
 ![schedule](https://user-images.githubusercontent.com/59670962/177036057-6eeaa60e-70fb-4d7f-8018-6cf49cda622e.png)
 
