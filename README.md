@@ -63,25 +63,24 @@
 
 ![demonstration](https://user-images.githubusercontent.com/59670962/177033313-0f86b9e7-b955-4f4b-b9b1-5abcc3cc046c.png)
 
-
 ### User Journey
 
 #### Admin
+
 ![AdminFlow](https://user-images.githubusercontent.com/59670962/177757041-8c618963-200f-44a7-8019-8259d52d3075.png)
 
-
 #### Teacher
+
 ![teacherFlow](https://user-images.githubusercontent.com/59670962/177757147-07c4bf57-e430-4a59-bf3e-9d76b77d3db9.png)
 
-
 #### Student
+
 ![studentFlow](https://user-images.githubusercontent.com/59670962/177756287-8f36e0a4-5282-4b87-a054-5655681c9430.png)
-
-
 
 ### Output Sanpshots
 
 #### Timetable Calendar
+
 ![schedule](https://user-images.githubusercontent.com/59670962/177036057-6eeaa60e-70fb-4d7f-8018-6cf49cda622e.png)
 
 |                                                      Teachers                                                      |                                                      Students                                                      |
@@ -145,7 +144,7 @@ Install [NodeJS LTS](https://nodejs.org/en/)
 
 ### Setting up Frontend
 
-To setup the frontend of application navigate to '/frontend/example.env', you will see the below given code,
+To setup the frontend of application navigate to '/frontend/.env.example', you will see the below given code,
 
 ```sh
 REACT_APP_ALGORITHM = String encrypt/decrypt algo
@@ -162,7 +161,7 @@ This web-app uses [MongoDB](https://www.mongodb.com/cloud/atlas/lp/try2-in?utm_s
 
 After setting up the cluster white list your IP address and generate a connection url. To whitelist your Ip address and genrate connection url follow these guide's [Whitelist your Ip address](https://www.mongodb.com/docs/atlas/security/add-ip-address-to-list/), [MongoDB Connection URL](https://www.mongodb.com/docs/guides/atlas/connection-string/)
 
-Now to setup the enviorment variables for backend navigate to '/backend/example.env', you will see the below given code.
+Now to setup the enviorment variables for backend navigate to '/backend/.env.example', you will see the below given code.
 
 ```sh
   ALGORITHM = string encrypt/decrypt algo
