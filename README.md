@@ -67,11 +67,16 @@
 ### User Journey
 
 #### Admin
-![Admin Flow](https://user-images.githubusercontent.com/59670962/177749550-9ff6e631-69b1-4456-9be3-167d917254fc.png)
+![AdminFlow](https://user-images.githubusercontent.com/59670962/177756164-fbe1902a-f93c-44b1-8b49-7b8c3b55d040.png)
 
 
 #### Teacher
-![TeacherFlow](https://user-images.githubusercontent.com/59670962/177753298-a2d94b32-8e91-4772-906c-82837f8de98c.png)
+![teacherFlow](https://user-images.githubusercontent.com/59670962/177756192-8045dd0b-0d01-426c-b0f5-08af45b509d5.png)
+
+
+#### Student
+![studentFlow](https://user-images.githubusercontent.com/59670962/177756287-8f36e0a4-5282-4b87-a054-5655681c9430.png)
+
 
 
 ### Output Sanpshots
