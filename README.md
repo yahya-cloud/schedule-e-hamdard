@@ -31,6 +31,8 @@
       <ul>
         <li><a href="#demonstration">Demonstration</a></li>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#user-journey">User Journey</a></li>
+        <li><a href="#output-sanpshots">Output Snapshots</a></li>
       </ul>
     </li>
     <li>
@@ -61,8 +63,16 @@
 
 ![demonstration](https://user-images.githubusercontent.com/59670962/177033313-0f86b9e7-b955-4f4b-b9b1-5abcc3cc046c.png)
 
-### Schedule-e-Hamdard
 
+### User Journey
+
+#### Admin
+![Admin Flow](https://user-images.githubusercontent.com/59670962/177749550-9ff6e631-69b1-4456-9be3-167d917254fc.png)
+
+
+### Output Sanpshots
+
+#### Timetable Calendar
 ![schedule](https://user-images.githubusercontent.com/59670962/177036057-6eeaa60e-70fb-4d7f-8018-6cf49cda622e.png)
 
 |                                                      Teachers                                                      |                                                      Students                                                      |
