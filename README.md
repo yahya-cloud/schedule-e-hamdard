@@ -70,6 +70,10 @@
 ![Admin Flow](https://user-images.githubusercontent.com/59670962/177749550-9ff6e631-69b1-4456-9be3-167d917254fc.png)
 
 
+#### Teacher
+![TeacherFlow](https://user-images.githubusercontent.com/59670962/177753298-a2d94b32-8e91-4772-906c-82837f8de98c.png)
+
+
 ### Output Sanpshots
 
 #### Timetable Calendar
