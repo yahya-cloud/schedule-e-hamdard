@@ -10,6 +10,7 @@ import {
   unknownObject,
 } from "../@types/global";
 import makeRequest from "../service/api";
+import { AxiosError } from "axios";
 
 interface Props {
   children: React.ReactNode;
@@ -51,12 +52,9 @@ const UserProvider = ({ children }: Props) => {
       setLoading(false);
       return result.data;
     } catch (error) {
-      //@ts-ignore
-      if (error.response) {
-        //@ts-ignore
-        setMessage({ message: error.response.data.message, severity: "error" });
-        setLoading(false);
-      }
+      const err = error as AxiosError;
+      setMessage({ message: err.response?.data.message, severity: "error" });
+      setLoading(false);
     }
   };
 

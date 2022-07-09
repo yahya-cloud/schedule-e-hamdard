@@ -1,6 +1,17 @@
-import { Box } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import { styled, experimental_sx as sx } from "@mui/system";
 import { NavLink } from "react-router-dom";
+
+const StyledPaper = styled(Paper)(
+  sx({
+    overflow: "hidden",
+    width: 110,
+    height: "100vh",
+    marginRight: "40px",
+    position: "fixed",
+    zIndex: 10,
+  }),
+);
 
 const StyledImg = styled("img")(
   sx({
@@ -51,4 +62,4 @@ const StyledLogoutButton = styled(Box)(
   }),
 );
 
-export { StyledImg, StyledNavLink, StyledLogoutButton };
+export { StyledPaper, StyledImg, StyledNavLink, StyledLogoutButton };
