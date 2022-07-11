@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import logo from "../../../assets/images/logo.png";
-import { Box, Paper, Stack } from "@mui/material";
-import { StyledImg, StyledLogoutButton } from "./styles";
+import { Box, Stack } from "@mui/material";
+import { StyledImg, StyledLogoutButton, StyledPaper } from "./styles";
 import NavItem from "./NavItem";
 import PeopleIcon from "@mui/icons-material/People";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
@@ -32,8 +32,7 @@ const Navbar = () => {
     student: [
       {
         icon: <CalendarMonthIcon />,
-        //@ts-ignore
-        path: `${rootRoute.student}/${user.section}`,
+        path: `${rootRoute.student}/${user?.section}`,
       },
     ],
   };
@@ -44,16 +43,7 @@ const Navbar = () => {
   };
 
   return (
-    <Paper
-      elevation={4}
-      sx={{
-        overflow: "hidden",
-        width: 110,
-        height: "100vh",
-        marginRight: "40px",
-        position: "fixed",
-      }}
-    >
+    <StyledPaper elevation={4}>
       <Stack
         flexDirection={"column"}
         alignItems="center"
@@ -86,7 +76,7 @@ const Navbar = () => {
           sx={{ color: "#fff", height: "50px", width: "50px" }}
         />
       </StyledLogoutButton>
-    </Paper>
+    </StyledPaper>
   );
 };
 

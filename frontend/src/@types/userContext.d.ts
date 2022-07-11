@@ -14,6 +14,7 @@ interface UserType {
   phone_number: number;
   user_type: string;
   password: string;
+  section?: SectionType;
   __t: string;
 }
 
@@ -22,7 +23,7 @@ interface RequestMessage {
   severity: "success" | "error";
 }
 
-type UserContextType = {
+interface UserContextType {
   user: UserType;
   message: RequestMessage;
   makeApiCall: (
@@ -33,7 +34,7 @@ type UserContextType = {
   setUser: (user: UserType) => void;
   logout: () => Promise<void>;
   loading: boolean;
-};
+}
 
 interface StaffSchemaType extends UserType {
   unique_id: string;

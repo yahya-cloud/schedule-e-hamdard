@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Paper, Stack, Box, Typography, useTheme, Theme } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import person from "../../../assets/images/person.png";
+import { UserContext } from "../../../contexts/userContext";
+import UserContextType from "../../../@types/userContext";
 
 interface Props {
   color: string;
@@ -17,6 +19,7 @@ interface Props {
 
 const TeacherCard = ({ color, info, deleteTeacher }: Props) => {
   const theme: Theme = useTheme();
+  const { user } = useContext(UserContext) as UserContextType;
 
   return (
     <Paper
@@ -77,30 +80,32 @@ const TeacherCard = ({ color, info, deleteTeacher }: Props) => {
           ))}
         </Stack>
       </Stack>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          position: "absolute",
-          bottom: 15,
-          right: 20,
-          height: "2rem",
-          width: "5rem",
-        }}
-      >
-        <EditIcon
+      {user.user_type === "admin" && (
+        <Box
           sx={{
-            cursor: "pointer",
-            color: theme!.palette!.primary!.main,
-            fontSize: "2rem",
+            display: "flex",
+            justifyContent: "space-between",
+            position: "absolute",
+            bottom: 15,
+            right: 20,
+            height: "2rem",
+            width: "5rem",
           }}
-        />
-        <DeleteIcon
-          onClick={deleteTeacher}
-          color={"error"}
-          sx={{ cursor: "pointer", fontSize: "2rem" }}
-        />
-      </Box>
+        >
+          <EditIcon
+            sx={{
+              cursor: "pointer",
+              color: theme!.palette!.primary!.main,
+              fontSize: "2rem",
+            }}
+          />
+          <DeleteIcon
+            onClick={deleteTeacher}
+            color={"error"}
+            sx={{ cursor: "pointer", fontSize: "2rem" }}
+          />
+        </Box>
+      )}
     </Paper>
   );
 };
