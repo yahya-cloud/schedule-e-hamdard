@@ -1,10 +1,10 @@
 import * as React from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
-interface Props {
+type Props = {
   columns: GridColDef[];
   rows: any[];
-}
+};
 
 const BasicTable = ({ columns, rows }: Props) => {
   return (

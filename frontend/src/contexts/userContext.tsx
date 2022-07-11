@@ -12,32 +12,15 @@ import {
 import makeRequest from "../service/api";
 import { AxiosError } from "axios";
 
-interface Props {
+type Props = {
   children: React.ReactNode;
-}
-
-let defaultValues = {
-  user: {
-    _id: "",
-    photo: "",
-    unique_id: "",
-    name: "",
-    email: "",
-    phone_number: 0,
-    password: "",
-    user_type: "",
-    __t: "",
-  },
-  message: { message: "Some Message", severity: "success" } as RequestMessage,
 };
 
 const UserContext = createContext<UserContextType | null>(null);
 
 const UserProvider = ({ children }: Props) => {
-  const [user, setUser] = useState<UserType>({ ...defaultValues.user });
-  const [message, setMessage] = useState<RequestMessage>({
-    ...defaultValues.message,
-  });
+  const [user, setUser] = useState<UserType | null>(null);
+  const [message, setMessage] = useState<RequestMessage | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   const makeApiCall = async (
@@ -74,7 +57,7 @@ const UserProvider = ({ children }: Props) => {
 
   const logout = async () => {
     await makeApiCall("/user/logout", {}, "get");
-    setUser({ ...defaultValues.user });
+    setUser(null);
   };
 
   return (

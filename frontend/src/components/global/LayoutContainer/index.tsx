@@ -3,10 +3,11 @@ import { Box } from "@mui/material";
 import Navbar from "../Navbar";
 import Loader from "../Loader";
 import Message from "../Message";
+import { StyledBox } from "./styles";
 
-interface Props {
+type Props = {
   children: React.ReactNode;
-}
+};
 
 const LayoutContainer = ({ children }: Props) => {
   return (
@@ -14,16 +15,7 @@ const LayoutContainer = ({ children }: Props) => {
       <Message />
       <Loader />
       <Navbar />
-      <Box
-        sx={{
-          minWidth: "140rem",
-          maxWidth: "140rem",
-          margin: "5rem 0px 0px 15rem",
-          flex: 1,
-        }}
-      >
-        {children}
-      </Box>
+      <StyledBox>{children}</StyledBox>
     </Box>
   );
 };

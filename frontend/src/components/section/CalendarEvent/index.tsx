@@ -3,9 +3,9 @@ import { EventContentArg } from "@fullcalendar/react";
 import { Stack, Typography } from "@mui/material";
 import { getRGBA } from "../../../lib/section";
 
-interface Props {
+type Props = {
   arg: EventContentArg;
-}
+};
 
 const CalendarEvent = ({ arg }: Props) => {
   let color = arg.event.extendedProps.subject_color;

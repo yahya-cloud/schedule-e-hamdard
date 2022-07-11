@@ -11,7 +11,7 @@ type style = {
   [key: string]: any;
 };
 
-interface Props {
+type Props = {
   type: string;
   control: any;
   label: string;

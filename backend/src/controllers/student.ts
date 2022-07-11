@@ -109,7 +109,7 @@ const removeStudent: RequestHandler = async (req, res) => {
     let _id = req.params.id;
     utilLib.checkMissingFieldsAndType({ _id }, { _id: "string" });
     let data = await student.deleteStudent({ _id });
-    res.status(200).json(data);
+    res.status(200).json({ data, message: "Student Removed Successfully" });
   } catch (error) {
     if (error instanceof Error)
       res.status(400).json({ message: error.message });

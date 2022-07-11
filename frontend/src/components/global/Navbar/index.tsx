@@ -1,7 +1,12 @@
 import React, { useContext } from "react";
 import logo from "../../../assets/images/logo.png";
-import { Box, Stack } from "@mui/material";
-import { StyledImg, StyledLogoutButton, StyledPaper } from "./styles";
+import { Stack } from "@mui/material";
+import {
+  StyledImg,
+  StyledLogoutButton,
+  StyledNavBox,
+  StyledPaper,
+} from "./styles";
 import NavItem from "./NavItem";
 import PeopleIcon from "@mui/icons-material/People";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
@@ -13,11 +18,18 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { useNavigate } from "react-router-dom";
 import { rootRoute } from "../../../config.keys";
 
+type data = { icon: React.ReactNode; path: string };
+type navData = {
+  admin: data[];
+  teacher: data[];
+  student: data[];
+};
+
 const Navbar = () => {
   const { logout, user } = useContext(UserContext) as UserContextType;
   const navigate = useNavigate();
 
-  let navItemsData = {
+  let navItemsData: navData = {
     admin: [
       { icon: <PeopleIcon />, path: `${rootRoute.admin}/` },
       { icon: <AccountBalanceIcon />, path: `${rootRoute.admin}/teacher` },
@@ -50,25 +62,14 @@ const Navbar = () => {
         justifyContent={"space-between"}
       >
         <StyledImg src={logo} alt="logo" />
-        <Box
-          component={"div"}
-          sx={{
-            height: "300px",
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "column",
-            justifyContent: "center",
-            flexShrink: 0,
-          }}
-        >
-          {/* @ts-ignore */}
-          {navItemsData[user.user_type].map((el) => (
-            <NavItem key={el.path} path={el.path}>
-              {el.icon}
-            </NavItem>
-          ))}
-        </Box>
+        <StyledNavBox component={"div"}>
+          {user &&
+            navItemsData[user.user_type].map((el) => (
+              <NavItem key={el.path} path={el.path}>
+                {el.icon}
+              </NavItem>
+            ))}
+        </StyledNavBox>
       </Stack>
       <StyledLogoutButton>
         <LogoutIcon

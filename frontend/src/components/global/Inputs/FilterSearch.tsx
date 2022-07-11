@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyledTextField } from "./styles";
+import { StyledListBox, StyledTextField } from "./styles";
 import { Controller } from "react-hook-form";
 import { Box, Popover, Typography, Stack } from "@mui/material";
 
@@ -12,7 +12,7 @@ type nameIdObj = {
   _id: string;
 };
 
-interface Props {
+type Props = {
   control: any;
   label: string;
   name: string;
@@ -105,24 +105,13 @@ const FilterSearch = (props: Props) => {
             >
               <Stack sx={{ maxHeight: "15rem", overflowY: "scroll" }}>
                 {filteredResults?.map((el: nameIdObj) => (
-                  <Box
+                  <StyledListBox
                     onClick={() => clickHandler(el._id)}
                     component={"div"}
                     key={el._id}
-                    sx={{
-                      "&:hover": {
-                        color: "#fff",
-                        backgroundColor: "#43B47C80",
-                      },
-                      cursor: "pointer",
-                      color: "#000",
-                      height: "2.5rem",
-                      padding: "1rem .5rem",
-                      width: "20rem",
-                    }}
                   >
                     <Typography variant="h5">{el.name}</Typography>
-                  </Box>
+                  </StyledListBox>
                 ))}
               </Stack>
             </Popover>

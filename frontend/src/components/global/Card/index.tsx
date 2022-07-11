@@ -9,17 +9,16 @@ import {
 import { RoundDiv } from "./styles";
 import { useNavigate } from "react-router-dom";
 
-interface Props {
+type Props = {
   name: string;
   path: string;
   color: string;
   children: React.ReactNode;
-}
+};
 
 const BatchCard = ({ color, name, path, children }: Props) => {
   const navigate = useNavigate();
   return (
-   
     <Card sx={{ width: "270px" }}>
       <CardActionArea onClick={() => navigate(path)}>
         <CardContent>

@@ -1,38 +1,33 @@
 import React, { useContext } from "react";
-import { Paper, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { getRGBA } from "../../../lib/section";
 import { useLocation } from "react-router-dom";
 import { UserContext } from "../../../contexts/userContext";
 import UserContextType from "../../../@types/userContext";
+import { StyledPaper } from "./styles";
 
-interface Props {
+type Props = {
   color: string;
   title: string;
   description: string;
   start: Date;
   end: Date;
   deleteClass: () => void;
-}
+};
 
 const ClassCard = (props: Props) => {
   let backgroundColor = getRGBA(props.color);
   let { pathname } = useLocation();
   const { user } = useContext(UserContext) as UserContextType;
 
-  let showBtn = pathname.includes("/section/") && user.user_type === "teacher";
+  let showBtn = pathname.includes("/section/") && user?.user_type === "teacher";
 
   return (
-    <Paper
+    <StyledPaper
       sx={{
-        position: "relative",
-        boxShadow: "none",
         border: `1px solid ${props.color}`,
         backgroundColor: backgroundColor,
-        width: "26rem",
-        minHeight: "7rem",
-        mt: 3,
-        padding: "1.5rem 1rem 0rem 1rem",
         color: props.color,
       }}
       component="div"
@@ -64,7 +59,7 @@ const ClassCard = (props: Props) => {
           color={"error"}
         />
       )}
-    </Paper>
+    </StyledPaper>
   );
 };
 

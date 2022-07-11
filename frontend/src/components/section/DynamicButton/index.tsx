@@ -7,10 +7,10 @@ import AddStudentForm from "../AddStudentForm/AddStudentForm";
 import AddTeacherForm from "../AddTeacherForm";
 import { rootRoute } from "../../../config.keys";
 
-interface Props {
+type Props = {
   userType: string;
   id: string;
-}
+};
 
 const DynamicButton = ({ userType, id }: Props) => {
   const { pathname } = useLocation();

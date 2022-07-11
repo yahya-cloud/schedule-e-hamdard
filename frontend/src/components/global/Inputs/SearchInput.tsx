@@ -5,7 +5,7 @@ type style = {
   [key: string]: any;
 };
 
-interface Props {
+type Props = {
   type: string;
   label: string;
   name: string;

@@ -1,15 +1,15 @@
 import React, { useEffect, useRef } from "react";
-import { Box } from "@mui/material";
 import FullCalendar from "@fullcalendar/react"; // must go before plugins
 import timeGridPlugin from "@fullcalendar/timegrid";
 import moment from "moment";
 import CalendarEvent from "../CalendarEvent";
 import { TimeTableType } from "../../../@types/global";
+import { StyledBox } from "./styles";
 
-interface Props {
+type Props = {
   selectedDate: Date;
   classes: TimeTableType[] | undefined;
-}
+};
 
 const WeekCalendar = ({ selectedDate, classes }: Props) => {
   const calendarRef = useRef<FullCalendar>(null!);
@@ -20,17 +20,7 @@ const WeekCalendar = ({ selectedDate, classes }: Props) => {
   }, [selectedDate]);
 
   return (
-    <Box
-      component={"div"}
-      sx={{
-        height: "100%",
-        minWidth: "95rem",
-        borderRadius: "16px",
-        position: "relative",
-        padding: "2rem 0rem",
-        overflowY: "scroll",
-      }}
-    >
+    <StyledBox component={"div"}>
       <FullCalendar
         ref={calendarRef}
         expandRows={true}
@@ -56,7 +46,7 @@ const WeekCalendar = ({ selectedDate, classes }: Props) => {
         eventContent={(arg) => <CalendarEvent arg={arg} />}
         events={classes ? [...classes] : []}
       />
-    </Box>
+    </StyledBox>
   );
 };
 

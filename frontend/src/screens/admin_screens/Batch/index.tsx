@@ -31,7 +31,6 @@ const Batch = () => {
   const addSectionHandler = async (data: RequestBodyType) => {
     let payload: RequestBodyType = {
       section_name: data.name,
-      //@ts-ignore
       batch_name: name,
     };
 

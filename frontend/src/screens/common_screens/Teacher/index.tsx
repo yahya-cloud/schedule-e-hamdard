@@ -8,10 +8,11 @@ import SectionAlloted from "./SectionAlloted";
 import { SectionType, TimeTableType } from "../../../@types/global";
 import Schedule from "../../../components/global/Schedule";
 import person from "../../../assets/images/person.png";
+import { StyledImageBox, StyledInfoBox } from "./styles";
 
-interface Props {
+type Props = {
   id: string;
-}
+};
 
 const Teacher = ({ id }: Props) => {
   const { makeApiCall } = useContext(UserContext) as UserContextType;
@@ -21,8 +22,7 @@ const Teacher = ({ id }: Props) => {
   const getTeacherSchedule = (sections: SectionType[]) => {
     let newTimeTable = sections.map((el) =>
       el.time_table.filter(
-        //@ts-ignore
-        (schedule) => schedule.teacher_info === teacher._id,
+        (schedule: TimeTableType) => schedule.teacher_info === teacher?._id,
       ),
     );
     let mergedArray = newTimeTable.reduce(
@@ -68,26 +68,13 @@ const Teacher = ({ id }: Props) => {
         justifyContent={"space-between"}
         flexDirection="row"
       >
-        <Box
+        <StyledImageBox
           sx={{
-            backgroundColor: "#ebebeb",
-            minWidth: "25rem",
-            height: "25rem",
-            borderRadius: "50%",
-            backgroundSize: "contain",
             backgroundImage: `url(${person})`,
           }}
           component="div"
-        ></Box>
-        <Box
-          sx={{
-            height: "40rem",
-            position: "relative",
-            width: "100%",
-            padding: ".5rem 0px 0px 4rem",
-          }}
-          component="form"
-        >
+        ></StyledImageBox>
+        <StyledInfoBox component="form">
           <Grid container columnSpacing={2} rowSpacing={4}>
             {["name", "email", "unique_id", "phone_number", "password"].map(
               (el) => (
@@ -107,7 +94,7 @@ const Teacher = ({ id }: Props) => {
             <Grid item md={4}></Grid>
             <SectionAlloted sections={teacher?.sections} />
           </Grid>
-        </Box>
+        </StyledInfoBox>
       </Stack>
       <Typography sx={{ mt: 2, mb: 4 }} variant="h3">
         Teacher Schedule

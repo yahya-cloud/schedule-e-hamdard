@@ -1,5 +1,6 @@
-import { Stack, Box, Typography } from "@mui/material";
 import React from "react";
+import { StyledBox } from "./styles";
+import { Stack, Typography } from "@mui/material";
 
 let data = [
   { heading: "Admin", id: "yahya49939", password: "D3GD8" },
@@ -9,17 +10,7 @@ let data = [
 
 const Credential = () => {
   return (
-    <Box
-      sx={{
-        width: "60%",
-        margin: "0 auto",
-        height: "max-content",
-        backgroundColor: "#f9f9f9",
-        padding: ".5rem 1rem",
-        boxSizing: "border-box",
-        borderRadius: "8px",
-      }}
-    >
+    <StyledBox>
       {data.map((el) => {
         return (
           <Stack
@@ -40,7 +31,7 @@ const Credential = () => {
           </Stack>
         );
       })}
-    </Box>
+    </StyledBox>
   );
 };
 

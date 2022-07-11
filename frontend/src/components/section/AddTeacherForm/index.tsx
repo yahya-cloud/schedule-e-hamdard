@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Paper, Stack, Typography } from "@mui/material";
+import {  Stack, Typography } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { object, SchemaOf, string } from "yup";
 import { useForm } from "react-hook-form";
@@ -11,7 +11,8 @@ import FilterSearch from "../../global/Inputs/FilterSearch";
 import UserContextType, { StaffSchemaType } from "../../../@types/userContext";
 import { UserContext } from "../../../contexts/userContext";
 import ColorSelect from "../../global/Inputs/ColorSelect";
-import CancelIcon from "@mui/icons-material/Cancel";
+import { StyledPaper } from "../AddClassForm/styles";
+import Cancel from "../../global/CancelIcon";
 
 type nameIdObj = {
   name: String;
@@ -30,9 +31,9 @@ let schema: SchemaOf<IFormInput> = object({
   subject_color: string().required(),
 });
 
-interface Props {
+type Props = {
   handleClose: () => void;
-}
+};
 
 const AddTeacherForm = ({ handleClose }: Props) => {
   const [selectedId, setSelectedId] = useState<string>("");
@@ -61,7 +62,6 @@ const AddTeacherForm = ({ handleClose }: Props) => {
         "get",
       )) as StaffSchemaType[];
       let newApiData: nameIdObj[] = fetchedData.map((el: StaffSchemaType) => {
-        //@ts-ignore
         return { _id: el._id, name: el.name };
       }) as nameIdObj[];
       setApiData(newApiData);
@@ -71,28 +71,8 @@ const AddTeacherForm = ({ handleClose }: Props) => {
   }, []);
 
   return (
-    <Paper
-      sx={{
-        height: "max-content",
-        width: 350,
-        margin: "200px",
-        position: "absolute",
-        right: "-120px",
-        padding: "5px 10px 10px 20px",
-      }}
-      elevation={3}
-      component="form"
-    >
-      <CancelIcon
-        color="error"
-        onClick={handleClose}
-        style={{
-          cursor: "pointer",
-          position: "absolute",
-          right: "4px",
-          top: "3px",
-        }}
-      />
+    <StyledPaper elevation={3} component="form">
+      <Cancel handleClose={handleClose} />
       <Stack
         mt={2}
         flexDirection={"column"}
@@ -135,10 +115,10 @@ const AddTeacherForm = ({ handleClose }: Props) => {
           onClick={handleSubmit(onSubmit)}
           variant="contained"
           color="primary"
-          text="Add Class"
+          text="Add Teacher"
         />
       </Stack>
-    </Paper>
+    </StyledPaper>
   );
 };
 

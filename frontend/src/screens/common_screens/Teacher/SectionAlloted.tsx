@@ -1,10 +1,11 @@
 import React from "react";
-import { Grid, Typography, Paper } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { SectionType } from "../../../@types/global";
+import { SectionAllotedContainer, StyledTypography } from "./styles";
 
-interface Props {
+type Props = {
   sections: SectionType[] | null | undefined;
-}
+};
 
 const SectionAlloted = (props: Props) => {
   return (
@@ -12,38 +13,19 @@ const SectionAlloted = (props: Props) => {
       <Typography sx={{ mb: 2, color: "#848484" }} variant="h5">
         Section Alloted
       </Typography>
-      <Paper
-        sx={{
-          border: "1px solid #43B47C",
-          width: "100%",
-          height: "15rem",
-          boxSizing: "border-box",
-          padding: "2rem",
-        }}
-        elevation={2}
-      >
+      <SectionAllotedContainer elevation={2}>
         <Grid container spacing={3}>
           {props.sections?.map((el) => {
             return (
               <Grid key={el._id} item md={4}>
-                <Typography
-                  variant="h6"
-                  align="center"
-                  sx={{
-                    borderRadius: "8px",
-                    padding: "1rem",
-                    border: "1px solid #43B47C",
-                    color: "#43B47C",
-                  }}
-                  component="div"
-                >
+                <StyledTypography variant="h6" align="center" component="div">
                   {el.info.section_name.toUpperCase()}-{el.info.batch_name}
-                </Typography>
+                </StyledTypography>
               </Grid>
             );
           })}
         </Grid>
-      </Paper>
+      </SectionAllotedContainer>
     </Grid>
   );
 };

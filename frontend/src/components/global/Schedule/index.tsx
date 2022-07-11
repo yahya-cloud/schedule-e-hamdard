@@ -1,61 +1,46 @@
-import { Box, Divider, Paper, Stack, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Box, Divider, Stack, Typography } from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
 import { Calendar } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import { TimeTableType } from "../../../@types/global";
+import { SectionContextType, TimeTableType } from "../../../@types/global";
 import { getDayClasses } from "../../../lib/section";
 import WeekCalendar from "../../section/WeekCalendar";
 import ClassCard from "../../section/ClassCard";
+import { StyledPaper, StyledStack } from "./styles";
+import { SectionContext } from "../../../contexts/sectionContext";
 
-interface Props {
+type Props = {
   timeTable: TimeTableType[];
-}
+};
 
 const Schedule = (props: Props) => {
   const [date, setDate] = useState<Date>(new Date());
-  const [classes, setClasses] = useState<TimeTableType[] | undefined>([]);
-  const [dayClasses, setDayClasses] = useState<TimeTableType[] | undefined>([]);
+  const [classes, setClasses] = useState<TimeTableType[]>([]);
+  const [dayClasses, setDayClasses] = useState<TimeTableType[]>([]);
+  const { removeClass } = useContext(SectionContext) as SectionContextType;
 
   useEffect(() => {
     if (props.timeTable) {
-      let dayClass = getDayClasses(date, props.timeTable);
+      let dayClass = getDayClasses(date, props.timeTable) as TimeTableType[];
       setDayClasses(dayClass);
       setClasses(props.timeTable);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.timeTable]);
+  }, [date, props.timeTable]);
 
   useEffect(() => {
-    if (classes!.length > 0) {
-      let dayClass = getDayClasses(date, classes);
+    if (classes.length > 0) {
+      let dayClass = getDayClasses(date, classes) as TimeTableType[];
       setDayClasses(dayClass);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date]);
 
   return (
-    <Paper
-      sx={{
-        height: "800px",
-        borderRadius: "16px",
-        border: `1px solid #98D698`,
-      }}
-      elevation={3}
-      component={"div"}
-    >
+    <StyledPaper elevation={3} component={"div"}>
       <Stack flexDirection={"row"} sx={{ height: "100%" }}>
         <WeekCalendar classes={classes} selectedDate={date} />
-        <Stack
-          alignItems={"center"}
-          sx={{
-            borderRadius: "1.6rem",
-            flex: 1,
-            flexShrink: 0,
-            height: "100%",
-            border: `1px solid #98D698`,
-          }}
-        >
+        <StyledStack alignItems={"center"}>
           <Box component="div">
             <Calendar
               date={date}
@@ -75,7 +60,7 @@ const Schedule = (props: Props) => {
               sx={{ overflowY: "scroll", height: "39rem" }}
               alignItems={"flex-start"}
             >
-              {dayClasses!.map((el) => (
+              {dayClasses.map((el) => (
                 <ClassCard
                   color={el.subject_color}
                   start={el.start}
@@ -83,14 +68,16 @@ const Schedule = (props: Props) => {
                   title={el.title}
                   description={el.description}
                   key={el._id}
-                  deleteClass={() => {}}
+                  deleteClass={() => {
+                    removeClass(el._id);
+                  }}
                 />
               ))}
             </Stack>
           </Box>
-        </Stack>
+        </StyledStack>
       </Stack>
-    </Paper>
+    </StyledPaper>
   );
 };
 

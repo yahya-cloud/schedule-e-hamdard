@@ -9,7 +9,7 @@ type style = {
   [key: string]: any;
 };
 
-interface Props {
+type Props = {
   type: string;
   control: any;
   label: string;
@@ -17,7 +17,7 @@ interface Props {
   inputStyles?: style;
   fullWidth: boolean;
   helperText?: string;
-}
+};
 
 let colors = [
   "rgb(221, 248, 214)",
@@ -69,6 +69,7 @@ const ColorSelect = (props: Props) => {
             >
               {colors.map((el) => (
                 <Box
+                  key={el}
                   onClick={() => handleClick(el)}
                   component={"div"}
                   sx={{
