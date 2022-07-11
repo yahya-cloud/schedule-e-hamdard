@@ -4,13 +4,13 @@ import UserContextType from "../../../@types/userContext";
 import { UserContext } from "../../../contexts/userContext";
 import LayoutContainer from "../LayoutContainer";
 
-interface ProtectRouteProps {
+type ProtectRouteProps = {
   routeFor: string;
-}
+};
 
 const ProtectRoute = ({ routeFor }: ProtectRouteProps) => {
   const { user } = useContext(UserContext) as UserContextType;
-  if (user.user_type === routeFor) {
+  if (user?.user_type === routeFor) {
     return (
       <React.Fragment>
         <LayoutContainer>

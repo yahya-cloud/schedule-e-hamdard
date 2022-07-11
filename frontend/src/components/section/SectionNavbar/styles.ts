@@ -1,5 +1,15 @@
+import { Box } from "@mui/material";
 import { styled, experimental_sx as sx } from "@mui/system";
 import { NavLink } from "react-router-dom";
+
+const StyledBox = styled(Box)(
+  sx({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "50rem",
+  }),
+);
 
 const StyledNavLink = styled(NavLink)(
   sx({
@@ -20,4 +30,4 @@ const StyledNavLink = styled(NavLink)(
   }),
 );
 
-export { StyledNavLink };
+export { StyledBox, StyledNavLink };

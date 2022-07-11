@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { Box, Modal } from "@mui/material";
+import { Modal } from "@mui/material";
 import UserContextType from "../../../@types/userContext";
 import { UserContext } from "../../../contexts/userContext";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { Grid } from "react-loader-spinner";
+import { StyledBox } from "./styles";
 
 const Loader = () => {
   const { loading } = useContext(UserContext) as UserContextType;
@@ -18,17 +19,9 @@ const Loader = () => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box
-        sx={{
-          position: "absolute",
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%,-50%)",
-          "&:focus-visible": { outline: "none" },
-        }}
-      >
+      <StyledBox>
         <Grid height="150" width="150" color="#fff" ariaLabel="loading" />
-      </Box>
+      </StyledBox>
     </Modal>
   );
 };

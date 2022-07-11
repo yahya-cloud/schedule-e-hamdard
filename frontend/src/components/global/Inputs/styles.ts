@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import InputLabel from "@mui/material/InputLabel";
-import { TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import { experimental_sx as sx } from "@mui/system";
 
 const StyledTextField = styled(TextField)(
@@ -50,4 +50,16 @@ const StyledInputLabel = styled(InputLabel)({
   },
 });
 
-export { StyledFormInput, StyledInputLabel, StyledTextField };
+const StyledListBox = styled(Box)({
+  "&:hover": {
+    color: "#fff",
+    backgroundColor: "#43B47C80",
+  },
+  cursor: "pointer",
+  color: "#000",
+  height: "2.5rem",
+  padding: "1rem .5rem",
+  width: "20rem",
+});
+
+export { StyledFormInput, StyledListBox, StyledInputLabel, StyledTextField };

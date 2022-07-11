@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Box, Grid, Stack } from "@mui/material";
+import { Grid, Stack } from "@mui/material";
 import { FormInput } from "../../../components/global/Inputs";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { object, SchemaOf, string, number } from "yup";
@@ -9,6 +9,7 @@ import UserContextType from "../../../@types/userContext";
 import Button from "../../../components/global/Button";
 import { useNavigate } from "react-router-dom";
 import { rootRoute } from "../../../config.keys";
+import { StyledForm, StyledImageContainer } from "./styles";
 
 interface IFormInput {
   name: string;
@@ -51,15 +52,7 @@ const Form = () => {
       flexDirection="row"
     >
       <Stack alignItems={"center"}>
-        <Box
-          sx={{
-            backgroundColor: "#ebebeb",
-            minWidth: "25rem",
-            height: "25rem",
-            borderRadius: "50%",
-          }}
-          component="div"
-        ></Box>
+        <StyledImageContainer component="div"></StyledImageContainer>
         <Button
           btnDisable={true}
           customStyles={{ marginTop: "2rem" }}
@@ -69,15 +62,7 @@ const Form = () => {
           text="Upload Photo"
         />
       </Stack>
-      <Box
-        sx={{
-          height: "40rem",
-          position: "relative",
-          width: "100%",
-          padding: ".5rem 0px 0px 4rem",
-        }}
-        component="form"
-      >
+      <StyledForm component="form">
         <Grid container spacing={2}>
           <Grid item md={4}>
             <FormInput
@@ -120,7 +105,7 @@ const Form = () => {
           color="primary"
           text="Add Teacher"
         />
-      </Box>
+      </StyledForm>
     </Stack>
   );
 };

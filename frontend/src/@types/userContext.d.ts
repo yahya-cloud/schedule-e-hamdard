@@ -5,6 +5,8 @@ import {
   unknownObject,
 } from "./global";
 
+type user_type = "teacher" | "admin" | "student";
+
 interface UserType {
   _id: string;
   photo: string;
@@ -12,7 +14,7 @@ interface UserType {
   name: string;
   email: string;
   phone_number: number;
-  user_type: string;
+  user_type: user_type;
   password: string;
   section?: SectionType;
   __t: string;
@@ -24,8 +26,8 @@ interface RequestMessage {
 }
 
 interface UserContextType {
-  user: UserType;
-  message: RequestMessage;
+  user: UserType | null;
+  message: RequestMessage | null;
   makeApiCall: (
     url: string,
     payload: RequestBodyType,

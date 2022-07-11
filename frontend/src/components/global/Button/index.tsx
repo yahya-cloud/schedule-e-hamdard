@@ -10,14 +10,14 @@ type style = {
 type color = "primary" | "secondary" | "tertiary" | "fourth" | "fifth";
 type variant = "text" | "outlined" | "contained";
 
-interface Props extends React.ComponentPropsWithoutRef<"button"> {
+type Props = React.ComponentPropsWithoutRef<"button"> & {
   Icon?: new () => React.Component<style>;
   customStyles?: style;
   color: color;
   variant: variant;
   btnDisable?: boolean;
   text: string;
-}
+};
 
 const Button = ({
   Icon,

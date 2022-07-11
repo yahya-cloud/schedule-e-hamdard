@@ -9,7 +9,7 @@ const Message = () => {
   const [open, setOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    if (message.message !== "") {
+    if (message) {
       setOpen(true);
     }
   }, [message]);
@@ -21,7 +21,7 @@ const Message = () => {
   return (
     <Snackbar
       sx={{ width: "35rem" }}
-      open={message.message !== "" && open}
+      open={message?.message !== "" && open}
       autoHideDuration={5000}
       onClose={handleClose}
     >
@@ -33,9 +33,9 @@ const Message = () => {
         }}
         variant="standard"
         onClose={handleClose}
-        severity={message.severity}
+        severity={message?.severity}
       >
-        {message.message}
+        {message?.message}
       </Alert>
     </Snackbar>
   );

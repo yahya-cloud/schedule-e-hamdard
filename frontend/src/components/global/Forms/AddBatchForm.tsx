@@ -1,29 +1,29 @@
 import React from "react";
-import { Paper, Stack, Typography, useTheme } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import FormInput from "../Inputs/FormInput";
 import Button from "../Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { object, SchemaOf, string } from "yup";
 import { useForm } from "react-hook-form";
 import { RequestBodyType } from "../../../@types/global";
-import CancelIcon from "@mui/icons-material/Cancel";
+import { BatchPaper } from "./styles";
+import Cancel from "../CancelIcon";
 
 interface IFormInput {
   name: string;
 }
 
-interface Props {
+type Props = {
   heading: string;
   handleClose: () => void;
   addBatchHandler: (dataObj: RequestBodyType) => Promise<void>;
-}
+};
 
 let schema: SchemaOf<IFormInput> = object({
   name: string().required(),
 });
 
 const AddBatchForm = ({ addBatchHandler, handleClose, heading }: Props) => {
-  const theme = useTheme();
   const { handleSubmit, control } = useForm<IFormInput>({
     resolver: yupResolver(schema),
   });
@@ -33,28 +33,8 @@ const AddBatchForm = ({ addBatchHandler, handleClose, heading }: Props) => {
   };
 
   return (
-    <Paper
-      sx={{
-        border: `2px solid ${theme.palette.primary.main}`,
-        height: "min-content",
-        width: "35rem",
-        margin: "10rem auto",
-        padding: "1rem 3rem ",
-        position: "relative",
-      }}
-      elevation={3}
-      component="form"
-    >
-      <CancelIcon
-        onClick={handleClose}
-        style={{
-          cursor: "pointer",
-          color: "red",
-          position: "absolute",
-          right: "4px",
-          top: "3px",
-        }}
-      />
+    <BatchPaper elevation={3} component="form">
+      <Cancel handleClose={handleClose} />
       <Stack
         height={"18rem"}
         flexDirection={"column"}
@@ -82,7 +62,7 @@ const AddBatchForm = ({ addBatchHandler, handleClose, heading }: Props) => {
           text="Add New"
         />
       </Stack>
-    </Paper>
+    </BatchPaper>
   );
 };
 

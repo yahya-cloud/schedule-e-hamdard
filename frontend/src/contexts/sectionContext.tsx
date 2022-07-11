@@ -9,22 +9,8 @@ import {
 import { UserContext } from "./userContext";
 import { teacher } from "../lib/section";
 
-interface Props {
+type Props = {
   children: React.ReactNode;
-}
-
-let defaultValues = {
-  section: {
-    _id: "",
-    info: {
-      section_name: "",
-      batch_name: "",
-      _id: "",
-    },
-    teachers: [],
-    time_table: [],
-    students: [],
-  },
 };
 
 const SectionContext = createContext<SectionContextType | null>(null);
@@ -32,9 +18,7 @@ const SectionContext = createContext<SectionContextType | null>(null);
 const SectionProvider = ({ children }: Props) => {
   const { makeApiCall, user } = useContext(UserContext) as UserContextType;
 
-  const [section, setSection] = useState<SectionType>({
-    ...defaultValues.section,
-  });
+  const [section, setSection] = useState<SectionType | null>(null);
   const [sectionId, setSectionId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -63,31 +47,36 @@ const SectionProvider = ({ children }: Props) => {
   };
 
   const addClass = async (data: unknownObject) => {
-    const result = teacher(section.teachers, user!._id);
-    if (result) {
-      let { teacher_info, subject_color, subject } = result;
-      let { name, _id } = teacher_info;
-      let payload = {
-        _id: section._id,
-        title: subject,
-        subject_color,
-        teacher_info: _id,
-        description: name,
-        ...data,
-      };
+    if (section && user) {
+      const result = teacher(section.teachers, user._id);
+      if (result) {
+        let { teacher_info, subject_color, subject } = result;
+        let { name, _id } = teacher_info;
+        let payload = {
+          _id: section._id,
+          title: subject,
+          subject_color,
+          teacher_info: _id,
+          description: name,
+          ...data,
+        };
 
-      let { time_table } = (await makeApiCall(
-        "/section/addClass",
-        payload,
-        "patch",
-      )) as SectionType;
+        let { time_table } = (await makeApiCall(
+          "/section/addClass",
+          payload,
+          "patch",
+        )) as SectionType;
 
-      updateSection(time_table, "time_table");
+        updateSection(time_table, "time_table");
+      }
     }
   };
 
   const removeClass = async (classId: string) => {
-    let payload = { _id: section._id, class_id: classId };
+    let payload: RequestBodyType = {
+      _id: `${section?._id}`,
+      class_id: classId,
+    };
     let { time_table } = (await makeApiCall(
       "/section/removeClass",
       payload,
@@ -98,7 +87,7 @@ const SectionProvider = ({ children }: Props) => {
   };
 
   const deleteTeacher = async (teacher_info: string) => {
-    let payload: RequestBodyType = { _id: section._id, teacher_info };
+    let payload: RequestBodyType = { _id: `${section?._id}`, teacher_info };
     let { teachers } = (await makeApiCall(
       "/section/removeTeacher",
       payload,
@@ -114,7 +103,7 @@ const SectionProvider = ({ children }: Props) => {
     teacher_info: string,
   ) => {
     let payload: RequestBodyType = {
-      _id: section._id,
+      _id: `${section?._id}`,
       subject,
       subject_color,
       teacher_info,
@@ -135,7 +124,7 @@ const SectionProvider = ({ children }: Props) => {
       en_number,
       phone_number,
       email,
-      section: section._id,
+      section: `${section?._id}`,
       user_type: "student",
     };
     let student: StudentSchemaType = (await makeApiCall(
@@ -143,14 +132,20 @@ const SectionProvider = ({ children }: Props) => {
       payload,
       "post",
     )) as StudentSchemaType;
-    let students = [...section.students, student];
-    updateSection(students, "students");
+    if (section && student) {
+      let students = [...section.students, student];
+      updateSection(students, "students");
+    }
   };
 
   const deleteStudent = async (studentId: string) => {
     await makeApiCall(`/student/${studentId}`, {}, "delete");
-    let students = [...section.students].filter((el) => el._id !== studentId);
-    updateSection(students, "students");
+    if (section) {
+      let students = [...section?.students].filter(
+        (el) => el._id !== studentId,
+      );
+      updateSection(students, "students");
+    }
   };
 
   return (

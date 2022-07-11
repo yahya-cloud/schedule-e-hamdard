@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Modal } from "@mui/material";
 
-interface Props {
+type Props = {
   open: boolean;
   handleClose: () => void;
   children: React.ReactNode;

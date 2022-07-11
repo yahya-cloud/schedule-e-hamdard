@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Alert, Paper, Stack, Typography } from "@mui/material";
+import { Alert, Stack, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import FormInput from "../Inputs/FormInput";
 import Button from "../Button";
@@ -11,6 +11,7 @@ import { RequestBodyType } from "../../../@types/global";
 import Credential from "../Crendetial";
 import { userRootPath } from "../../../lib/utils";
 import { useNavigate } from "react-router-dom";
+import { LoginPaper } from "./styles";
 
 interface IFormInput {
   id: string;
@@ -47,16 +48,7 @@ const LoginForm = () => {
   };
 
   return (
-    <Paper
-      sx={{
-        height: "min-content",
-        width: 450,
-        margin: "200px auto",
-        padding: "20px 10px",
-      }}
-      elevation={3}
-      component="form"
-    >
+    <LoginPaper elevation={3} component="form">
       <Stack
         height={300}
         flexDirection={"column"}
@@ -91,8 +83,8 @@ const LoginForm = () => {
           color="primary"
           text="Login"
         />
-        {message.message !== "User not authenticated" &&
-        message.severity === "error" ? (
+        {message?.message !== "User not authenticated" &&
+        message?.severity === "error" ? (
           <Alert
             sx={{
               fontSize: "1.2rem",
@@ -109,7 +101,7 @@ const LoginForm = () => {
         )}
       </Stack>
       <Credential />
-    </Paper>
+    </LoginPaper>
   );
 };
 

@@ -10,7 +10,7 @@ const Profile = () => {
   return (
     <Box>
       <Typography variant="h3">Teacher Profile</Typography>
-      <Teacher id={user._id} />
+      {user && <Teacher id={user._id} />}
     </Box>
   );
 };

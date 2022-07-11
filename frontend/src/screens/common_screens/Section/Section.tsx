@@ -2,10 +2,11 @@ import { Box, Stack, Typography } from "@mui/material";
 import React, { useContext, useEffect } from "react";
 import { Routes, useParams, Route } from "react-router-dom";
 import { SectionContextType } from "../../../@types/global";
+import Schedule from "../../../components/global/Schedule";
 import DynamicButton from "../../../components/section/DynamicButton";
 import SectionNavbar from "../../../components/section/SectionNavbar";
 import { SectionContext } from "../../../contexts/sectionContext";
-import { Schedule, Teachers, Students } from "./sub_screens";
+import { Teachers, Students } from "./sub_screens";
 
 const Section = () => {
   const { section, setSectionId, user } = useContext(

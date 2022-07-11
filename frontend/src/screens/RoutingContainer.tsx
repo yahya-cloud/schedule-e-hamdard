@@ -15,7 +15,7 @@ const RoutingContainer = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user.user_type !== "") {
+    if (user) {
       let rootPath = userRootPath(user);
       navigate(rootPath);
     } else {

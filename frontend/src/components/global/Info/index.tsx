@@ -1,10 +1,10 @@
 import { Stack, Typography, useTheme } from "@mui/material";
 import React from "react";
 
-interface Props {
+type Props = {
   heading: string;
   detail: string;
-}
+};
 const Info = ({ heading, detail }: Props) => {
   const theme = useTheme();
   return (

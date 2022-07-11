@@ -1,27 +1,18 @@
 import React, { useContext } from "react";
-import { Box } from "@mui/material";
-import { StyledNavLink } from "./styles";
+import { StyledBox, StyledNavLink } from "./styles";
 import { UserContext } from "../../../contexts/userContext";
 import UserContextType from "../../../@types/userContext";
 
-interface Props {
+type Props = {
   id: string;
-}
+};
 
 const SectionNavbar = ({ id }: Props) => {
   const { user } = useContext(UserContext) as UserContextType;
   let userType = user?.user_type;
 
   return (
-    <Box
-      component={"div"}
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        width: "50rem",
-      }}
-    >
+    <StyledBox component={"div"}>
       <StyledNavLink end to={`/${userType}/section/${id}`}>
         Schedule
       </StyledNavLink>
@@ -31,7 +22,7 @@ const SectionNavbar = ({ id }: Props) => {
       <StyledNavLink end to={`/${userType}/section/${id}/students`}>
         Students
       </StyledNavLink>
-    </Box>
+    </StyledBox>
   );
 };
 

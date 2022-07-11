@@ -62,4 +62,22 @@ const StyledLogoutButton = styled(Box)(
   }),
 );
 
-export { StyledPaper, StyledImg, StyledNavLink, StyledLogoutButton };
+const StyledNavBox = styled(Box)(
+  sx({
+    height: "300px",
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+    justifyContent: "center",
+    flexShrink: 0,
+  }),
+) as typeof Box;
+
+export {
+  StyledPaper,
+  StyledNavBox,
+  StyledImg,
+  StyledNavLink,
+  StyledLogoutButton,
+};

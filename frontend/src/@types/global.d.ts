@@ -43,7 +43,7 @@ export interface TimeTableType {
   start: Date;
   end: Date;
   description: string;
-  teacher_info: TeacherInfoType;
+  teacher_info: TeacherInfoType | string;
   _id: string;
 }
 

@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import BasicTable from "../../../../../components/section/Table";
 import { UserContext } from "../../../../../contexts/userContext";
@@ -9,6 +8,7 @@ import columns from "./columns";
 import { SectionContext } from "../../../../../contexts/sectionContext";
 import { SectionContextType } from "../../../../../@types/global";
 import { decryptString } from "../../../../../lib/section";
+import { StyledBox } from "./styles";
 
 const Students = () => {
   const { section, deleteStudent } = useContext(
@@ -30,17 +30,9 @@ const Students = () => {
   }, [section]);
 
   return (
-    <Box
-      sx={{
-        margin: "0 auto",
-        display: "flex",
-        alignItems: "center",
-        width: "110rem",
-      }}
-      component="div"
-    >
+    <StyledBox component="div">
       <BasicTable rows={students} columns={studentColumns} />
-    </Box>
+    </StyledBox>
   );
 };
 
