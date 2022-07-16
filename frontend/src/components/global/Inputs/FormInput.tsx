@@ -14,7 +14,7 @@ type Props = {
   inputStyles?: style;
   fullWidth: boolean;
   helperText?: string;
-}
+};
 
 const FormInput = (props: Props) => {
   return (

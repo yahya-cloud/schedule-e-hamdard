@@ -19,7 +19,7 @@ type Props = {
   inputStyles?: style;
   fullWidth: boolean;
   helperText?: string;
-}
+};
 
 const DateSelect = (props: Props) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);

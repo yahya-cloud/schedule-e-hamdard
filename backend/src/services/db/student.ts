@@ -4,6 +4,10 @@ import { StudentModel } from "../../models";
 import { StudentSchemaType, StringObject } from "../../types";
 
 const createStudent = async (dataObj: StringObject) => {
+  let isValidEn_Number = authLib.isValidEn_Number(dataObj.en_number);
+  if (!isValidEn_Number) {
+    throw new Error("Invalid Enrollment Number");
+  }
   let password: string = await authLib.generatePassword();
   let newStudent = new StudentModel({ ...dataObj, password });
   let result = await newStudent.save();

@@ -12,7 +12,7 @@ type Props = {
   inputStyles?: style;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+};
 
 const SearchInput = (props: Props) => {
   return (

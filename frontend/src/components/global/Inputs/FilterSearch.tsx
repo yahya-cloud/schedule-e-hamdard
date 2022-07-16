@@ -21,7 +21,7 @@ type Props = {
   helperText?: string;
   apiData: nameIdObj[] | undefined;
   setId: (_id: string) => void;
-}
+};
 
 const FilterSearch = (props: Props) => {
   const [filteredResults, setFilteredResults] = useState<

@@ -5,7 +5,7 @@ type Props = {
   open: boolean;
   handleClose: () => void;
   children: React.ReactNode;
-}
+};
 
 const ModalContainer = ({ open, handleClose, children }: Props) => {
   return (

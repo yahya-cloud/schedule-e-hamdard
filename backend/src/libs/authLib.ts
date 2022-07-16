@@ -50,3 +50,8 @@ export const generatePassword = async function () {
   password = encryptString(password);
   return password;
 };
+
+export const isValidEn_Number = (en_number: string): boolean => {
+  let isValid = constants.EN_R_EXPRESSION.test(en_number);
+  return isValid;
+};

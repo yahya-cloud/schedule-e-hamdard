@@ -39,4 +39,6 @@ export const constants = {
   ],
   CHANGE_REQUEST_TYPES: ["POST", "PATCH", "DELETE", "PUT"],
   STAFF: ["teacher", "admin"],
+  EN_R_EXPRESSION:
+    /(?<year>\b20[12][0-9]\b)-(?<batchNumber>\b[0-4][0-9][0-9]\b)-(?<rollNumber>\b[0-4][0-9][0-9]\b)/g,
 };

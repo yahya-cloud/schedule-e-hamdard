@@ -36,6 +36,7 @@ const createStudent: RequestHandler = async (req, res) => {
         photo: "string",
         email: "string",
         phone_number: "number",
+        en_number: "string",
         user_type: "string",
       },
     );
