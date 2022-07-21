@@ -56,7 +56,7 @@ const Form = () => {
         <Button
           btnDisable={true}
           customStyles={{ marginTop: "2rem" }}
-          onClick={handleSubmit(onSubmit)}
+          onClick={() => {}}
           variant="outlined"
           color="fifth"
           text="Upload Photo"
@@ -66,7 +66,7 @@ const Form = () => {
         <Grid container spacing={2}>
           <Grid item md={4}>
             <FormInput
-              fullWidth={true}
+              fullWidth={false}
               helperText="Field is Required"
               type="text"
               control={control}
@@ -77,7 +77,7 @@ const Form = () => {
           </Grid>
           <Grid item md={4}>
             <FormInput
-              fullWidth={true}
+              fullWidth={false}
               helperText="Field is Required"
               type="text"
               control={control}
@@ -88,7 +88,7 @@ const Form = () => {
           </Grid>
           <Grid item md={4}>
             <FormInput
-              fullWidth={true}
+              fullWidth={false}
               helperText="Field is Required"
               type="text"
               control={control}

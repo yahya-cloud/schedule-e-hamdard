@@ -33,9 +33,7 @@ const SectionProvider = ({ children }: Props) => {
       }
     };
     getSection();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sectionId]);
+  }, [makeApiCall, sectionId]);
 
   const updateSection = (
     newValue: any[],

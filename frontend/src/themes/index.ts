@@ -1,5 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 
+//module augmentation
 declare module "@mui/material/styles" {
   interface Palette {
     tertiary?: Palette["primary"];

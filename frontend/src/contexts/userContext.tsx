@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useCallback, useState, useEffect, createContext } from "react";
 import UserContextType, {
   RequestMessage,
   UserType,
@@ -23,23 +23,30 @@ const UserProvider = ({ children }: Props) => {
   const [message, setMessage] = useState<RequestMessage | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const makeApiCall = async (
-    url: string,
-    payload: RequestBodyType,
-    method: apiMethod,
-  ): Promise<unknownObject | undefined> => {
-    try {
-      setLoading(true);
-      const result: ResponseBodyType = await makeRequest(url, payload, method);
-      setMessage({ message: result.message, severity: "success" });
-      setLoading(false);
-      return result.data;
-    } catch (error) {
-      const err = error as AxiosError;
-      setMessage({ message: err.response?.data.message, severity: "error" });
-      setLoading(false);
-    }
-  };
+  const makeApiCall = useCallback(
+    async (
+      url: string,
+      payload: RequestBodyType,
+      method: apiMethod,
+    ): Promise<unknownObject | undefined> => {
+      try {
+        setLoading(true);
+        const result: ResponseBodyType = await makeRequest(
+          url,
+          payload,
+          method,
+        );
+        setMessage({ message: result.message, severity: "success" });
+        setLoading(false);
+        return result.data;
+      } catch (error) {
+        const err = error as AxiosError;
+        setMessage({ message: err.response?.data.message, severity: "error" });
+        setLoading(false);
+      }
+    },
+    [],
+  );
 
   useEffect(() => {
     async function getUser() {
@@ -53,7 +60,7 @@ const UserProvider = ({ children }: Props) => {
       }
     }
     getUser();
-  }, []);
+  }, [makeApiCall]);
 
   const logout = async () => {
     await makeApiCall("/user/logout", {}, "get");

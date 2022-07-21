@@ -7,19 +7,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
 
 const columns = (
-  userType: string | undefined,
   deleteTeacher: (teacherId: string) => Promise<void>,
   viewTeacher: (teacherId: string) => void,
 ): GridColDef[] => {
-  let password = {
-    field: "password",
-    headerName: "Password",
-    type: "number",
-    width: 160,
-    headerAlign: "center",
-    align: "center",
-  };
-
   return [
     {
       field: "id",
@@ -57,8 +47,14 @@ const columns = (
       headerAlign: "center",
       align: "center",
     },
-
-    ...(userType === "admin" ? [password] : []),
+    {
+      field: "password",
+      headerName: "Password",
+      type: "number",
+      width: 160,
+      headerAlign: "center",
+      align: "center",
+    },
     {
       field: "action",
       headerName: "Actions",

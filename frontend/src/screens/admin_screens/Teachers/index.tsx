@@ -13,7 +13,7 @@ import useSearchFilter from "../../../hooks/useSearchFilter";
 
 const Teachers = () => {
   const [teachers, setTeachers] = useState<StaffSchemaType[]>([]);
-  const { makeApiCall, user } = useContext(UserContext) as UserContextType;
+  const { makeApiCall } = useContext(UserContext) as UserContextType;
   const [value, setValue, filteredData] = useSearchFilter(teachers, [
     "name",
     "unique_id",
@@ -46,7 +46,7 @@ const Teachers = () => {
     let updatedTeachers = [...teachers].filter((el) => el._id !== teacherId);
     setTeachers([...updatedTeachers]);
   };
-  const teacherColumns = columns(user?.user_type, deleteTeacher, viewTeacher);
+  const teacherColumns = columns(deleteTeacher, viewTeacher);
 
   return (
     <Box component="div">

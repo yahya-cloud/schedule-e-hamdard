@@ -13,7 +13,7 @@ const NavItem = ({ children, path }: Props) => {
     <>
       <StyledNavLink
         end
-        className={(navData) => (navData.isActive ? "active" : "cusomLink")}
+        className={(navData) => (navData.isActive ? "active" : "")}
         ref={navItem}
         to={path}
       >
