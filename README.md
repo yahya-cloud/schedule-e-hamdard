@@ -53,7 +53,7 @@
 
 ## About The Project
 
-- As of now teachers of <strong>Jamia hamdard University</strong>, doesn't have any medium to schedule classes else than whatsapp. Everything is done on whatsapp groups, for every subject there is a seprate whatsapp group. Which results in creation of multiple group's every semester, teachers have to remember all the sessions they have to take throught the day and are often in confusion at what time to schedule session for a class, if the class is free at that time or not which results in redundant conversation on whatsapp groups.
+- As of now teachers of most Universities doesn't have any medium to schedule classes else than whatsapp. Everything is done on whatsapp groups, for every subject there is a seprate whatsapp group. Which results in creation of multiple group's every semester, teachers have to remember all the sessions they have to take throught the day and are often in confusion at what time to schedule session for a class, if the class is free at that time or not which results in redundant conversation on whatsapp groups.
 
 - A SAAS product for staff, teacher and students. Where faculty member can assign classes to teachers, teachers can schedule sessions for assigned classes and students can keep track of upcoming sessions
 
