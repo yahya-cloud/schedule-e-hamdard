@@ -8,7 +8,7 @@
   
   <p align="center">
     <strong>
-      Class Scheduler for Jamia Hamdard University
+      Class Scheduler specific for Universities
     </strong>
     <br />
     <a href="https://github.com/yahya-cloud/schedule-e-hamdard"><strong>Explore the project »</strong></a>
