@@ -57,7 +57,7 @@ const Schedule = (props: Props) => {
               Class List
             </Typography>
             <Stack
-              sx={{ overflowY: "scroll", height: "39rem" }}
+              sx={{ overflowY: "auto", height: "39rem" }}
               alignItems={"flex-start"}
             >
               {dayClasses.map((el) => (

@@ -8,6 +8,5 @@ export const StyledBox = styled(Box)(
     borderRadius: "16px",
     position: "relative",
     padding: "2rem 0rem",
-    overflowY: "scroll",
   }),
 );
